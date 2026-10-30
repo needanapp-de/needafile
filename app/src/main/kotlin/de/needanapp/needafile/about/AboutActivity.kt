@@ -21,10 +21,10 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Article
 import androidx.compose.material.icons.outlined.Code
+import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.Mail
 import androidx.compose.material.icons.outlined.PrivacyTip
-import androidx.compose.material.icons.outlined.Storefront
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -88,7 +88,7 @@ private fun AboutScreen(activity: BaseActivity, onBack: () -> Unit) {
             item {
                 val links = listOf(
                     Triple(Icons.Outlined.Link, R.string.about_website, R.string.brand_website_url),
-                    Triple(Icons.Outlined.Storefront, R.string.about_fdroid, R.string.brand_fdroid_url),
+                    Triple(Icons.Outlined.Download, R.string.about_download, R.string.brand_download_url),
                     Triple(Icons.Outlined.PrivacyTip, R.string.about_privacy, R.string.brand_privacy_url),
                     Triple(Icons.Outlined.Code, R.string.about_source_code, R.string.brand_source_code_url),
                     Triple(Icons.Outlined.Mail, R.string.about_contact, R.string.brand_contact_email),

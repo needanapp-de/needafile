@@ -1,0 +1,1 @@
+• About: “Download” leads to the releases on GitHub instead of the F-Droid repo, “Source code” to the repository on GitHub

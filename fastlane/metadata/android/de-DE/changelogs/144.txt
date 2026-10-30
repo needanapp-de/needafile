@@ -1,0 +1,1 @@
+• Über: „Download“ führt zu den Versionen auf GitHub statt ins F-Droid-Repo, „Quellcode“ zum Repo auf GitHub

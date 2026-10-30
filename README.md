@@ -14,6 +14,14 @@ Herausgeber needanapp.de
 
 **Deutsch** · [English](#english)
 
+## Warum needafile
+
+Ich baue Apps, die ich selbst brauche. Meinen Launcher zum Beispiel habe ich gebaut, weil meine Favoriten Action
+Launcher, Nova Launcher und zuletzt Octopi Launcher für mich nicht mehr nutzbar waren und die Alternativen nicht boten,
+was ich wollte. Genauso ist needafile entstanden: ein Dateimanager, individuell gebaut für das, was ich brauche, ohne den
+Anspruch, komplett zu sein. So entstehen eigentlich alle meine Apps, manche selbst entwickelt, manche aus bestehenden
+umgebaut.
+
 ## Installieren
 
 Die APK unter [Releases](https://github.com/needanapp-de/needafile/releases/latest) herunterladen und öffnen. Neue
@@ -182,6 +190,13 @@ network, in the modern Material 3 Expressive look.
 Publisher needanapp.de
 
 [Deutsch](#needafile) · **English**
+
+## Why needafile
+
+I build the apps I need myself. My launcher, for example, came about because my favourites – Action Launcher, Nova
+Launcher and most recently Octopi Launcher – no longer worked for me, and the alternatives didn't offer what I wanted.
+needafile came about the same way: a file manager built for what I need, without claiming to be complete. That's how
+pretty much all my apps come about: some developed from scratch, some rebuilt from existing ones.
 
 ## Install
 

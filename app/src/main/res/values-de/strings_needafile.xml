@@ -147,7 +147,7 @@
     <string name="about_show_license_text">Lizenztext anzeigen</string>
     <string name="about_website">Webseite</string>
     <string name="about_privacy">Datenschutzerklärung</string>
-    <string name="about_fdroid">F-Droid-Repo</string>
+    <string name="about_download">Download</string>
     <string name="about_source_code">Quellcode</string>
     <string name="about_contact">Kontakt</string>
     <string name="about_library_sshj">SFTP-Verbindungen</string>

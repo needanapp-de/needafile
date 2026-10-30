@@ -149,7 +149,7 @@
     <string name="about_show_license_text">Show license text</string>
     <string name="about_website">Website</string>
     <string name="about_privacy">Privacy policy</string>
-    <string name="about_fdroid">F-Droid repository</string>
+    <string name="about_download">Download</string>
     <string name="about_source_code">Source code</string>
     <string name="about_contact">Contact</string>
     <string name="about_library_sshj">SFTP connections</string>

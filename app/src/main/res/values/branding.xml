@@ -10,11 +10,11 @@
     <string name="brand_tagline" translatable="false" />
     <string name="brand_copyright" translatable="false">© 2026 needanapp.de</string>
     <string name="brand_website_url" translatable="false">https://needanapp.de</string>
-    <!-- own F-Droid repository; only the F-Droid flavor fills it (src/foss/res/values/branding.xml), Play builds do not
-         point to other app sources -->
-    <string name="brand_fdroid_url" translatable="false" />
+    <!-- where new versions are downloaded; only the foss flavor fills it (src/foss/res/values/branding.xml), Play builds
+         do not point to other app sources -->
+    <string name="brand_download_url" translatable="false" />
     <!-- one page per language: values-de/branding.xml has the German one -->
     <string name="brand_privacy_url">https://needanapp.de/needafile/privacy-policy.html</string>
-    <string name="brand_source_code_url" translatable="false" />
+    <string name="brand_source_code_url" translatable="false">https://github.com/needanapp-de/needafile</string>
     <string name="brand_contact_email" translatable="false" />
 </resources>
