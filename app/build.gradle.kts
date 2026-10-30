@@ -12,9 +12,10 @@ plugins {
 }
 
 // needafile's keys live outside the repo and outside Syncthing, in ~/needanapp-signing (or the folder set as
-// needanapp.signingDir in ~/.gradle/gradle.properties); a keystore.properties in the project root still wins
+// needanapp.signingDir in ~/.gradle/gradle.properties); a keystore.properties in the project root still wins.
+// needafile has a release key of its own in the subfolder needafile/, the other apps share the one in the folder itself
 val signingDir = File(providers.gradleProperty("needanapp.signingDir").orNull ?: "${System.getProperty("user.home")}/needanapp-signing")
-val keystorePropertiesFile: File = rootProject.file("keystore.properties").takeIf { it.exists() } ?: File(signingDir, "keystore.properties")
+val keystorePropertiesFile: File = rootProject.file("keystore.properties").takeIf { it.exists() } ?: File(signingDir, "needafile/keystore.properties")
 val uploadPropertiesFile = File(signingDir, "keystore-upload.properties")
 
 // storeFile may be relative to the properties file

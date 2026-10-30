@@ -8,7 +8,7 @@ statt `{RELEASE_DIR}` der Ordner der Version und statt `{VERSION_CODE}` ihr Vers
 
 | Datei (in `/home/fuckup/needanapp-signing/`) | Rolle | SHA-256 des Zertifikats |
 |---|---|---|
-| `needanapp-release.p12` | **App-Signaturschlüssel**: signiert die Release-APKs (GitHub, F-Droid); Play signiert damit die ausgelieferten APKs | `C6:0E:A3:B5:6D:A7:0E:60:EF:F5:CB:96:DD:8D:C1:9A:41:86:0A:3E:D4:B2:9A:EB:2A:29:9F:83:3A:63:51:D9` |
+| `needafile/needanapp-release.p12` | **App-Signaturschlüssel** (nur needafile, die anderen Apps nutzen den gemeinsamen im Ordner selbst): signiert die Release-APKs (GitHub, F-Droid); Play signiert damit die ausgelieferten APKs | `C6:0E:A3:B5:6D:A7:0E:60:EF:F5:CB:96:DD:8D:C1:9A:41:86:0A:3E:D4:B2:9A:EB:2A:29:9F:83:3A:63:51:D9` |
 | `needanapp-upload.p12` | **Upload-Schlüssel**: signiert nur das AAB, das du in die Console lädst | `4A:1E:DF:5E:BF:CB:5B:2B:7D:A1:DE:DC:5A:0C:77:92:88:EC:52:FF:71:53:C5:9A:4E:00:56:C3:73:B0:96:C3` |
 
 Weil Play mit demselben Schlüssel signiert wie die Release-APKs auf GitHub, können Nutzer zwischen beiden Quellen
@@ -18,7 +18,7 @@ mit einem anderen signiert (`4C:A4:F7:…:D5:47:02`), solche Installationen müs
 - Der App-Signaturschlüssel lässt sich **nie** ersetzen, auch nicht über Google. Geht er verloren, gibt es keine
   Updates mehr. → `needanapp-release.p12` und Passwort an einem zweiten Ort sichern.
 - Den Upload-Schlüssel kann Google bei Verlust zurücksetzen.
-- Die Passwörter stehen in `keystore.properties` und `keystore-upload.properties` im selben Ordner (nicht in git, nicht
+- Die Passwörter stehen in `needafile/keystore.properties` und `keystore-upload.properties` (nicht in git, nicht
   in Syncthing).
 
 ## Bauen
@@ -46,7 +46,7 @@ F-Droid-Repo, sonst ist sie gleich.
    zum Download an und zeigt den genauen Befehl; er sieht etwa so aus:
 
 ```bash
-java -jar pepk.jar --keystore=/home/fuckup/needanapp-signing/needanapp-release.p12 --alias=needanapp-release --output=needanapp-release-for-play.zip --include-cert --rsa-aes-encryption --encryption-key-path=encryption_public_key.pem
+java -jar pepk.jar --keystore=/home/fuckup/needanapp-signing/needafile/needanapp-release.p12 --alias=needanapp-release --output=needanapp-release-for-play.zip --include-cert --rsa-aes-encryption --encryption-key-path=encryption_public_key.pem
 ```
 
 `pepk.jar` fragt nach den Passwörtern. Die erzeugte ZIP hochladen und danach löschen.
