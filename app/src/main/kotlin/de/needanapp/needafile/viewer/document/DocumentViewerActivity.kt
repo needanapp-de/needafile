@@ -21,8 +21,6 @@ import androidx.compose.material.icons.outlined.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.MoreHoriz
 import androidx.compose.material.icons.outlined.Print
 import androidx.compose.material.icons.outlined.Share
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -53,6 +51,8 @@ import de.needanapp.design.components.Detail
 import de.needanapp.design.components.EmptyState
 import de.needanapp.design.components.FloatingItemCard
 import de.needanapp.design.components.FloatingItemCardDefaults
+import de.needanapp.design.components.SignalButton
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.design.components.detailLines
 import de.needanapp.design.components.rememberPillScrollBehavior
 import de.needanapp.design.components.rememberSearchState
@@ -230,12 +230,12 @@ private fun DocumentViewerScreen(activity: BaseActivity, uri: Uri, mimeType: Str
                     stringResource(R.string.document_open_failed),
                     message = error,
                     action = current?.let { doc ->
-                        { Button(onClick = { ViewerActions.openWith(activity, doc.path, doc.uri, doc.mimeType.ifEmpty { "*/*" }) }) { Text(stringResource(R.string.open_with)) } }
+                        { SignalButton(onClick = { ViewerActions.openWith(activity, doc.path, doc.uri, doc.mimeType.ifEmpty { "*/*" }) }) { Text(stringResource(R.string.open_with)) } }
                     },
                 )
             }
 
-            shown == null || current == null -> Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
+            shown == null || current == null -> Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { SignalCircularProgressIndicator() }
             shown is DocumentContent.Pdf -> PdfContent(
                 document = current,
                 modifier = Modifier.padding(top = if (isFullScreen) 0.dp else padding.calculateTopPadding()),

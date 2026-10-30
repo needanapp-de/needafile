@@ -15,7 +15,6 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Lan
 import androidx.compose.material.icons.outlined.SwapVert
 import androidx.compose.material.icons.outlined.Terminal
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.ActionTile
 import de.needanapp.design.components.BottomPillSpacer
 import de.needanapp.design.components.EmptyState
+import de.needanapp.design.components.SignalButton
 import de.needanapp.design.components.TileCard
 import de.needanapp.design.components.scrollbar
 import de.needanapp.needafile.R
@@ -74,7 +74,7 @@ fun ServersPage(
                     Icons.Outlined.Dns,
                     stringResource(R.string.servers_empty_title),
                     message = stringResource(R.string.servers_empty_placeholder),
-                    action = { Button(onClick = onAdd) { Text(stringResource(R.string.add_server)) } },
+                    action = { SignalButton(onClick = onAdd) { Text(stringResource(R.string.add_server)) } },
                 )
             }
         }

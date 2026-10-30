@@ -1,0 +1,2 @@
+• Easier to read: text and symbols read well in every color world, buttons and progress shine in the chosen accent color
+• Pill menus are readable again in color worlds with a dark pill

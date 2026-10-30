@@ -16,7 +16,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.SettingsBackupRestore
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,6 +40,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.SecretTextField
+import de.needanapp.design.components.SignalLinearProgressIndicator
 import de.needanapp.needafile.R
 import de.needanapp.needafile.core.toast
 import de.needanapp.needafile.errors.describeError
@@ -317,7 +317,7 @@ private fun Working(text: Int) {
     Spacer(Modifier.height(16.dp))
     Text(stringResource(text), style = MaterialTheme.typography.bodyMedium)
     Spacer(Modifier.height(8.dp))
-    LinearProgressIndicator(Modifier.fillMaxWidth().clip(CircleShape))
+    SignalLinearProgressIndicator(Modifier.fillMaxWidth().clip(CircleShape))
 }
 
 private const val BACKUP_MIME_TYPE = "application/octet-stream"

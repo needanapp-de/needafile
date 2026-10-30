@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.MarqueeText
+import de.needanapp.design.components.SignalLinearProgressIndicator
 import de.needanapp.needafile.R
 import de.needanapp.needafile.core.formatSize
 import de.needanapp.needafile.transfer.TransferProgress
@@ -80,7 +80,7 @@ fun FetchDialog(fetch: FetchProgress, onDismiss: () -> Unit) {
         val total = fetch.bytesTotal
         if (total > 0) {
             val fraction = (fetch.bytesDone.toFloat() / total).coerceIn(0f, 1f)
-            LinearProgressIndicator(progress = { fraction }, modifier = Modifier.fillMaxWidth().clip(CircleShape))
+            SignalLinearProgressIndicator(progress = { fraction }, modifier = Modifier.fillMaxWidth().clip(CircleShape))
             Spacer(Modifier.height(8.dp))
             Text(
                 stringResource(R.string.fetch_progress, (fraction * PERCENT).toInt(), fetch.bytesDone.formatSize(), total.formatSize()),
@@ -89,7 +89,7 @@ fun FetchDialog(fetch: FetchProgress, onDismiss: () -> Unit) {
             )
         } else {
             // connecting, or a size the server didn't tell
-            LinearProgressIndicator(Modifier.fillMaxWidth().clip(CircleShape))
+            SignalLinearProgressIndicator(Modifier.fillMaxWidth().clip(CircleShape))
         }
     }
 }

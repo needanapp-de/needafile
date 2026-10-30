@@ -24,8 +24,6 @@ import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Shuffle
 import androidx.compose.material.icons.outlined.ShuffleOn
 import androidx.compose.material.icons.outlined.Wallpaper
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -52,6 +50,8 @@ import de.needanapp.design.components.CardMenu
 import de.needanapp.design.components.ConfirmDialog
 import de.needanapp.design.components.EmptyState
 import de.needanapp.design.components.FloatingItemCard
+import de.needanapp.design.components.SignalButton
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.needafile.R
 import de.needanapp.needafile.base.BaseActivity
 import de.needanapp.needafile.core.EXTRA_FILE_PATH
@@ -470,7 +470,7 @@ private fun VaultImagePage(image: ViewerImage, decrypting: Mutex, onDecrypted: (
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         when {
             failed -> EmptyState(Icons.Outlined.BrokenImage, stringResource(R.string.viewer_image_failed))
-            else -> progress?.let { CircularProgressIndicator(progress = { it }) } ?: CircularProgressIndicator()
+            else -> progress?.let { SignalCircularProgressIndicator(progress = { it }) } ?: SignalCircularProgressIndicator()
         }
     }
 }
@@ -491,7 +491,7 @@ private fun ImagePage(image: ViewerImage, onTap: () -> Unit, onOpenWith: () -> U
             EmptyState(
                 Icons.Outlined.BrokenImage,
                 stringResource(R.string.viewer_image_failed),
-                action = { Button(onClick = onOpenWith) { Text(stringResource(R.string.open_with)) } },
+                action = { SignalButton(onClick = onOpenWith) { Text(stringResource(R.string.open_with)) } },
             )
         }
         return
@@ -507,7 +507,7 @@ private fun ImagePage(image: ViewerImage, onTap: () -> Unit, onOpenWith: () -> U
             onDoubleClick = DOUBLE_TAP_ZOOM,
             modifier = Modifier.fillMaxSize(),
         )
-        if (!state.isImageDisplayed) CircularProgressIndicator()
+        if (!state.isImageDisplayed) SignalCircularProgressIndicator()
     }
 }
 

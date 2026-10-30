@@ -22,8 +22,6 @@ import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Unarchive
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -50,6 +48,8 @@ import de.needanapp.design.components.EmptyState
 import de.needanapp.design.components.FastScrollbar
 import de.needanapp.design.components.FloatingItemCard
 import de.needanapp.design.components.FloatingItemCardDefaults
+import de.needanapp.design.components.SignalButton
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.design.components.SubScreen
 import de.needanapp.design.components.detailLines
 import de.needanapp.design.components.rememberPillScrollBehavior
@@ -315,7 +315,7 @@ private fun OpenArchiveScreen(activity: BaseActivity, uri: Uri, mimeType: String
                 EmptyState(Icons.Outlined.ErrorOutline, stringResource(R.string.archive_open_failed), message = failed)
             }
 
-            shown == null -> CenteredState(padding) { CircularProgressIndicator() }
+            shown == null -> CenteredState(padding) { SignalCircularProgressIndicator() }
 
             shown is ArchiveContent.Hidden -> CenteredState(padding) {
                 EmptyState(
@@ -323,7 +323,7 @@ private fun OpenArchiveScreen(activity: BaseActivity, uri: Uri, mimeType: String
                     stringResource(R.string.archive_names_hidden),
                     message = stringResource(R.string.archive_names_hidden_hint),
                     action = {
-                        Button(onClick = { askPassword = PasswordRequest(PasswordUse.List, isWrong = false) }) {
+                        SignalButton(onClick = { askPassword = PasswordRequest(PasswordUse.List, isWrong = false) }) {
                             Text(stringResource(R.string.archive_enter_password))
                         }
                     },

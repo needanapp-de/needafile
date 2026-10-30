@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.outlined.Folder
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -30,6 +29,7 @@ import de.needanapp.design.components.ListRow
 import de.needanapp.design.components.OptionsSheet
 import de.needanapp.design.components.SegmentedRow
 import de.needanapp.design.components.SettingsGroup
+import de.needanapp.design.components.SignalButton
 import de.needanapp.design.components.TextFieldRow
 import de.needanapp.design.components.verticalScrollWithBar
 import de.needanapp.needafile.R
@@ -130,7 +130,7 @@ fun RenameManySheet(items: List<FileEntry>, operations: FileOperations, onDismis
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
             ) {
                 TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
-                Button(enabled = isValid && changes > 0, onClick = {
+                SignalButton(enabled = isValid && changes > 0, onClick = {
                     onDismiss()
                     if (mode == RenameMode.TEMPLATE) context.config.lastRenamePatternUsed = template
                     operations.renameAll(planned.filter { (item, name) -> name != item.name })

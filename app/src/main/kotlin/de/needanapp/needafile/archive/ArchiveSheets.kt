@@ -17,7 +17,6 @@ import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.LockOpen
 import androidx.compose.material.icons.outlined.TextFields
 import androidx.compose.material.icons.outlined.Tune
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -48,6 +47,7 @@ import de.needanapp.design.components.OptionsSheet
 import de.needanapp.design.components.SecretTextField
 import de.needanapp.design.components.SegmentedRow
 import de.needanapp.design.components.SettingsGroup
+import de.needanapp.design.components.SignalButton
 import de.needanapp.design.components.SliderRow
 import de.needanapp.design.components.StatusTile
 import de.needanapp.design.components.StatusTone
@@ -244,7 +244,7 @@ fun CompressSheet(items: List<FileEntry>, onDismiss: () -> Unit, onCompress: (Co
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
             ) {
                 TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
-                Button(enabled = canCompress, onClick = {
+                SignalButton(enabled = canCompress, onClick = {
                     onDismiss()
                     context.config.compressOptions = CompressOptions(format, isProtected, encryptNames, strength, aesKeyStrength, split, partSize, solid)
                     val password = password.takeIf { isProtected }

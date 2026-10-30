@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Fingerprint
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -50,6 +49,7 @@ import androidx.lifecycle.compose.LifecycleResumeEffect
 import de.needanapp.design.components.OptionsSheet
 import de.needanapp.design.components.RowPosition
 import de.needanapp.design.components.SegmentedRow
+import de.needanapp.design.components.SignalButton
 import de.needanapp.design.components.verticalScrollWithBar
 import de.needanapp.design.theme.LocalDesignColors
 import de.needanapp.design.theme.designBackground
@@ -275,7 +275,7 @@ private fun LockEntry(type: LockType, expected: String?, onDone: (Protection) ->
 
             LockType.BIOMETRIC -> if (biometrics == BiometricState.READY) {
                 Icon(Icons.Outlined.Fingerprint, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(64.dp))
-                Button(onClick = ::authenticate) { Text(stringResource(R.string.authenticate)) }
+                SignalButton(onClick = ::authenticate) { Text(stringResource(R.string.authenticate)) }
             } else {
                 Icon(Icons.Outlined.Fingerprint, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(64.dp))
                 Text(
@@ -284,7 +284,7 @@ private fun LockEntry(type: LockType, expected: String?, onDone: (Protection) ->
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                 )
-                Button(onClick = activity::openFingerprintSetup) { Text(stringResource(R.string.fingerprint_set_up_in_android)) }
+                SignalButton(onClick = activity::openFingerprintSetup) { Text(stringResource(R.string.fingerprint_set_up_in_android)) }
             }
         }
     }

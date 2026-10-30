@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.ActionTile
 import de.needanapp.design.components.CardSpacing
 import de.needanapp.design.components.OptionsSheet
+import de.needanapp.design.components.SignalLinearProgressIndicator
 import de.needanapp.design.components.TileCard
 import de.needanapp.needafile.R
 import de.needanapp.needafile.discovery.DiscoveredServer
@@ -54,7 +54,7 @@ fun DiscoverySheet(onPick: (DiscoveredServer) -> Unit, onDismiss: () -> Unit) {
 
     OptionsSheet(onDismiss, title = stringResource(R.string.discovery_title)) {
         if (isSearching) {
-            LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp).clip(CircleShape))
+            SignalLinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp).clip(CircleShape))
         }
         if (found.isEmpty() && !isSearching) {
             Text(

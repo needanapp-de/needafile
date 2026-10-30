@@ -19,8 +19,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Notes
 import androidx.compose.material.icons.outlined.Folder
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,6 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.IntentCompat
 import de.needanapp.design.components.ListRow
 import de.needanapp.design.components.SettingsGroup
+import de.needanapp.design.components.SignalButton
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.design.components.SubScreen
 import de.needanapp.design.components.scrollbar
 import de.needanapp.needafile.R
@@ -138,7 +138,7 @@ private fun SaveSharedScreen(activity: BaseActivity, content: SharedContent, onB
         LazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize().scrollbar(listState, padding)) {
             val shown = items
             if (shown == null) {
-                item { CircularProgressIndicator(Modifier.padding(32.dp)) }
+                item { SignalCircularProgressIndicator(Modifier.padding(32.dp)) }
             } else {
                 item {
                     SettingsGroup(pluralStringResource(R.plurals.shared_items, shown.size, shown.size)) {
@@ -162,8 +162,8 @@ private fun SaveSharedScreen(activity: BaseActivity, content: SharedContent, onB
                     horizontalArrangement = Arrangement.End,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    if (saving) CircularProgressIndicator(Modifier.padding(end = 16.dp).size(24.dp), strokeWidth = 3.dp)
-                    Button(enabled = !saving && !shown.isNullOrEmpty(), onClick = { shown?.let(::save) }) {
+                    if (saving) SignalCircularProgressIndicator(Modifier.padding(end = 16.dp).size(24.dp), strokeWidth = 3.dp)
+                    SignalButton(enabled = !saving && !shown.isNullOrEmpty(), onClick = { shown?.let(::save) }) {
                         Text(stringResource(R.string.save))
                     }
                 }

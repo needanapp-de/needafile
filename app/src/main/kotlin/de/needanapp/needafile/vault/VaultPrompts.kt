@@ -26,7 +26,6 @@ import androidx.compose.material.icons.outlined.Key
 import androidx.compose.material.icons.outlined.Password
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -54,6 +53,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.SecretTextField
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.needafile.R
 import de.needanapp.needafile.base.BaseActivity
 import de.needanapp.needafile.core.toast
@@ -598,7 +598,7 @@ private fun CheckRow(checked: Boolean, label: String, onChange: (Boolean) -> Uni
 @Composable
 private fun BusyRow(label: String) {
     Row(Modifier.padding(vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-        CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
+        SignalCircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
         Spacer(Modifier.width(12.dp))
         Text(label, style = MaterialTheme.typography.bodyMedium)
     }

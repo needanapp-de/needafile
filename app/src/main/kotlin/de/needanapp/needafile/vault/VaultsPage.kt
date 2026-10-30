@@ -17,7 +17,6 @@ import androidx.compose.material.icons.outlined.EnhancedEncryption
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.LockOpen
 import androidx.compose.material.icons.outlined.ScreenLockPortrait
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -41,6 +40,7 @@ import de.needanapp.design.components.BottomPillSpacer
 import de.needanapp.design.components.ChoiceTile
 import de.needanapp.design.components.EmptyState
 import de.needanapp.design.components.RowPosition
+import de.needanapp.design.components.SignalButton
 import de.needanapp.design.components.SwipeActionRow
 import de.needanapp.design.components.SwitchTile
 import de.needanapp.design.components.TileCard
@@ -139,7 +139,7 @@ fun VaultsPage(
                     Icons.Outlined.EnhancedEncryption,
                     stringResource(R.string.vaults_empty_title),
                     message = stringResource(R.string.vaults_empty_message),
-                    action = { Button(onClick = onCreate) { Text(stringResource(R.string.vault_create_title)) } },
+                    action = { SignalButton(onClick = onCreate) { Text(stringResource(R.string.vault_create_title)) } },
                 )
             }
         }

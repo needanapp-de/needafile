@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Folder
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -24,6 +23,7 @@ import de.needanapp.design.components.ConfirmDialog
 import de.needanapp.design.components.ListRow
 import de.needanapp.design.components.OptionsSheet
 import de.needanapp.design.components.SettingsGroup
+import de.needanapp.design.components.SignalButton
 import de.needanapp.design.components.TextFieldRow
 import de.needanapp.needafile.R
 import de.needanapp.needafile.core.displayPath
@@ -62,7 +62,7 @@ fun SaveAsSheet(name: String, folder: String, onDismiss: () -> Unit, onSave: (pa
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
         ) {
             TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
-            Button(enabled = isValid, onClick = {
+            SignalButton(enabled = isValid, onClick = {
                 val path = File(targetFolder, fileName.trim()).path
                 if (File(path).exists()) replacing = path else onSave(path)
             }) { Text(stringResource(R.string.save)) }

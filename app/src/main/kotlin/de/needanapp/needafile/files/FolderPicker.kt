@@ -20,8 +20,6 @@ import androidx.compose.material.icons.outlined.CloudOff
 import androidx.compose.material.icons.outlined.CreateNewFolder
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.outlined.FolderOff
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
@@ -48,6 +46,8 @@ import de.needanapp.design.components.ListRow
 import de.needanapp.design.components.MarqueeText
 import de.needanapp.design.components.OptionsSheet
 import de.needanapp.design.components.RowPosition
+import de.needanapp.design.components.SignalButton
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.design.components.TextInputDialog
 import de.needanapp.design.components.scrollbar
 import de.needanapp.design.theme.LocalDesignShapes
@@ -228,7 +228,7 @@ fun FolderPickerSheet(pick: FolderPick, onDismiss: () -> Unit) {
                     TextButton(onClick = { reloads++ }) { Text(stringResource(R.string.picker_retry)) }
                 })
 
-                shown == null -> CircularProgressIndicator()
+                shown == null -> SignalCircularProgressIndicator()
                 shown.folders.isEmpty() -> EmptyState(Icons.Outlined.FolderOff, stringResource(R.string.no_subfolders))
                 else -> LazyColumn(
                     state = folderList,
@@ -247,7 +247,7 @@ fun FolderPickerSheet(pick: FolderPick, onDismiss: () -> Unit) {
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
         ) {
             TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
-            Button(onClick = {
+            SignalButton(onClick = {
                 onDismiss()
                 pick.onPicked(path)
             }, enabled = content != null && !isShareList) { Text(stringResource(pick.confirmLabel)) }

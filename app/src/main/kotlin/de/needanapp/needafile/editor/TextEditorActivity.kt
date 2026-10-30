@@ -39,8 +39,6 @@ import androidx.compose.material.icons.outlined.Print
 import androidx.compose.material.icons.outlined.Save
 import androidx.compose.material.icons.outlined.SaveAs
 import androidx.compose.material.icons.outlined.Share
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -79,6 +77,8 @@ import de.needanapp.design.components.Detail
 import de.needanapp.design.components.EmptyState
 import de.needanapp.design.components.FloatingItemCard
 import de.needanapp.design.components.FloatingItemCardDefaults
+import de.needanapp.design.components.SignalButton
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.design.components.detailLines
 import de.needanapp.design.components.rememberPillScrollBehavior
 import de.needanapp.design.components.rememberSearchState
@@ -312,12 +312,12 @@ private fun TextEditorScreen(activity: BaseActivity, uri: Uri, mimeType: String?
                     modifier = Modifier.padding(padding),
                     message = if (size > 0) stringResource(R.string.editor_too_large, size.formatSize()) else null,
                     action = {
-                        Button(onClick = { shownSource?.let { openWith(activity, it, mimeType) } }) { Text(stringResource(R.string.open_with)) }
+                        SignalButton(onClick = { shownSource?.let { openWith(activity, it, mimeType) } }) { Text(stringResource(R.string.open_with)) }
                     },
                 )
             }
 
-            original == null -> Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
+            original == null -> Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { SignalCircularProgressIndicator() }
             readOnlyLines != null -> Box(Modifier.nestedScroll(cardScroll.nestedScrollConnection)) {
                 LongTextView(
                     original!!,

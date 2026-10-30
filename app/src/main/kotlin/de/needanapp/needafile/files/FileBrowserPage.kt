@@ -74,13 +74,10 @@ import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.SdCard
 import androidx.compose.material.icons.outlined.SearchOff
 import androidx.compose.material.icons.outlined.Tag
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -141,6 +138,9 @@ import de.needanapp.design.components.LoadingState
 import de.needanapp.design.components.MarqueeText
 import de.needanapp.design.components.PillDefaults
 import de.needanapp.design.components.RefreshBox
+import de.needanapp.design.components.SignalButton
+import de.needanapp.design.components.SignalCircularProgressIndicator
+import de.needanapp.design.components.SignalLinearProgressIndicator
 import de.needanapp.design.components.SteadyDeleteInput
 import de.needanapp.design.components.SurfaceProgress
 import de.needanapp.design.components.TabChip
@@ -406,7 +406,7 @@ fun FileBrowserPage(
             exit = fadeOut(),
             modifier = Modifier.align(Alignment.TopCenter).padding(top = top),
         ) {
-            LinearProgressIndicator(Modifier.fillMaxWidth().height(3.dp))
+            SignalLinearProgressIndicator(Modifier.fillMaxWidth().height(3.dp))
         }
     }
 }
@@ -455,7 +455,7 @@ private fun StatusFooter(model: FileBrowserModel, isEmpty: Boolean, isSearching:
     when {
         !isEmpty -> Unit
         model.isSearching -> Box(Modifier.fillMaxWidth().padding(48.dp), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
+            SignalCircularProgressIndicator()
         }
 
         model.isLoading -> LoadingState(
@@ -782,7 +782,7 @@ private fun RenameButtons(canConfirm: Boolean, onCancel: () -> Unit, onConfirm: 
     ) {
         TextButton(onClick = onCancel) { Text(stringResource(R.string.cancel)) }
         // filled, as the tonal one would vanish on the selected card
-        Button(onClick = onConfirm, enabled = canConfirm) { Text(stringResource(R.string.rename)) }
+        SignalButton(onClick = onConfirm, enabled = canConfirm) { Text(stringResource(R.string.rename)) }
     }
 }
 

@@ -22,7 +22,6 @@ import androidx.compose.material.icons.outlined.NetworkCheck
 import androidx.compose.material.icons.outlined.NoEncryption
 import androidx.compose.material.icons.outlined.Password
 import androidx.compose.material.icons.outlined.TravelExplore
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -42,6 +41,7 @@ import de.needanapp.design.components.CardStatus
 import de.needanapp.design.components.ChoiceTile
 import de.needanapp.design.components.ListRow
 import de.needanapp.design.components.SettingsGroup
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.design.components.StatusTile
 import de.needanapp.design.components.StatusTone
 import de.needanapp.design.components.SwitchTile
@@ -308,7 +308,7 @@ fun ServerEditor(form: ServerForm, contentPadding: PaddingValues, nestedScrollCo
                         inline = true,
                         enabled = current != TestState.Running,
                         trailing = if (current == TestState.Running) {
-                            { CircularProgressIndicator(Modifier.size(24.dp), strokeWidth = 2.dp) }
+                            { SignalCircularProgressIndicator(Modifier.size(24.dp), strokeWidth = 2.dp) }
                         } else {
                             null
                         },

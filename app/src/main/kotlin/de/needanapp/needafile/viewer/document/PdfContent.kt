@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -27,6 +26,7 @@ import com.infomaniak.lib.pdfview.util.FitPolicy
 import com.shockwave.pdfium.PdfPasswordException
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.SecretTextField
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.needafile.R
 import java.io.File
 
@@ -118,7 +118,7 @@ internal fun PdfContent(
                 modifier = Modifier.fillMaxSize(),
             )
         }
-        if (isLoading) CircularProgressIndicator(Modifier.align(Alignment.Center))
+        if (isLoading) SignalCircularProgressIndicator(Modifier.align(Alignment.Center))
     }
 
     if (askPassword) {

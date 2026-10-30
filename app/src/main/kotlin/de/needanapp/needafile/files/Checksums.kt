@@ -17,7 +17,6 @@ import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.Fingerprint
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,6 +36,7 @@ import de.needanapp.design.components.ActionTile
 import de.needanapp.design.components.CardStatus
 import de.needanapp.design.components.Detail
 import de.needanapp.design.components.DetailTile
+import de.needanapp.design.components.SignalLinearProgressIndicator
 import de.needanapp.design.components.StatusTile
 import de.needanapp.design.components.StatusTone
 import de.needanapp.design.components.TileCardScope
@@ -158,7 +158,7 @@ fun TileCardScope.checksumLines(path: String) {
             Column(m.clip(shape).background(TileDefaults.containerColor()).padding(horizontal = 14.dp, vertical = 12.dp)) {
                 Text(stringResource(R.string.checksums_progress, (progress * PERCENT).toInt()), style = MaterialTheme.typography.bodyLarge)
                 Spacer(Modifier.height(8.dp))
-                LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().clip(CircleShape))
+                SignalLinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().clip(CircleShape))
             }
         })
 

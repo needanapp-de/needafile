@@ -26,7 +26,6 @@ import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,6 +44,7 @@ import de.needanapp.design.components.NavigationPill
 import de.needanapp.design.components.PillAction
 import de.needanapp.design.components.PillItem
 import de.needanapp.design.components.PillMenu
+import de.needanapp.design.components.SignalLinearProgressIndicator
 import de.needanapp.design.components.designCard
 import de.needanapp.design.theme.LocalDesignShapes
 import de.needanapp.needafile.R
@@ -191,7 +191,7 @@ private fun SampleNotification(icon: ImageVector, title: String, progress: Float
             Text(stringResource(R.string.brand_name), style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
             Text(title, style = MaterialTheme.typography.titleSmall)
             detail?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = scheme.onSurfaceVariant) }
-            progress?.let { LinearProgressIndicator(progress = { it }, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) }
+            progress?.let { SignalLinearProgressIndicator(progress = { it }, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) }
             action?.let { Text(it, style = MaterialTheme.typography.labelLarge, color = scheme.primary, modifier = Modifier.padding(top = 8.dp)) }
         }
     }

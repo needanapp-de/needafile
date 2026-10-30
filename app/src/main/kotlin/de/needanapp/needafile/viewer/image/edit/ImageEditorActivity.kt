@@ -23,7 +23,6 @@ import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material.icons.outlined.Save
 import androidx.compose.material.icons.outlined.SaveAs
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -49,6 +48,7 @@ import de.needanapp.design.components.NavigationPill
 import de.needanapp.design.components.OptionsSheet
 import de.needanapp.design.components.PillAction
 import de.needanapp.design.components.PillItem
+import de.needanapp.design.components.SignalCircularProgressIndicator
 import de.needanapp.design.components.TileCard
 import de.needanapp.needafile.R
 import de.needanapp.needafile.base.BaseActivity
@@ -130,7 +130,7 @@ private fun ImageEditorScreen(activity: BaseActivity, uri: Uri) {
             if (error != null) {
                 EmptyState(Icons.Outlined.ErrorOutline, stringResource(R.string.image_editor_load_failed), Modifier.padding(padding), message = error)
             } else {
-                Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
+                Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { SignalCircularProgressIndicator() }
             }
         }
         return
@@ -227,7 +227,7 @@ private fun EditorContent(activity: BaseActivity, image: ViewerImage, session: E
                     EditorTool.CROP -> CropArea(session)
                     EditorTool.DRAW -> DrawArea(session)
                 }
-                if (session.isBusy) CircularProgressIndicator()
+                if (session.isBusy) SignalCircularProgressIndicator()
             }
             ToolPanel(session)
             // room for the floating pill

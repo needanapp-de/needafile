@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FolderOpen
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -25,6 +24,7 @@ import androidx.lifecycle.compose.LifecycleResumeEffect
 import de.needanapp.design.components.AppScaffold
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.EmptyState
+import de.needanapp.design.components.SignalButton
 import de.needanapp.design.components.verticalScrollWithBar
 import de.needanapp.needafile.R
 import de.needanapp.needafile.core.showError
@@ -90,7 +90,7 @@ fun StorageAccessScreen(onAllow: () -> Unit) {
                 Icons.Outlined.FolderOpen,
                 stringResource(R.string.storage_access_title),
                 message = stringResource(R.string.storage_access_message, stringResource(R.string.brand_name)),
-                action = { Button(onClick = onAllow) { Text(stringResource(R.string.storage_access_allow)) } },
+                action = { SignalButton(onClick = onAllow) { Text(stringResource(R.string.storage_access_allow)) } },
             )
         }
     }
