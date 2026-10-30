@@ -8,7 +8,7 @@
 
 needafile ist ein Dateimanager für Android 12 und neuer – für die Dateien auf dem Handy und auf den Servern im eigenen Netzwerk, im modernen Material-3-Expressive-Stil.
 
-[F-Droid-Repo](https://fdroid.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
+[Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
 [Datenschutzerklärung](https://needanapp.de/needafile/datenschutz.html) · Android 12 und neuer · Lizenz [GPL-3.0](LICENSE) ·
 Herausgeber needanapp.de
 
@@ -16,17 +16,11 @@ Herausgeber needanapp.de
 
 ## Installieren
 
-Über das eigene F-Droid-Repo: in F-Droid (oder einer anderen F-Droid-App) unter „Paketquellen“ diese Adresse
-hinzufügen oder auf [fdroid.needanapp.de](https://fdroid.needanapp.de) den QR-Code scannen.
+Die APK unter [Releases](https://github.com/needanapp-de/needafile/releases/latest) herunterladen und öffnen. Neue
+Versionen erscheinen ebenfalls dort.
 
-```text
-https://fdroid.needanapp.de/repo?fingerprint=231DF03DE2428B3A82E67B6CBF0D0CB0BB6E9261EA45392128707D2F39661844
-```
-
-Fingerabdruck (SHA-256) des Repo-Schlüssels: `23 1D F0 3D E2 42 8B 3A 82 E6 7B 6C BF 0D 0C B0 BB 6E 92 61 EA 45 39 21 28 70 7D 2F 39 66 18 44`
-
-Oder die APK direkt unter [Releases](https://github.com/needanapp-de/needafile/releases/latest) herunterladen. Sie ist
-mit demselben Schlüssel signiert wie die Fassung im F-Droid-Repo, Updates gehen also in beide Richtungen.
+Fingerabdruck (SHA-256) des Signaturzertifikats, zum Prüfen der APK:
+`C6:0E:A3:B5:6D:A7:0E:60:EF:F5:CB:96:DD:8D:C1:9A:41:86:0A:3E:D4:B2:9A:EB:2A:29:9F:83:3A:63:51:D9`
 
 ## Bilder
 
@@ -183,7 +177,7 @@ GPL-3.0, siehe [LICENSE](LICENSE). Das Design-Paket needanapp-design steht ebenf
 needafile is a file manager for Android 12 and newer – for the files on your phone and on the servers in your own
 network, in the modern Material 3 Expressive look.
 
-[F-Droid repo](https://fdroid.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
+[Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
 [Privacy policy](https://needanapp.de/needafile/datenschutz.html) · Android 12 and newer · License [GPL-3.0](LICENSE) ·
 Publisher needanapp.de
 
@@ -191,17 +185,11 @@ Publisher needanapp.de
 
 ## Install
 
-From the own F-Droid repo: in F-Droid (or another F-Droid app) add this address under “Repositories”, or scan the
-QR code on [fdroid.needanapp.de](https://fdroid.needanapp.de).
+Download the APK from [Releases](https://github.com/needanapp-de/needafile/releases/latest) and open it. New versions
+appear there as well.
 
-```text
-https://fdroid.needanapp.de/repo?fingerprint=231DF03DE2428B3A82E67B6CBF0D0CB0BB6E9261EA45392128707D2F39661844
-```
-
-Fingerprint (SHA-256) of the repo key: `23 1D F0 3D E2 42 8B 3A 82 E6 7B 6C BF 0D 0C B0 BB 6E 92 61 EA 45 39 21 28 70 7D 2F 39 66 18 44`
-
-Or download the APK directly from [Releases](https://github.com/needanapp-de/needafile/releases/latest). It is signed
-with the same key as the version in the F-Droid repo, so updates work in both directions.
+Fingerprint (SHA-256) of the signing certificate, to check the APK:
+`C6:0E:A3:B5:6D:A7:0E:60:EF:F5:CB:96:DD:8D:C1:9A:41:86:0A:3E:D4:B2:9A:EB:2A:29:9F:83:3A:63:51:D9`
 
 ## Pictures
 

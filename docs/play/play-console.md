@@ -8,14 +8,15 @@ statt `{RELEASE_DIR}` der Ordner der Version und statt `{VERSION_CODE}` ihr Vers
 
 | Datei (in `/home/fuckup/needanapp-signing/`) | Rolle | SHA-256 des Zertifikats |
 |---|---|---|
-| `needanapp-release.p12` | **App-Signaturschlüssel**: signiert F-Droid-Releases; Play signiert damit die ausgelieferten APKs | `4C:A4:F7:4F:69:2F:10:E7:67:CD:84:25:38:51:DC:85:4F:14:D3:99:B2:3C:7C:48:0B:FA:BB:D6:FE:D5:47:02` |
+| `needanapp-release.p12` | **App-Signaturschlüssel**: signiert die Release-APKs (GitHub, F-Droid); Play signiert damit die ausgelieferten APKs | `C6:0E:A3:B5:6D:A7:0E:60:EF:F5:CB:96:DD:8D:C1:9A:41:86:0A:3E:D4:B2:9A:EB:2A:29:9F:83:3A:63:51:D9` |
 | `needanapp-upload.p12` | **Upload-Schlüssel**: signiert nur das AAB, das du in die Console lädst | `4A:1E:DF:5E:BF:CB:5B:2B:7D:A1:DE:DC:5A:0C:77:92:88:EC:52:FF:71:53:C5:9A:4E:00:56:C3:73:B0:96:C3` |
 
-Weil Play mit demselben Schlüssel signiert wie das F-Droid-Release-Repo, können Nutzer zwischen beiden Quellen wechseln,
-ohne neu zu installieren.
+Weil Play mit demselben Schlüssel signiert wie die Release-APKs auf GitHub, können Nutzer zwischen beiden Quellen
+wechseln, ohne neu zu installieren. Den Schlüssel gibt es seit 30.10.2026 (0.97.3); bis dahin waren die APKs im F-Droid-Repo
+mit einem anderen signiert (`4C:A4:F7:…:D5:47:02`), solche Installationen müssen einmal neu installiert werden.
 
-- Der App-Signaturschlüssel lässt sich **nie** ersetzen, auch nicht über Google. Geht er verloren, gibt es für
-  F-Droid keine Updates mehr. → Sicherung (`needanapp-.7z`) an einem zweiten Ort aufbewahren.
+- Der App-Signaturschlüssel lässt sich **nie** ersetzen, auch nicht über Google. Geht er verloren, gibt es keine
+  Updates mehr. → `needanapp-release.p12` und Passwort an einem zweiten Ort sichern.
 - Den Upload-Schlüssel kann Google bei Verlust zurücksetzen.
 - Die Passwörter stehen in `keystore.properties` und `keystore-upload.properties` im selben Ordner (nicht in git, nicht
   in Syncthing).
@@ -57,7 +58,7 @@ java -jar pepk.jar --keystore=/home/fuckup/needanapp-signing/needanapp-release.p
    übersprungen: unter Play App-Signatur „Zurücksetzen des Uploadschlüssels anfordern“ und dort dieselbe `.pem`
    hochladen (Google bearbeitet das, es kann etwas dauern).
 5. Prüfen: Unter Play App-Signatur müssen die beiden SHA-256-Werte aus der Tabelle oben stehen
-   (App-Signaturschlüssel `4C:A4:F7:…:D5:47:02`, Uploadschlüssel `4A:1E:DF:…:B0:96:C3`). Erst dann das AAB hochladen.
+   (App-Signaturschlüssel `C6:0E:A3:…:63:51:D9`, Uploadschlüssel `4A:1E:DF:…:B0:96:C3`). Erst dann das AAB hochladen.
 
 ## Erster Release
 
@@ -75,7 +76,7 @@ java -jar pepk.jar --keystore=/home/fuckup/needanapp-signing/needanapp-release.p
 Seit 30. September 2026 installieren zertifizierte Android-Geräte in Brasilien, Indonesien, Singapur und Thailand nur
 noch Apps von verifizierten Entwicklern, auch außerhalb von Play; weltweit ist das für 2027 angekündigt. Mit dem
 verifizierten Play-Konto den Paketnamen `de.needanapp.needafile` mit dem Release-Schlüssel (SHA-256 oben) registrieren,
-dann gilt das auch für die APKs aus dem eigenen F-Droid-Repo, weil beide mit demselben Schlüssel signiert sind. Die
+dann gilt das auch für die APKs auf GitHub und im eigenen F-Droid-Repo, weil alle mit demselben Schlüssel signiert sind. Die
 Debug-Variante `de.needanapp.needafile.debug` (Test-Schlüssel) wäre davon getrennt zu registrieren.
 
 ## Store-Eintrag
