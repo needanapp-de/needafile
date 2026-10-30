@@ -9,7 +9,7 @@
 needafile ist ein Dateimanager für Android 12 und neuer – für die Dateien auf dem Handy und auf den Servern im eigenen Netzwerk, im modernen Material-3-Expressive-Stil.
 
 [F-Droid-Repo](https://apps.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
-[Datenschutzerklärung](https://needanapp.de/needafile/datenschutz.html) · Android 12 und neuer · Lizenz [GPL-3.0](LICENSE) ·
+Android 12 und neuer · Lizenz [GPL-3.0](LICENSE) ·
 Herausgeber needanapp.de
 
 **Deutsch** · [English](#english)
@@ -194,7 +194,7 @@ needafile is a file manager for Android 12 and newer – for the files on your p
 network, in the modern Material 3 Expressive look.
 
 [F-Droid repo](https://apps.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
-[Privacy policy](https://needanapp.de/needafile/datenschutz.html) · Android 12 and newer · License [GPL-3.0](LICENSE) ·
+Android 12 and newer · License [GPL-3.0](LICENSE) ·
 Publisher needanapp.de
 
 [Deutsch](#needafile) · **English**

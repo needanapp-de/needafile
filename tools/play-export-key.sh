@@ -5,7 +5,7 @@
 set -euo pipefail
 
 DOWNLOADS=${1:-/home/fuckup/Downloads}
-KEYSTORE=/home/fuckup/needanapp-signing/needafile/needanapp-release.p12
+KEYSTORE=/home/fuckup/needanapp-signing/stabil/needanapp-release.p12
 OUT=/home/fuckup/needafile-release/needanapp-release-for-play.zip
 JAVA=/usr/lib/jvm/java-21-openjdk-amd64/bin/java
 
