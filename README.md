@@ -146,29 +146,6 @@ needafile ist freie Software (GPL-3.0). Netzwerkzugriff braucht die App nur für
 
 </details>
 
-## Bauen
-
-Die Oberfläche kommt aus dem Design-Paket [needanapp-design](https://git.needanapp.de/needanapp.de/needanapp-design),
-das als Composite Build eingebunden ist (`includeBuild("../needanapp-design")` in `settings.gradle.kts`). Beide
-Repositories müssen daher nebeneinander liegen:
-
-```bash
-git clone https://github.com/needanapp-de/needafile.git
-git clone https://git.needanapp.de/needanapp.de/needanapp-design.git
-cd needafile
-./gradlew :app:assembleFossDebug
-```
-
-```
-needafile/           (dieses Repository)
-needanapp-design/
-```
-
-Gebaut wird mit JDK 21 und dem Android SDK (compileSdk 37). Die Variante `foss` ist die F-Droid-Fassung, `gplay`
-die für Google Play (ohne Verweis aufs F-Droid-Repo, sonst gleich).
-
-7-Zip-JBinding wird mit einer kleinen Korrektur aus dem Quelltext unter `libs/7-zip-jbinding/` gebaut.
-
 ## Dank
 
 - [7-Zip-JBinding](https://github.com/omicronapps/7-Zip-JBinding-4Android) und p7zip (LGPL-2.1) – 7z, RAR und weitere Archive
@@ -176,7 +153,7 @@ die für Google Play (ohne Verweis aufs F-Droid-Repo, sonst gleich).
 
 ## Lizenz
 
-GPL-3.0, siehe [LICENSE](LICENSE). Das Design-Paket needanapp-design steht ebenfalls unter GPL-3.0.
+GPL-3.0, siehe [LICENSE](LICENSE).
 
 ---
 
@@ -328,29 +305,6 @@ needafile is free software (GPL-3.0). The app only needs network access for the 
 
 </details>
 
-## Build
-
-The interface comes from the design package [needanapp-design](https://git.needanapp.de/needanapp.de/needanapp-design),
-which is included as a composite build (`includeBuild("../needanapp-design")` in `settings.gradle.kts`). Both
-repositories therefore have to sit side by side:
-
-```bash
-git clone https://github.com/needanapp-de/needafile.git
-git clone https://git.needanapp.de/needanapp.de/needanapp-design.git
-cd needafile
-./gradlew :app:assembleFossDebug
-```
-
-```
-needafile/           (this repository)
-needanapp-design/
-```
-
-It builds with JDK 21 and the Android SDK (compileSdk 37). The `foss` variant is the F-Droid version, `gplay` the
-one for Google Play (without a link to the F-Droid repo, otherwise the same).
-
-7-Zip-JBinding is built from source with a small fix under `libs/7-zip-jbinding/`.
-
 ## Thanks
 
 - [7-Zip-JBinding](https://github.com/omicronapps/7-Zip-JBinding-4Android) and p7zip (LGPL-2.1) – 7z, RAR and further archives
@@ -358,4 +312,4 @@ one for Google Play (without a link to the F-Droid repo, otherwise the same).
 
 ## License
 
-GPL-3.0, see [LICENSE](LICENSE). The design package needanapp-design is also licensed under GPL-3.0.
+GPL-3.0, see [LICENSE](LICENSE).
