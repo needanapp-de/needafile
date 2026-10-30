@@ -8,8 +8,11 @@
 
 needafile ist ein Dateimanager für Android 12 und neuer – für die Dateien auf dem Handy und auf den Servern im eigenen Netzwerk, im modernen Material-3-Expressive-Stil.
 
-[F-Droid-Repo](https://fdroid.needanapp.de) · [Datenschutzerklärung](https://needanapp.de/needafile/datenschutz.html) ·
-Android 12 und neuer · Lizenz [GPL-3.0](LICENSE) · Herausgeber needanapp.de
+[F-Droid-Repo](https://fdroid.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
+[Datenschutzerklärung](https://needanapp.de/needafile/datenschutz.html) · Android 12 und neuer · Lizenz [GPL-3.0](LICENSE) ·
+Herausgeber needanapp.de
+
+**Deutsch** · [English](#english)
 
 ## Installieren
 
@@ -21,6 +24,9 @@ https://fdroid.needanapp.de/repo?fingerprint=231DF03DE2428B3A82E67B6CBF0D0CB0BB6
 ```
 
 Fingerabdruck (SHA-256) des Repo-Schlüssels: `23 1D F0 3D E2 42 8B 3A 82 E6 7B 6C BF 0D 0C B0 BB 6E 92 61 EA 45 39 21 28 70 7D 2F 39 66 18 44`
+
+Oder die APK direkt unter [Releases](https://github.com/needanapp-de/needafile/releases/latest) herunterladen. Sie ist
+mit demselben Schlüssel signiert wie die Fassung im F-Droid-Repo, Updates gehen also in beide Richtungen.
 
 ## Bilder
 
@@ -137,7 +143,7 @@ das als Composite Build eingebunden ist (`includeBuild("../needanapp-design")` i
 Repositories müssen daher nebeneinander liegen:
 
 ```bash
-git clone https://git.needanapp.de/needanapp.de/needafile.git
+git clone https://github.com/needanapp-de/needafile.git
 git clone https://git.needanapp.de/needanapp.de/needanapp-design.git
 cd needafile
 ./gradlew :app:assembleFossDebug
@@ -161,3 +167,176 @@ die für Google Play (ohne Verweis aufs F-Droid-Repo, sonst gleich).
 ## Lizenz
 
 GPL-3.0, siehe [LICENSE](LICENSE). Das Design-Paket needanapp-design steht ebenfalls unter GPL-3.0.
+
+---
+
+<a id="english"></a>
+
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/featureGraphic.png" alt="needafile – your files on the phone and in the network" width="100%">
+</p>
+
+# needafile (English)
+
+**File manager for the phone and the network: SFTP, SMB, WebDAV, FTPS and archives**
+
+needafile is a file manager for Android 12 and newer – for the files on your phone and on the servers in your own
+network, in the modern Material 3 Expressive look.
+
+[F-Droid repo](https://fdroid.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
+[Privacy policy](https://needanapp.de/needafile/datenschutz.html) · Android 12 and newer · License [GPL-3.0](LICENSE) ·
+Publisher needanapp.de
+
+[Deutsch](#needafile) · **English**
+
+## Install
+
+From the own F-Droid repo: in F-Droid (or another F-Droid app) add this address under “Repositories”, or scan the
+QR code on [fdroid.needanapp.de](https://fdroid.needanapp.de).
+
+```text
+https://fdroid.needanapp.de/repo?fingerprint=231DF03DE2428B3A82E67B6CBF0D0CB0BB6E9261EA45392128707D2F39661844
+```
+
+Fingerprint (SHA-256) of the repo key: `23 1D F0 3D E2 42 8B 3A 82 E6 7B 6C BF 0D 0C B0 BB 6E 92 61 EA 45 39 21 28 70 7D 2F 39 66 18 44`
+
+Or download the APK directly from [Releases](https://github.com/needanapp-de/needafile/releases/latest). It is signed
+with the same key as the version in the F-Droid repo, so updates work in both directions.
+
+## Pictures
+
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1-photos.png" alt="Photos as a gallery, tabs for several places" width="200"><br><sub>Photos as a gallery, tabs for several places</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2-servers.png" alt="Saved servers: SMB, SFTP, WebDAV, FTPS" width="200"><br><sub>Saved servers: SMB, SFTP, WebDAV, FTPS</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3-nas.png" alt="Folders on the NAS in a tab of their own" width="200"><br><sub>Folders on the NAS in a tab of their own</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4-archive.png" alt="Open a ZIP archive like a folder" width="200"><br><sub>Open a ZIP archive like a folder</sub></td>
+  </tr>
+  <tr>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5-viewer.png" alt="Picture viewer with editor" width="200"><br><sub>Picture viewer with editor</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6-actions.png" alt="A card with all actions, grouped by purpose" width="200"><br><sub>A card with all actions, grouped by purpose</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/7-selection.png" alt="Several files: one card with count and size" width="200"><br><sub>Several files: one card with count and size</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/8-appearance.png" alt="Color worlds for light and dark" width="200"><br><sub>Color worlds for light and dark</sub></td>
+  </tr>
+</table>
+
+## Features
+
+### Phone
+
+- Internal storage, SD cards and USB drives, optionally root
+- Tabs for several places, copying and moving in the background with progress and cancel
+- List, details, grid or gallery view; zoom with two fingers; group by date, type, size or name
+- A long press opens a card with all actions; several marked entries share one card
+- Search, home screen shortcuts, text editor
+- Checksums (MD5, SHA-1, SHA-256, SHA-512) with comparison against the clipboard
+
+### Network
+
+- SFTP (the server key is checked), SMB, WebDAV and FTPS; unencrypted FTP only after asking, per server
+- Self-signed certificates only after confirming their fingerprint, with a warning when they change
+- Passwords are kept encrypted in the Android Keystore
+- Finds servers in the network (Bonjour/mDNS, WS-Discovery)
+- Transfers can be paused; after a connection breaks, the app waits up to an hour and continues where it stopped
+
+### Archives
+
+- Create ZIP (with AES encryption, split) and 7z (also with encrypted file names)
+- Extract RAR 4/5, 7z, tar, gz, bz2, xz, ISO, CAB and many more
+- Open archives like folders, even on servers
+
+### Vaults
+
+- Create and open Cryptomator vaults, on the phone and on servers; file names and contents stay encrypted
+- Unlock with password or fingerprint; recovery key, change password
+- Lock themselves in the background or when the screen turns off; a notification counts down and locks them on a tap
+
+### Viewers
+
+- Pictures (JPEG, PNG, WebP, GIF, SVG, HEIC, AVIF, JPEG XL …) with a simple editor
+- Documents: PDF, Word, Excel, OpenDocument, Markdown, CSV and HTML
+
+### Also
+
+- Protection by PIN, pattern or fingerprint
+- Back up settings and servers in a password-protected file
+- Light, dark and pure black, color worlds like Cloud, Nord Night, Signal or Ultraviolet, Material You or an own accent color
+- German and English
+
+needafile is free software (GPL-3.0). The app only needs network access for the server connections.
+
+<details>
+<summary><b>All features in detail</b></summary>
+
+- Internal storage, SD card, USB and (optionally) root
+- Server connections: SFTP (the server key is checked), SMB, WebDAV and FTPS (explicit or implicit; self-signed
+  certificates after confirming their fingerprint, warning when they change), unencrypted FTP only after asking, per
+  server; credentials encrypted in the Android Keystore
+- Find servers in the network: Bonjour/mDNS (SMB, SFTP/SSH, WebDAV, FTP) and Windows computers or NAS via
+  WS-Discovery
+- Back up and restore settings: appearance, settings and servers (with passwords, confirmed keys and certificates)
+  in a password-encrypted file (Argon2id, AES-256-GCM); on import you choose which parts are replaced
+- Tabs for several places; copying and moving in the background with progress and cancel, on the device as well as
+  between device and server; server transfers can be paused, after a connection breaks the app waits up to an hour
+  and continues where it stopped
+- Packing and extracting: ZIP (compression level, AES-128/256, split into parts), 7z (compression level, solid
+  archive, also with encrypted file names); also extracts RAR 4/5 (also multi-part and encrypted), multi-part 7z,
+  tar(.gz/.bz2/.xz), gz, bz2, xz, Z, lzma, ISO, CAB, ARJ, LZH, WIM, CPIO, RPM, DEB, CHM and XAR
+- Open archives like folders (read-only, also on servers and nested): view files directly, extract, copy or share
+  single files or folders
+- Views: list (compact, normal, large), details with columns (a tap on a column sorts), grid and gallery; zoom with
+  two fingers; group by date, type, size or first letter with collapsible headers; folders with mostly pictures and
+  videos open as a gallery; in general or per folder
+- Search, home screen shortcuts, text editor
+- Checksums (MD5, SHA-1, SHA-256, SHA-512) in the properties, with comparison against the clipboard
+- Picture viewer (JPEG, PNG, WebP, GIF, SVG, HEIC, AVIF, JPEG XL and more) with zoom, swiping through the folder and
+  picture details (EXIF); picture editor for cropping, rotating, flipping, scaling and drawing – saves as a copy by
+  default
+- Document viewer: PDF (also with password), Word (DOCX), Excel (XLSX), OpenDocument (ODS, ODT), Markdown, CSV and
+  HTML, with search and printing
+- Picture and document viewer also for other apps (“Open with”)
+- Cryptomator vaults (format 8 and 7): create and open them, locally and on all servers; thumbnails only in the
+  internal cache, swipe through the pictures in a vault; unlock with password or fingerprint, recovery key, change
+  password; automatic lock after a chosen time in the background or when the screen turns off (running transfers
+  finish first), notification with countdown and lock button
+- Protection by PIN, pattern or fingerprint
+- Pick a file and “Save as” for other apps
+- Appearance: light/dark/pure black, color worlds (Cloud, Paper, Nord Snow, Latte, Graphite, Nord Night, Midnight,
+  Dimmed as well as Signal, Ultraviolet, High-Vis, Copper, Neon Pink and Olive with their own accent color),
+  Material You or an own accent color, palette styles, progressive blur behind header and navigation, UI scaling,
+  own font; app icon in twelve colors
+- German and English
+
+</details>
+
+## Build
+
+The interface comes from the design package [needanapp-design](https://git.needanapp.de/needanapp.de/needanapp-design),
+which is included as a composite build (`includeBuild("../needanapp-design")` in `settings.gradle.kts`). Both
+repositories therefore have to sit side by side:
+
+```bash
+git clone https://github.com/needanapp-de/needafile.git
+git clone https://git.needanapp.de/needanapp.de/needanapp-design.git
+cd needafile
+./gradlew :app:assembleFossDebug
+```
+
+```
+needafile/           (this repository)
+needanapp-design/
+```
+
+It builds with JDK 21 and the Android SDK (compileSdk 37). The `foss` variant is the F-Droid version, `gplay` the
+one for Google Play (without a link to the F-Droid repo, otherwise the same).
+
+7-Zip-JBinding is built from source with a small fix under `libs/7-zip-jbinding/`.
+
+## Thanks
+
+- [7-Zip-JBinding](https://github.com/omicronapps/7-Zip-JBinding-4Android) and p7zip (LGPL-2.1) – 7z, RAR and further archives
+- All other libraries with their licenses are listed in the app under Settings → About
+
+## License
+
+GPL-3.0, see [LICENSE](LICENSE). The design package needanapp-design is also licensed under GPL-3.0.
