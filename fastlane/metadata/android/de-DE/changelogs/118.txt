@@ -1,0 +1,1 @@
+• Neu und Komprimieren als: Symbole und Titel der Kacheln stehen jetzt auf einer Höhe, auch wenn die Beschreibungen unterschiedlich lang sind

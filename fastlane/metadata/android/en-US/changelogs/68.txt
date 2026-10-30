@@ -1,0 +1,4 @@
+• Copy to and Move to also offer folders on your servers: pick the place with the pill on top of the folder picker
+• Files on servers can be copied and moved to the phone or another server, too
+• Moving within one server happens on the server itself, instantly; elsewhere the originals are deleted only once everything arrived
+• Extract to can unpack straight onto a server

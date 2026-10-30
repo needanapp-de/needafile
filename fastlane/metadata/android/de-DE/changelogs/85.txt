@@ -1,0 +1,1 @@
+• Darstellung → Flächen: Der Farbverlauf im Hintergrund lässt sich ausschalten; der Hintergrund ist dann einfarbig, die Karten bleiben getönt

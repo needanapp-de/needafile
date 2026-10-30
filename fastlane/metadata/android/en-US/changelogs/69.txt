@@ -1,0 +1,4 @@
+• Cryptomator vaults on the phone and on servers (SFTP, SMB, WebDAV, FTP): open them, view files, copy in and out, rename, move, delete
+• New vault in the plus menu, with a recovery key; change the password or reset it with the key
+• Optionally unlock with your fingerprint
+• Vaults lock after an adjustable time in the background and when the screen turns off

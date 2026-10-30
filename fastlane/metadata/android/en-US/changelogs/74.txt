@@ -1,0 +1,1 @@
+• Fixed: when the app icon followed an accent color other than blue, the app closed right away when first opened after being ended

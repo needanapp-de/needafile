@@ -1,0 +1,5 @@
+• New "Places" page: phone, servers, vaults and recent folders as small tiles; a tap opens a new tab
+• Long-press a tab to see its whole path: jump there, copy it, close the tab
+• Opening shows a loading animation instead of the previous folder, and "Try again" on errors
+• Pill and bars with matching corners
+• Copying, packing etc.: the bar above the pill is the progress bar, and the display stays on

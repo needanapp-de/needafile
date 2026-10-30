@@ -1,0 +1,1 @@
+Dateimanager für Handy und Netzwerk: SFTP, SMB, WebDAV, FTPS und Archive

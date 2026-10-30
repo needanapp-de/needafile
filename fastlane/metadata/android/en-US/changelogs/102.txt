@@ -1,0 +1,2 @@
+• Several selected entries: instead of the bar at the bottom a card floats there now, with count, size and names, the same actions as the card of a single file and “More” to unfold the groups
+• Also in grid and gallery and when the opened card is scrolled away

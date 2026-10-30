@@ -1,0 +1,4 @@
+• Eigener Code: Einstellungen, Sortierung, Datumsanzeige, Root-Zugriff und allgemeine Texte sind neu geschrieben, die Root-Bibliotheken entfallen
+• App-Schutz speichert PIN und Muster gesalzen (PBKDF2); ein vorhandener Schutz muss neu eingerichtet werden
+• Die Einstellungen beginnen neu, Server samt Passwörtern bleiben erhalten
+• Speicheranalyse und Ordner-Favoriten entfernt

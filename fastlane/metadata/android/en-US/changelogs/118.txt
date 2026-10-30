@@ -1,0 +1,1 @@
+• New and compress as: the icons and titles of the tiles now line up, even when their descriptions differ in length

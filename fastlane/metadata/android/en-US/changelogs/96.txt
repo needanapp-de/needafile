@@ -1,0 +1,2 @@
+• A long press selects a file instead of opening the menu. Keep the finger down and drag to select every entry up to there, in the gallery too; the list scrolls along at the top and bottom edges
+• While selecting, the pill turns into an action bar: share, copy, move, delete and "More" with all other actions (the former menu)

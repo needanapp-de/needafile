@@ -1,0 +1,1 @@
+• New app icon: a folder in front of a server with a padlock – for files, network and vaults. The standard color is now orange with a transparent background; all other icon colors can still be chosen. When the icon follows the accent color, it is always orange with the standard accent

@@ -1,0 +1,3 @@
+• Details view: date and size stand small on top of each other at the right, so the file name gets more room (wide screens keep the columns)
+• Long names stand still for 3 seconds before they scroll
+• Image viewer: "Info" unfolds capture and file details as tiles right in the card instead of a separate sheet

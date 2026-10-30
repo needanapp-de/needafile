@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto">
+
+    <!-- exchanging SFTP connections with needaload (exchange/ConnectionExchange.kt): only apps signed with the same key
+         get this permission; its name differs per build type (sharePermission in build.gradle.kts), as debug and
+         release builds are signed with different keys and a permission can't be defined twice with different ones -->
+    <permission
+        android:name="${sharePermission}"
+        android:description="@string/share_connections_permission_description"
+        android:label="@string/share_connections_permission"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${sharePermission}" />
+
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- required for remote server connections (SFTP) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.faketouch"
+        android:required="false" />
+
+    <!-- needaload in both builds, to offer taking over its connections -->
+    <queries>
+        <package android:name="de.needanapp.needaload" />
+        <package android:name="de.needanapp.needaload.debug" />
+    </queries>
+
+    <!-- usesCleartextTraffic: WebDAV servers in the home network often only speak http://
+         No Android backup and no transfer to a new phone, see data_extraction_rules.xml -->
+    <application
+        android:name="de.needanapp.needafile.App"
+        android:allowBackup="false"
+        android:appCategory="productivity"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/needafile_icon_orange"
+        android:label="@string/brand_name"
+        android:roundIcon="@mipmap/needafile_icon_orange"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <!-- needafile's main screen (Compose), also where other apps pick or save files -->
+        <activity
+            android:name="de.needanapp.needafile.home.HomeActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <data android:mimeType="*/*" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <data android:mimeType="*/*" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_DOCUMENT" />
+                <data android:mimeType="*/*" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.RINGTONE_PICKER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="resource/folder" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="de.needanapp.needafile.settings.SettingsLinkActivity"
+            android:exported="true"
+            android:label="@string/settings"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="de.needanapp.needafile.editor.TextEditorActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:label="@string/file_editor"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/*" />
+                <data android:mimeType="application/json" />
+            </intent-filter>
+        </activity>
+
+        <!-- pictures from needafile and other apps -->
+        <activity
+            android:name="de.needanapp.needafile.viewer.image.ImageViewerActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:label="@string/viewer_images_label">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+
+        <!-- editing pictures, also for other apps -->
+        <activity
+            android:name="de.needanapp.needafile.viewer.image.edit.ImageEditorActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:label="@string/image_editor_label"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+
+        <!-- documents from needafile and other apps -->
+        <activity
+            android:name="de.needanapp.needafile.viewer.document.DocumentViewerActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:label="@string/document_viewer_label"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/pdf" />
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                <data android:mimeType="text/markdown" />
+                <data android:mimeType="text/x-markdown" />
+                <data android:mimeType="text/csv" />
+                <data android:mimeType="text/comma-separated-values" />
+                <data android:mimeType="text/tab-separated-values" />
+                <data android:mimeType="text/html" />
+                <data android:mimeType="application/xhtml+xml" />
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                <data android:mimeType="application/vnd.oasis.opendocument.spreadsheet" />
+                <data android:mimeType="application/vnd.oasis.opendocument.text" />
+            </intent-filter>
+        </activity>
+
+        <!-- archives from other apps and "save" from the share menu -->
+        <activity
+            android:name="de.needanapp.needafile.archive.OpenArchiveActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:label="@string/decompress">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/zip" />
+                <data android:mimeType="application/x-zip-compressed" />
+                <data android:mimeType="application/x-7z-compressed" />
+                <data android:mimeType="application/x-tar" />
+                <data android:mimeType="application/gzip" />
+                <data android:mimeType="application/x-gzip" />
+                <data android:mimeType="application/x-bzip2" />
+                <data android:mimeType="application/x-xz" />
+                <data android:mimeType="application/vnd.rar" />
+                <data android:mimeType="application/x-rar-compressed" />
+                <data android:mimeType="application/x-rar" />
+                <data android:mimeType="application/x-iso9660-image" />
+                <data android:mimeType="application/vnd.ms-cab-compressed" />
+                <data android:mimeType="application/x-arj" />
+                <data android:mimeType="application/x-lzh-compressed" />
+                <data android:mimeType="application/x-lha" />
+                <data android:mimeType="application/x-cpio" />
+                <data android:mimeType="application/x-rpm" />
+                <data android:mimeType="application/vnd.debian.binary-package" />
+                <data android:mimeType="application/x-debian-package" />
+                <data android:mimeType="application/vnd.ms-htmlhelp" />
+                <data android:mimeType="application/x-xar" />
+                <data android:mimeType="application/x-compress" />
+                <data android:mimeType="application/x-lzma" />
+                <data android:mimeType="application/x-ms-wim" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="de.needanapp.needafile.share.SaveSharedActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:label="@string/save_as">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity>
+
+        <!-- needaload asks for SFTP connections here; a dialog over needaload, answered only to needaload itself -->
+        <activity
+            android:name="de.needanapp.needafile.exchange.ShareConnectionsActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="true"
+            android:label="@string/share_connections_title"
+            android:permission="${sharePermission}"
+            android:theme="@style/AppTheme.Translucent">
+            <intent-filter>
+                <action android:name="de.needanapp.action.PICK_CONNECTIONS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- MY_PACKAGE_REPLACED is only sent by the system, the receiver itself does nothing (see LauncherIcon) -->
+        <receiver
+            android:name="de.needanapp.needafile.system.PackageReplacedReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="de.needanapp.needafile.about.AboutActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode"
+            android:exported="false"
+            android:label="@string/about"
+            android:parentActivityName="de.needanapp.needafile.home.HomeActivity" />
+
+
+
+        <service
+            android:name="de.needanapp.needafile.transfer.TransferService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <service
+            android:name="de.needanapp.needafile.vault.VaultService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Keeps unlocked encrypted vaults (Cryptomator) open while shown in a notification, counts down to their automatic lock and locks them on time; the notification has a button to lock them at once." />
+        </service>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/shared_paths" />
+        </provider>
+
+        <!-- vault files for other apps, decrypted only while they read them -->
+        <provider
+            android:name="de.needanapp.needafile.vault.VaultFileProvider"
+            android:authorities="${applicationId}.vaultfiles"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
+        <!-- needafile's launcher entries, one per icon color; LauncherIcon enables exactly one -->
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Orange"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_orange"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_orange"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Blue"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_blue"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_blue"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Sapphire"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_sapphire"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_sapphire"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Emerald"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_emerald"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_emerald"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Amber"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_amber"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_amber"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Violet"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_violet"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_violet"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Coral"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_coral"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_coral"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Petrol"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_petrol"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_petrol"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Lime"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_lime"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_lime"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Rose"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_rose"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_rose"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Slate"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_slate"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_slate"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Black"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_black"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_black"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.White"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_white"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_white"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+    </application>
+</manifest>

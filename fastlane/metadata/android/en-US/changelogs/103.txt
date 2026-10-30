@@ -1,0 +1,2 @@
+• Compress: new archives are now 7z with maximum compression and not solid by default, so single files come out quickly
+• The format, strength and solid setting remembered so far start over with these once, then the sheet remembers the last choice again

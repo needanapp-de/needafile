@@ -1,0 +1,5 @@
+• Neue Seite „Orte“: Telefon, Server, Tresore und zuletzt geöffnete Ordner als kleine Kacheln; antippen öffnet einen neuen Tab
+• Tab lang drücken zeigt den ganzen Pfad: hinspringen, kopieren, Tab schließen
+• Beim Öffnen eine Ladeanzeige statt des vorigen Ordners, bei Fehlern „Erneut versuchen“
+• Pille und Leisten mit einheitlichen Ecken
+• Kopieren, Packen usw.: Die Leiste über der Pille ist der Fortschrittsbalken, das Display bleibt an

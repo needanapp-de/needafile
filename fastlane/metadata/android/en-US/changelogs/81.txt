@@ -1,0 +1,1 @@
+• When you swipe a vault, the red "Remove" button now slides in from the end and squeezes the row instead of just fading in over it

@@ -1,0 +1,2 @@
+• SFTP-Verbindungen lassen sich mit needaload austauschen, in beide Richtungen: Die abgebende App zeigt vorher eine Auswahl
+• Passwörter bzw. Schlüssel und bestätigte Server-Schlüssel kommen mit; schon gespeicherte Verbindungen bleiben unverändert

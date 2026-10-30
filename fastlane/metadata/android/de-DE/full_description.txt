@@ -1,0 +1,37 @@
+needafile ist ein Dateimanager für Android 12 und neuer – für die Dateien auf dem Handy und auf den Servern im eigenen Netzwerk, im modernen Material-3-Expressive-Stil.
+
+<b>Handy</b>
+• Interner Speicher, SD-Karten und USB-Sticks, optional Root
+• Tabs für mehrere Orte, Kopieren und Verschieben im Hintergrund mit Fortschritt und Abbrechen
+• Ansicht als Liste, Details, Raster oder Galerie; Zoomen mit zwei Fingern; Gruppieren nach Datum, Typ, Größe oder Name
+• Suche, Verknüpfungen auf dem Startbildschirm, Texteditor
+• Prüfsummen (MD5, SHA-1, SHA-256, SHA-512) mit Vergleich gegen die Zwischenablage
+
+<b>Netzwerk</b>
+• SFTP (mit Prüfung des Server-Schlüssels), SMB, WebDAV und FTPS; unverschlüsseltes FTP nur nach Rückfrage pro Server
+• Selbst signierte Zertifikate erst nach Bestätigung des Fingerabdrucks, Warnung bei Änderung
+• Passwörter verschlüsselt im Android Keystore
+• Findet Server im Netzwerk (Bonjour/mDNS, WS-Discovery)
+• Übertragungen sind pausierbar; nach einem Verbindungsabbruch wartet die App bis zu einer Stunde und macht an der Abbruchstelle weiter
+
+<b>Archive</b>
+• ZIP (mit AES-Verschlüsselung, aufgeteilt) und 7z (auch mit verschlüsselten Dateinamen) erstellen
+• RAR 4/5, 7z, tar, gz, bz2, xz, ISO, CAB und viele weitere entpacken
+• Archive wie Ordner öffnen, auch auf Servern
+
+<b>Tresore</b>
+• Cryptomator-Tresore anlegen und öffnen, auf dem Handy und auf Servern; Dateinamen und Inhalte bleiben verschlüsselt
+• Entsperren per Passwort oder Fingerabdruck; Wiederherstellungsschlüssel, Passwort ändern
+• Sperren sich im Hintergrund oder beim Ausschalten des Bildschirms von selbst; eine Benachrichtigung zählt herunter und sperrt sie auf Tipp
+
+<b>Anzeigen</b>
+• Bilder (JPEG, PNG, WebP, GIF, SVG, HEIC, AVIF, JPEG XL …) mit einfachem Editor
+• Dokumente: PDF, Word, Excel, OpenDocument, Markdown, CSV und HTML
+
+<b>Außerdem</b>
+• Schutz per PIN, Muster oder Fingerabdruck
+• Einstellungen und Server in einer passwortgeschützten Datei sichern
+• Hell, dunkel und reines Schwarz, Material You oder eigene Akzentfarbe
+• Deutsch und Englisch
+
+needafile ist freie Software (GPL-3.0). Netzwerkzugriff braucht die App nur für die Server-Verbindungen.

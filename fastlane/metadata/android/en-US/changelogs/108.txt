@@ -1,0 +1,2 @@
+• Internal: the action card, selection card, check mark and paste bar buttons now come from the design package (needanapp design 0.34.0) – nothing changes in look
+• About: needanapp design is now listed under the GPL-3.0

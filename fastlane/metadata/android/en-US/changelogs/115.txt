@@ -1,0 +1,3 @@
+• Vaults redone as tiles: lock time picked directly (immediately to manually), screen-off switch as a line
+• Vault sheet with its status on top (open, location, when it locks, fingerprint), open and lock as large tiles, password & key as a group
+• Folder options inside a vault in the same style

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Rebrand: the app's name and everything the about screen tells about the app itself come from here
+    (the manifest uses brand_name as label). Empty entries are not shown. The app id (APP_ID in
+    gradle.properties) and the launcher icons (needafile_icon_*, launcher aliases in the manifest) are the
+    other places to change.
+-->
+<resources>
+    <string name="brand_name" translatable="false">needafile</string>
+    <string name="brand_tagline" translatable="false" />
+    <string name="brand_copyright" translatable="false">© 2026 needanapp.de</string>
+    <string name="brand_website_url" translatable="false">https://needanapp.de</string>
+    <!-- own F-Droid repository; only the F-Droid flavor fills it (src/foss/res/values/branding.xml), Play builds do not
+         point to other app sources -->
+    <string name="brand_fdroid_url" translatable="false" />
+    <!-- one page per language: values-de/branding.xml has the German one -->
+    <string name="brand_privacy_url">https://needanapp.de/needafile/privacy-policy.html</string>
+    <string name="brand_source_code_url" translatable="false" />
+    <string name="brand_contact_email" translatable="false" />
+</resources>

@@ -1,0 +1,5 @@
+• Neue Ansichten: Details (Spalten für Größe, Datum, Typ; Tippen auf eine Spalte sortiert) und Galerie (große Vorschauen)
+• Ordner mit überwiegend Bildern und Videos öffnen sich als Galerie (in den Einstellungen abschaltbar)
+• Zoomen mit zwei Fingern: Liste kompakt/normal/groß, 2–6 Spalten im Raster, 1–4 in der Galerie
+• Gruppieren nach Datum, Typ, Größe oder Anfangsbuchstabe, mit einklappbaren Überschriften
+• Ansicht, Größe und Gruppierung allgemein oder nur für einen Ordner

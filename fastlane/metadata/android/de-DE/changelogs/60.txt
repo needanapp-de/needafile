@@ -1,0 +1,4 @@
+• Neuer Name und neues Paket: needafile (de.needanapp.needafile)
+• Kopieren und Verschieben auf dem Handy laufen jetzt im Hintergrund mit Fortschritt und Abbrechen
+• Dialoge, Einstellungen und Helfer sind eigener Code statt einer fremden Basisbibliothek
+• Tabs gelöschter Server werden geschlossen

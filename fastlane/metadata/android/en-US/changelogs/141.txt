@@ -1,0 +1,1 @@
+• No more Android backup: needafile is left out of the cloud backup and of the transfer to a new phone. A reinstall now always starts fresh with the introduction, and encrypted server passwords that another device couldn't read are no longer copied along. Settings and servers move with “Export settings”

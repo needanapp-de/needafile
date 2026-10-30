@@ -1,0 +1,1 @@
+• Internal: dialogs and pages now reach their app window and texts the way Android intends for Compose; the code check passes without an exception list – nothing visible changes

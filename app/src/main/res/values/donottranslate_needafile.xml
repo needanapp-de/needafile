@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- texts that stay the same in every language -->
+<resources>
+    <string name="server_type_sftp">SFTP</string>
+    <string name="server_type_smb">SMB</string>
+    <string name="server_type_webdav">WebDAV</string>
+    <string name="server_type_ftp">FTP</string>
+    <string name="discovery_server_summary">%1$s · %2$s</string>
+    <string name="transfer_progress_detail">%1$s · %2$s / %3$s</string>
+    <string name="paste_target">→ %s</string>
+    <string name="size_and_date">%1$s · %2$s</string>
+    <string name="vault_state_and_path">%1$s · %2$s</string>
+    <!-- a place and something about it, e.g. "Phone · 58 GB free" -->
+    <string name="place_detail">%1$s · %2$s</string>
+    <string name="server_protocol_and_address">%1$s · %2$s</string>
+    <string name="webdav_scheme">https://</string>
+    <string name="count_and_size">%1$s · %2$s</string>
+    <string name="label_value">%1$s: %2$s</string>
+    <!-- user@host:port of a server -->
+    <string name="connection_address">%1$s@%2$s:%3$d</string>
+    <!-- parts of a message that only lists counts -->
+    <string name="list_join">%1$s, %2$s</string>
+    <string name="archive_format_zip">ZIP</string>
+    <string name="archive_format_7z">7z</string>
+    <string name="archive_format_rar">RAR</string>
+    <string name="archive_format_rar_version">RAR %1$d</string>
+    <string name="archive_info_encryption_rar_aes">AES-%1$d</string>
+    <string name="archive_info_encryption_zip_aes">AES-%1$d (WinZip AE-%2$d)</string>
+    <string name="archive_info_encryption_7z_aes">AES-256</string>
+    <string name="archive_aes_128">AES-128</string>
+    <string name="archive_aes_256">AES-256</string>
+    <string name="resolution_value">%1$d × %2$d</string>
+    <string name="checksum_md5">MD5</string>
+    <string name="checksum_sha1">SHA-1</string>
+    <string name="checksum_sha256">SHA-256</string>
+    <string name="checksum_sha512">SHA-512</string>
+    <string name="backup_file_name">%1$s-backup-%2$s.nfbackup</string>
+    <string name="group_digits">0–9</string>
+    <string name="group_symbols">#</string>
+</resources>

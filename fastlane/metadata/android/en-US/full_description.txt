@@ -1,0 +1,37 @@
+needafile is a file manager for Android 12 and newer – for the files on your phone and on the servers in your network, in a modern Material 3 Expressive look.
+
+<b>Phone</b>
+• Internal storage, SD cards and USB drives, optionally root
+• Tabs for several places, copying and moving in the background with progress and cancel
+• List, details, grid and gallery view; zoom with two fingers; group by date, type, size or name
+• Search, home screen shortcuts, text editor
+• Checksums (MD5, SHA-1, SHA-256, SHA-512) with comparison against the clipboard
+
+<b>Network</b>
+• SFTP (server key is checked), SMB, WebDAV and FTPS; unencrypted FTP only after asking, per server
+• Self-signed certificates only after confirming their fingerprint, with a warning when they change
+• Passwords are kept encrypted in the Android Keystore
+• Finds servers in the network (Bonjour/mDNS, WS-Discovery)
+• Transfers can be paused; after a connection breaks they wait up to an hour and continue where they stopped
+
+<b>Archives</b>
+• Create ZIP (AES encryption, split archives) and 7z (also with encrypted file names)
+• Extract RAR 4/5, 7z, tar, gz, bz2, xz, ISO, CAB and many more
+• Open archives like folders, even on servers
+
+<b>Vaults</b>
+• Create and open Cryptomator vaults, on the phone and on servers; file names and contents stay encrypted
+• Unlock with password or fingerprint; recovery key, change password
+• Lock themselves in the background or when the screen turns off; a notification counts down and locks them at a tap
+
+<b>Viewing</b>
+• Pictures (JPEG, PNG, WebP, GIF, SVG, HEIC, AVIF, JPEG XL …) with a simple editor
+• Documents: PDF, Word, Excel, OpenDocument, Markdown, CSV and HTML
+
+<b>More</b>
+• Protection with PIN, pattern or fingerprint
+• Back up settings and servers into a password-encrypted file
+• Light, dark and pure black, Material You or your own accent color
+• English and German
+
+needafile is free software (GPL-3.0). It needs network access only for the server connections.

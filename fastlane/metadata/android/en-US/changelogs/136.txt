@@ -1,0 +1,2 @@
+• Scrollbars: while scrolling, a bar at the edge shows where you are; in folders, archives and long texts a handle can be dragged to move through fast, with the first letter, month or size beside it
+• Appearance: besides NeedAnApp, the Myzel style can be chosen

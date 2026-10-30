@@ -1,0 +1,1 @@
+• Unfolded "More" in the card: the group boxes are easier to read – where the card's text would be too weak on them (e.g. Signal, Hi-Vis, Neon Pink in the dark, Ultraviolet, Copper, Olive in the light), they turn clearly darker or lighter and take the matching text color; group titles stay readable

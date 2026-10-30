@@ -1,0 +1,1 @@
+• Tresore: Ist beim Sperren ein Bild oder Dokument aus dem Tresor offen, bleibt davon kein Vorschaubild mehr in der Übersicht der zuletzt genutzten Apps; dasselbe gilt für die Dateiliste im Tresor

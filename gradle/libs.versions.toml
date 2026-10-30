@@ -1,0 +1,111 @@
+[versions]
+#jetbrains
+# the design package (Compose) needs the same Kotlin as its compose compiler
+kotlin = "2.4.20"
+#AndroidX
+androidx-appcompat = "1.7.1"
+androidx-core = "1.19.1"
+#Other
+zip4j = "2.11.6"
+sshj = "0.38.0"
+slf4j = "2.0.18"
+# SMBJ needs at least 1.85.2
+bouncycastle = "1.86"
+smbj = "0.15.0"
+dcerpc = "0.12.13"
+okhttp = "5.4.0"
+commons-net = "3.13.0"
+# 7z, tar, gz, bz2: 7-Zip-JBinding-4Android Release-16.02-2.03 (7-Zip 16.02) built from source in libs/7-zip-jbinding
+sevenzipjbinding-ndk = "28.2.13676358"
+sevenzipjbinding-cmake = "3.22.1"
+# .xz (7-Zip-JBinding 16.02 has no XZ format)
+xz = "1.10"
+# Cryptomator vaults; 2.2.0 like Cryptomator for Android, whose notes call 2.2.1 broken for creating files there
+cryptolib = "2.2.0"
+# tests only: the reference implementation of the vault format, to check that both read each other's vaults
+cryptofs = "2.9.0"
+junit = "4.13.2"
+# tests only: org.json is part of Android, the tests on the computer need the real one (same version as needaload)
+orgjson = "20260814"
+#needafile UI (Compose, design package)
+composeBom = "2026.09.00"
+activityCompose = "1.13.0"
+lifecycle = "2.11.0"
+materialIcons = "1.7.8"
+#image viewer and editor
+coil = "3.6.3"
+telephoto = "0.19.0"
+androidImageCropper = "4.7.0"
+exifinterface = "1.4.2"
+# JPEG XL for Coil
+jxlCoder = "2.6.1"
+#document viewer
+androidPdfViewer = "3.2.16"
+commonmark = "0.30.0"
+jsoup = "1.23.2"
+commonsCsv = "1.14.1"
+#Gradle
+gradlePlugins-agp = "9.4.1"
+#build
+# Compose and the design package need compile SDK 37
+app-build-compileSDKVersion = "37"
+app-build-targetSDK = "36"
+app-build-minimumSDK = "31"
+app-build-javaVersion = "VERSION_17"
+app-build-kotlinJVMTarget = "17"
+[libraries]
+#image viewer and editor
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-gif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
+telephoto-zoomable-image-coil3 = { module = "me.saket.telephoto:zoomable-image-coil3", version.ref = "telephoto" }
+android-image-cropper = { module = "com.vanniktech:android-image-cropper", version.ref = "androidImageCropper" }
+jxl-coder-coil = { module = "io.github.awxkee:jxl-coder-coil", version.ref = "jxlCoder" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
+#document viewer
+android-pdf-viewer = { module = "com.github.Infomaniak:android-pdfview", version.ref = "androidPdfViewer" }
+commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
+commonmark-autolink = { module = "org.commonmark:commonmark-ext-autolink", version.ref = "commonmark" }
+commonmark-strikethrough = { module = "org.commonmark:commonmark-ext-gfm-strikethrough", version.ref = "commonmark" }
+commonmark-tables = { module = "org.commonmark:commonmark-ext-gfm-tables", version.ref = "commonmark" }
+commonmark-task-lists = { module = "org.commonmark:commonmark-ext-task-list-items", version.ref = "commonmark" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
+commons-csv = { module = "org.apache.commons:commons-csv", version.ref = "commonsCsv" }
+#AndroidX
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+#Other
+zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }
+#SFTP
+sshj = { module = "com.hierynomus:sshj", version.ref = "sshj" }
+slf4j-nop = { module = "org.slf4j:slf4j-nop", version.ref = "slf4j" }
+bouncycastle-prov = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bouncycastle" }
+bouncycastle-pkix = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bouncycastle" }
+#SMB (share listing over DCE/RPC via dcerpc)
+smbj = { module = "com.hierynomus:smbj", version.ref = "smbj" }
+dcerpc = { module = "com.rapid7.client:dcerpc", version.ref = "dcerpc" }
+#WebDAV
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+#FTP and FTPS
+commons-net = { module = "commons-net:commons-net", version.ref = "commons-net" }
+#Archives
+xz = { module = "org.tukaani:xz", version.ref = "xz" }
+#Cryptomator vaults
+cryptolib = { module = "org.cryptomator:cryptolib", version.ref = "cryptolib" }
+cryptofs = { module = "org.cryptomator:cryptofs", version.ref = "cryptofs" }
+junit = { module = "junit:junit", version.ref = "junit" }
+orgjson = { module = "org.json:json", version.ref = "orgjson" }
+#needafile UI: Compose plus the needanapp design package (composite build, see settings.gradle.kts)
+needanapp-design = { module = "de.needanapp:design" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIcons" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+[plugins]
+android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+android-library = { id = "com.android.library", version.ref = "gradlePlugins-agp" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

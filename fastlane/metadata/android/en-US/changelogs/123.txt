@@ -1,0 +1,1 @@
+• Image viewer: pictures from a vault show the date of the file in the vault on the card instead of when they were decrypted; downloaded server pictures no longer show a wrong date

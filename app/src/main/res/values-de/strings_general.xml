@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- allgemeine Texte der ganzen App: Knöpfe, Dateiaktionen, Einstellungen, Schutz, Bilddetails -->
+<resources>
+    <!-- Knöpfe und einfache Aktionen -->
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="save">Speichern</string>
+    <string name="discard">Verwerfen</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="delete">Löschen</string>
+    <string name="rename">Umbenennen</string>
+    <string name="copy">Kopieren</string>
+    <string name="share">Teilen</string>
+    <string name="print">Drucken</string>
+    <string name="hide">Verstecken</string>
+    <string name="unhide">Wieder zeigen</string>
+    <string name="select_all">Alle auswählen</string>
+    <string name="about">Über die App</string>
+    <string name="settings">Einstellungen</string>
+    <string name="properties">Eigenschaften</string>
+    <string name="loading">Wird geladen …</string>
+
+    <!-- Dateien und Ordner -->
+    <string name="file">Datei</string>
+    <string name="folder">Ordner</string>
+    <string name="files_tab">Dateien</string>
+    <string name="name">Name</string>
+    <string name="filename">Dateiname</string>
+    <string name="path">Pfad</string>
+    <string name="size">Größe</string>
+    <string name="last_modified">Geändert</string>
+    <string name="internal">Telefon</string>
+    <string name="sd_card">SD-Karte</string>
+    <string name="root">Wurzelordner</string>
+    <string name="file_editor">Texteditor</string>
+    <plurals name="items">
+        <item quantity="one">%d Eintrag</item>
+        <item quantity="other">%d Einträge</item>
+    </plurals>
+
+    <!-- was sich mit Dateien machen lässt -->
+    <string name="open_with">Öffnen mit</string>
+    <string name="open_as">Öffnen als</string>
+    <string name="text_file">Text</string>
+    <string name="image_file">Bild</string>
+    <string name="audio_file">Audio</string>
+    <string name="video_file">Video</string>
+    <string name="other_file">Etwas anderes</string>
+    <string name="share_via">Teilen mit</string>
+    <string name="set_as">Verwenden als</string>
+    <string name="copy_to">Kopieren nach</string>
+    <string name="move_to">Verschieben nach</string>
+    <string name="copy_path">Pfad kopieren</string>
+    <string name="create_shortcut">Verknüpfung anlegen</string>
+    <string name="create_new_folder">Neuer Ordner</string>
+    <string name="rename_file">Datei umbenennen</string>
+    <string name="rename_folder">Ordner umbenennen</string>
+    <string name="compress">Komprimieren</string>
+    <string name="compress_as">Komprimieren als</string>
+    <string name="decompress">Entpacken</string>
+    <string name="decompressing">Wird entpackt …</string>
+    <string name="decompression_successful">Entpackt</string>
+    <string name="add_password">Mit Passwort schützen</string>
+    <string name="select_folder">Ordner wählen</string>
+
+    <!-- Ergebnisse und Probleme -->
+    <string name="copying">Wird kopiert …</string>
+    <string name="copying_success">Kopiert</string>
+    <string name="copying_success_partial">Nicht alles ließ sich kopieren</string>
+    <string name="copy_failed">Nichts ließ sich kopieren</string>
+    <string name="could_not_create_file">%s ließ sich nicht anlegen</string>
+    <string name="could_not_create_folder">Der Ordner %s ließ sich nicht anlegen</string>
+    <string name="empty_name">Der Name fehlt</string>
+    <string name="invalid_name">Der Name enthält Zeichen, die nicht erlaubt sind</string>
+    <string name="name_taken">Unter diesem Namen gibt es schon etwas</string>
+    <string name="invalid_destination">In den gewählten Ordner lässt sich nicht schreiben</string>
+    <string name="source_and_destination_same">Dort liegen die Einträge bereits</string>
+    <string name="no_space">Dort ist nicht genug Platz: %1$s nötig, %2$s frei</string>
+    <string name="deletion_confirmation">%s löschen?</string>
+    <plurals name="delete_items">
+        <item quantity="one">%d Eintrag</item>
+        <item quantity="other">%d Einträge</item>
+    </plurals>
+    <string name="file_saved">Gespeichert</string>
+    <plurals name="files_saved">
+        <item quantity="one">Datei gespeichert</item>
+        <item quantity="other">Dateien gespeichert</item>
+    </plurals>
+    <string name="no_items_found">Nichts gefunden</string>
+    <string name="no_app_found">Keine App kann das öffnen</string>
+    <string name="no_browser_found">Kein Browser da, um die Seite zu öffnen</string>
+    <string name="maximum_share_reached">Das ist zu viel, um es auf einmal zu teilen</string>
+    <string name="confirm_storage_access_restricted_text_not_found">Die Datei-App des Systems wurde nicht gefunden</string>
+    <string name="select_audio_file">Wähle eine Audiodatei</string>
+    <string name="rooted_device_only">Das geht nur auf einem gerooteten Telefon</string>
+    <string name="out_of_memory_error">Dafür reicht der Arbeitsspeicher nicht</string>
+    <string name="unknown_error_occurred">Etwas ist schiefgegangen</string>
+    <string name="error">Fehler: %s</string>
+    <string name="value_copied_to_clipboard_show">Kopiert:\n%s</string>
+    <string name="press_back_again">Noch einmal Zurück drücken zum Schließen</string>
+
+    <!-- Einstellungen und Sortierung -->
+    <string name="general_settings">Allgemein</string>
+    <string name="security">Schutz</string>
+    <string name="sort_by">Sortieren nach</string>
+    <string name="ascending">Aufsteigend</string>
+    <string name="descending">Absteigend</string>
+    <string name="use_for_this_folder">Nur für diesen Ordner</string>
+    <string name="change_date_and_time_format">Datums- und Zeitformat</string>
+    <string name="use_24_hour_time_format">24-Stunden-Uhr</string>
+    <string name="enable_root_access">Root-Zugriff</string>
+    <string name="press_back_twice">Zum Schließen zweimal Zurück drücken</string>
+    <string name="swipe_pages">Seiten durch Wischen wechseln</string>
+
+    <!-- Startordner -->
+    <string name="set_as_home_folder">Zum Startordner machen</string>
+    <string name="home_folder_updated">Das ist jetzt der Startordner</string>
+
+    <!-- Schutz mit PIN, Muster oder Fingerabdruck -->
+    <string name="pin">PIN</string>
+    <string name="pattern">Muster</string>
+    <string name="biometrics">Fingerabdruck</string>
+    <string name="password">Passwort</string>
+    <string name="enter_pin">Deine PIN</string>
+    <string name="repeat_pin">Dieselbe PIN noch einmal</string>
+    <string name="insert_pattern">Zeichne dein Muster</string>
+    <string name="repeat_pattern">Dasselbe Muster noch einmal</string>
+    <string name="wrong_pin">Die PIN stimmt nicht</string>
+    <string name="wrong_pattern">Das Muster stimmt nicht</string>
+    <string name="pin_must_be_4_digits_long">Mindestens 4 Ziffern</string>
+    <string name="authenticate">Entsperren</string>
+    <plurals name="too_many_incorrect_attempts">
+        <item quantity="one">Zu oft falsch.\nWarte %d Sekunde und versuche es dann erneut.</item>
+        <item quantity="other">Zu oft falsch.\nWarte %d Sekunden und versuche es dann erneut.</item>
+    </plurals>
+    <string name="protection_setup_successfully">Schutz ist an. Wer ihn vergisst, muss die App neu installieren.</string>
+    <string name="fingerprint_setup_successfully">Schutz per Fingerabdruck ist an</string>
+
+    <!-- Details von Bildern, Audio und Video -->
+    <string name="resolution">Auflösung</string>
+    <string name="duration">Länge</string>
+    <string name="artist">Interpret</string>
+    <string name="album">Album</string>
+    <string name="camera">Kamera</string>
+    <string name="date_taken">Aufgenommen</string>
+    <string name="exposure_time">Belichtung</string>
+    <string name="f_number">Blende</string>
+    <string name="focal_length">Brennweite</string>
+    <string name="gps_coordinates">GPS-Position</string>
+</resources>

@@ -1,0 +1,3 @@
+• Detailansicht: Datum und Größe stehen rechts klein übereinander, der Dateiname bekommt dadurch mehr Platz (auf breiten Bildschirmen bleiben die Spalten)
+• Lange Namen stehen 3 Sekunden still, bevor sie durchlaufen
+• Bildbetrachter: „Infos“ klappt Aufnahme- und Dateiangaben als Kacheln direkt in der Karte auf statt in einem eigenen Blatt

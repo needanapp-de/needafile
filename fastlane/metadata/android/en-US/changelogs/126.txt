@@ -1,0 +1,1 @@
+• Properties and archive info appear as a floating card at the bottom like in the image viewer: name, key facts, actions and all details in it (archives with their encryption, checksums on request), the list stays visible; back closes it

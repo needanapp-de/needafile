@@ -1,0 +1,1 @@
+• Ordner und Dateitypen zeigen ihr Symbol als Umriss ohne farbige Fläche dahinter. Vorschaubilder von Fotos, Videos und Apps bleiben

@@ -1,0 +1,1 @@
+• Crash fixed: with the Myzel style and the accent color orange, yellow or green, the app crashed when opening the settings. The app icon now takes the closest icon color for these accents

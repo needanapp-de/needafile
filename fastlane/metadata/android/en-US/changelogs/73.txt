@@ -1,0 +1,1 @@
+• Fixed: in release builds, unlocking a Cryptomator vault crashed after an SFTP connection had been used

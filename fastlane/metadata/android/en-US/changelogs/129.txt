@@ -1,0 +1,4 @@
+• Consistent style: text editor, servers and "open archive" with a floating card instead of the ⋮ menu
+• Open archive shows the content; folders and files open, extracting shows progress and can be cancelled
+• Open as, save picture, server search, certificate and key prompts as tiles
+• Folder picker: places as chips instead of a drop-down menu

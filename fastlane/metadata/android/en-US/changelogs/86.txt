@@ -1,0 +1,2 @@
+• After closing (back, or swiped away from recent apps) needafile starts with one tab in the home folder, internal storage by default, instead of the last open tabs
+• Tabs stay when the system only ends the app in the background

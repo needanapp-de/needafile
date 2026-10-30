@@ -1,0 +1,1 @@
+• New: an introduction after installing. Below a preview of the app it walks through file access, notifications (optional) and the look: style, light/dark and color world. Every choice shows at once. It can be skipped and opened again under Settings → "Show introduction". It does not appear after updates

@@ -1,0 +1,1 @@
+• Bildbetrachter: Bilder aus einem Tresor zeigen auf der Karte das Datum der Datei im Tresor statt des Zeitpunkts, zu dem sie entschlüsselt wurden; heruntergeladene Serverbilder zeigen kein falsches Datum mehr

@@ -1,0 +1,3 @@
+• Kopieren, Verschieben, Packen und Entpacken: Die ganze Leiste über der Pille ist jetzt der Fortschrittsbalken und füllt sich in der Akzentfarbe
+• Solange so etwas läuft und needafile offen ist, bleibt das Display an
+• Tresore sperren erst, wenn ein Packen oder Entpacken mit Dateien daraus fertig ist

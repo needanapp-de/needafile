@@ -1,0 +1,3 @@
+• Neue Seite „Tresore“ in der Navigationspille: entsperrte und gesperrte Tresore, Sperren mit einem Tipp, Optionen je Tresor, automatisches Sperren und neuer Tresor (bisher in den Einstellungen)
+• Das Schloss in der Pille ist offen und zeigt die Anzahl, solange Tresore entsperrt sind
+• Im Menü rechts steht dann „… sperren“

@@ -1,0 +1,1 @@
+• Aufgeräumt: Der einmalige Umzug der Serverpasswörter aus Versionen vor 0.75.0 entfällt

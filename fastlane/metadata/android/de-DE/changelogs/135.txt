@@ -1,0 +1,2 @@
+• Tabs: Ein Druck auf den offenen Tab zeigt jetzt seinen ganzen Pfad, nicht erst ein langer Druck
+• Tresore: Ein Tresor lässt sich in der Tab-Karte sperren, egal in welchem seiner Ordner du gerade bist; mit mehreren offenen Tresoren steht der gezeigte im Menü auch einzeln zum Sperren bereit

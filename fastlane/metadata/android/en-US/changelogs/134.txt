@@ -1,0 +1,2 @@
+• Image viewer: under "More", swipe through the pictures in random order, in vaults too
+• Vaults: pictures can now be deleted in the image viewer too, right in the vault

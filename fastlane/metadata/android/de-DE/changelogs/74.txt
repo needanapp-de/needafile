@@ -1,0 +1,1 @@
+• Behoben: Folgte das App-Symbol einer anderen Akzentfarbe als Blau, schloss sich die App beim ersten Öffnen nach dem Beenden sofort wieder

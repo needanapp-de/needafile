@@ -1,0 +1,3 @@
+• New card look from needanapp-design 0.21: surfaces tinted with the accent color, background with a soft glow at the top, default palette "Fidelity" and 14 dp corners (old defaults move over once)
+• Starts without waiting for the appearance settings
+• "System" mode now follows the system also after switching from "Light" or "Dark"

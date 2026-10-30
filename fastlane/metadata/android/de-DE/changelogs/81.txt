@@ -1,0 +1,1 @@
+• Beim Wischen über einen Tresor schiebt sich der rote Knopf „Entfernen“ jetzt von rechts herein und drückt die Zeile zusammen, statt nur eingeblendet zu werden

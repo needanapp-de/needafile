@@ -1,0 +1,433 @@
+--- a/sevenzipjbinding/CMakeLists.txt
++++ b/sevenzipjbinding/CMakeLists.txt
+@@ -5,7 +5,6 @@
+ 
+ set(ROOT src/main/cpp)
+ set(JBINDING_SRC ${ROOT}/jbinding-cpp)
+-set(TEST_SRC ${ROOT}/test)
+ set(P7ZIP_SRC ${ROOT}/p7zip)
+ set(SEVEN_ZIP_SRC ${P7ZIP_SRC})
+ 
+@@ -34,15 +33,7 @@
+         ${JBINDING_SRC}/CPPToJava/CPPToJavaArchiveUpdateCallback.cpp
+         )
+ 
+-if(CMAKE_BUILD_TYPE MATCHES Debug)
+-        set(JBINDING_CPP_FILES
+-                ${JBINDING_CPP_FILES}
+-                ${TEST_SRC}/CTests/JniToolsTest.cpp
+-                ${TEST_SRC}/CTests/JBindingTest.cpp
+-                ${TEST_SRC}/CTests/EnumTest.cpp
+-                ${TEST_SRC}/CTests/CHeadCacheInStreamTest.cpp
+-                )
+-endif()
++# needafile: the C tests (src/main/cpp/test) aren't taken over, debug builds leave them out like release builds
+ 
+ set(SEVEN_ZIP_SOURCE_FILES
+         ${SEVEN_ZIP_SRC}/CPP/Common/CommandLineParser.cpp
+@@ -334,11 +325,9 @@
+         -D_UNICODE
+         )
+ 
+-if(CMAKE_BUILD_TYPE MATCHES Debug)
+-        add_definitions(-D_DEBUG)
+-elseif(CMAKE_BUILD_TYPE MATCHES Release)
+-        add_definitions(-DNDEBUG)
+-endif()
++# needafile: debug builds of the app get the native code like the published release build; _DEBUG would turn on
++# tracing and the native JUnit support, which looks up test classes when the library loads and aborts without them
++add_definitions(-DNDEBUG)
+ 
+ include_directories(${P7ZIP_SRC})
+ include_directories(${P7ZIP_SRC}/CPP)
+--- a/sevenzipjbinding/src/main/java/net/sf/sevenzipjbinding/impl/OutArchiveImpl.java
++++ b/sevenzipjbinding/src/main/java/net/sf/sevenzipjbinding/impl/OutArchiveImpl.java
+@@ -2,6 +2,8 @@
+ 
+ import java.io.IOException;
+ import java.io.PrintStream;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ import net.sf.sevenzipjbinding.ArchiveFormat;
+ import net.sf.sevenzipjbinding.IInArchive;
+@@ -65,17 +67,36 @@
+         this.threadCount = threadCount;
+     }
+ 
++    // needafile: all features go to 7-Zip in one SetProperties call. 7-Zip resets every property at the start of each
++    // call, so with one call per feature only the last one took effect (e.g. thread count after header encryption left
++    // the file names unencrypted).
+     protected void applyFeatures() throws SevenZipException {
+         ensureOpened();
++        List<String> names = new ArrayList<String>();
++        List<Object> values = new ArrayList<Object>();
++        collectFeatures(names, values);
++        if (!names.isEmpty()) {
++            nativeSetProperties(names.toArray(new String[0]), values.toArray());
++        }
++    }
++
++    /**
++     * Adds the 7-Zip properties of the features set so far, as names (e.g. "X") with Integer, Boolean or String values.
++     * The level comes first, like the -mx switch of the 7-Zip command line.
++     */
++    protected void collectFeatures(List<String> names, List<Object> values) {
+         if (compressionLevel != -1) {
+-            nativeSetLevel(compressionLevel);
++            names.add("X");
++            values.add(Integer.valueOf(compressionLevel));
+         }
+         if (headerEncryption != null) {
+-            nativeSetHeaderEncryption(headerEncryption.booleanValue());
++            names.add("HE"); // See 7zHandlerOut.cpp:823
++            values.add(headerEncryption);
+         }
+-
+         if (threadCount >= 0) {
+-            nativeSetMultithreading(threadCount);
++            names.add("MT");
++            // 0: as many threads as there are processors
++            values.add(threadCount > 0 ? (Object) Integer.valueOf(threadCount) : Boolean.TRUE);
+         }
+     }
+ 
+@@ -90,22 +111,18 @@
+         this.archiveFormat = archiveFormat;
+     }
+ 
+-    protected native void nativeSetHeaderEncryption(boolean encryptHeader) throws SevenZipException;
+-
+-    protected native void nativeSetLevel(int compressionLevel) throws SevenZipException;
+-
+     /**
+-     * Set solid features.
++     * Sets 7-Zip properties in one call, see {@link #applyFeatures()}.
+      *
+-     * @param solidBlockSpec
+-     *            <code>null</code> - turn solid off
++     * @param names
++     *            property names, e.g. "X" for the level
++     * @param values
++     *            the values, Integer, Boolean or String
+      * @throws SevenZipException
+      *             7-Zip or 7-Zip-JBinding error occur. Use {@link SevenZipException#printStackTraceExtended()} to get
+      *             stack traces of this SevenZipException and of the all thrown 'cause by' exceptions.
+      */
+-    protected native void nativeSetSolidSpec(String solidBlockSpec) throws SevenZipException;
+-
+-    protected native void nativeSetMultithreading(int threadCount) throws SevenZipException;
++    protected native void nativeSetProperties(String[] names, Object[] values) throws SevenZipException;
+ 
+     private native void nativeUpdateItems(ISequentialOutStream outStream, int numberOfItems,
+             Object archiveUpdateCallback) throws SevenZipException;
+--- a/sevenzipjbinding/src/main/java/net/sf/sevenzipjbinding/impl/OutArchive7zImpl.java
++++ b/sevenzipjbinding/src/main/java/net/sf/sevenzipjbinding/impl/OutArchive7zImpl.java
+@@ -3,6 +3,8 @@
+ import net.sf.sevenzipjbinding.IOutCreateArchive7z;
+ import net.sf.sevenzipjbinding.IOutItem7z;
+ import net.sf.sevenzipjbinding.IOutUpdateArchive7z;
++import java.util.List;
++
+ import net.sf.sevenzipjbinding.SevenZipException;
+ 
+ /**
+@@ -54,9 +56,16 @@
+     }
+ 
+     @Override
+-    protected void applyFeatures() throws SevenZipException {
+-        super.applyFeatures();
++    protected void collectFeatures(List<String> names, List<Object> values) {
++        super.collectFeatures(names, values);
+ 
++        // needafile: collected for the one SetProperties call (see OutArchiveImpl.applyFeatures)
++        if (!solid) {
++            // Set solid block configuration
++            names.add("S");
++            values.add(Boolean.FALSE);
++            return;
++        }
+         StringBuilder stringBuilder = new StringBuilder();
+         if (solidExtension) {
+             stringBuilder.append("E");
+@@ -70,12 +79,8 @@
+             stringBuilder.append("B");
+         }
+         if (stringBuilder.length() > 0) {
+-            nativeSetSolidSpec(stringBuilder.toString());
+-        }
+-
+-        // Set solid block configuration
+-        if (!solid) {
+-            nativeSetSolidSpec(null);
++            names.add("S");
++            values.add(stringBuilder.toString());
+         }
+     }
+ 
+--- a/sevenzipjbinding/src/main/cpp/jbinding-cpp/JavaToCPP/JavaToCPPOutArchiveImpl.cpp
++++ b/sevenzipjbinding/src/main/cpp/jbinding-cpp/JavaToCPP/JavaToCPPOutArchiveImpl.cpp
+@@ -84,25 +84,27 @@
+ 
+ /*
+  * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    setLevelNative
+- * Signature: (I)V
++ * Method:    nativeSetProperties
++ * Signature: ([Ljava/lang/String;[Ljava/lang/Object;)V
++ *
++ * needafile: sets all properties in one SetProperties call. 7-Zip resets every property at the start of each call
++ * (InitProps() in 7zHandlerOut.cpp, ZipHandlerOut.cpp, HandlerOut.cpp), so the former one call per feature
++ * (nativeSetLevel, nativeSetHeaderEncryption, nativeSetSolidSpec, nativeSetMultithreading) kept only the last one.
++ * Values are Integer (as UInt32), Boolean or String.
+  */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetLevel
+-  (JNIEnv * env, jobject thiz, jint level) {
+-    TRACE("OutArchiveImpl::setLevelNative(). ThreadID=" << PlatformGetCurrentThreadId());
++JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetProperties
++  (JNIEnv * env, jobject thiz, jobjectArray jNames, jobjectArray jValues) {
++    TRACE("OutArchiveImpl::nativeSetProperties(). ThreadID=" << PlatformGetCurrentThreadId());
+ 
+     JBindingSession & jbindingSession = GetJBindingSession(env, thiz);
+     JNINativeCallContext jniNativeCallContext(jbindingSession, env);
+     JNIEnvInstance jniEnvInstance(jbindingSession, jniNativeCallContext, env);
+ 
+     CMyComPtr<IOutArchive> outArchive(GetArchive(env, thiz));
+-    // TODO Delete this and all other such ifs, also in J2CppInArchive.cpp, since this is already tested in GetArchive()
+     if (outArchive == NULL) {
+-        TRACE("Archive==NULL. Do nothing...");
+         return;
+     }
+ 
+-    // TODO Move query interface to the central location in J2C+SevenZip.cpp
+     CMyComPtr<ISetProperties> setProperties;
+     HRESULT result = outArchive->QueryInterface(IID_ISetProperties, (void**)&setProperties);
+     if (result != S_OK) {
+@@ -111,156 +113,44 @@
+         return;
+     }
+ 
+-    const int size = 1;
+-    NWindows::NCOM::CPropVariant *propValues = new NWindows::NCOM::CPropVariant[size];
+-    propValues[0] = (unsigned int)level;
+-
+-    CRecordVector<const wchar_t *> names;
+-    names.Add(L"X");
+-
+-    result = setProperties->SetProperties(&names.Front(), propValues, names.Size());
+-    if (result) {
+-        TRACE("Error setting 'Level' property. Result: 0x" << std::hex << result)
+-        jniNativeCallContext.reportError(result, "Error setting 'Level' property.");
++    const jsize size = env->GetArrayLength(jNames);
++    if (size == 0 || env->GetArrayLength(jValues) != size) {
+         return;
+     }
+-}
+-
+-/*
+- * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    nativeSetHeaderEncryption
+- * Signature: (Z)V
+- */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetHeaderEncryption
+-  (JNIEnv * env, jobject thiz, jboolean enabled) {
+-    TRACE("OutArchiveImpl::nativeSetHeaderEncryption(). ThreadID=" << PlatformGetCurrentThreadId());
++    jclass integerClass = VarTypeToJavaType(jniEnvInstance, VT_UINT);
++    jclass booleanClass = VarTypeToJavaType(jniEnvInstance, VT_BOOL);
++    jclass stringClass = VarTypeToJavaType(jniEnvInstance, VT_BSTR);
+ 
+-    JBindingSession & jbindingSession = GetJBindingSession(env, thiz);
+-    JNINativeCallContext jniNativeCallContext(jbindingSession, env);
+-    JNIEnvInstance jniEnvInstance(jbindingSession, jniNativeCallContext, env);
+-
+-    CMyComPtr<IOutArchive> outArchive(GetArchive(env, thiz));
+-    // TODO Delete this and all other such ifs, also in J2CppInArchive.cpp, since this is already tested in GetArchive()
+-    if (outArchive == NULL) {
+-        TRACE("Archive==NULL. Do nothing...");
+-        return;
+-    }
+-
+-    // TODO Move query interface to the central location in J2C+SevenZip.cpp
+-    CMyComPtr<ISetProperties> setProperties;
+-    HRESULT result = outArchive->QueryInterface(IID_ISetProperties, (void**)&setProperties);
+-    if (result != S_OK) {
+-        TRACE("Error getting IID_ISetProperties interface. Result: 0x" << std::hex << result)
+-        jniNativeCallContext.reportError(result, "Error getting IID_ISetProperties interface.");
+-        return;
+-    }
+-
+-    const int size = 1;
++    // the names must stay alive until SetProperties returns
++    UStringVector nameStrings;
+     NWindows::NCOM::CPropVariant *propValues = new NWindows::NCOM::CPropVariant[size];
+-    propValues[0] = (bool)enabled;
+-
+-    CRecordVector<const wchar_t *> names;
+-    names.Add(L"HE"); // See 7zHandlerOut.cpp:823
+-
+-    result = setProperties->SetProperties(&names.Front(), propValues, names.Size());
+-    if (result) {
+-        TRACE("Error setting 'Header Encryption' property. Result: 0x" << std::hex << result)
+-        jniNativeCallContext.reportError(result, "Error setting 'Header Encryption' property.");
+-        return;
+-    }
+-}
+-/*
+- * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    nativeSetSolidSpec
+- * Signature: (Ljava/land/String;)V
+- */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetSolidSpec(JNIEnv * env, jobject thiz, jstring solidSpec) {
+-    TRACE("OutArchiveImpl::nativeSetSolidSpec(). ThreadID=" << PlatformGetCurrentThreadId());
+-
+-    JBindingSession & jbindingSession = GetJBindingSession(env, thiz);
+-    JNINativeCallContext jniNativeCallContext(jbindingSession, env);
+-    JNIEnvInstance jniEnvInstance(jbindingSession, jniNativeCallContext, env);
+-
+-    CMyComPtr<IOutArchive> outArchive(GetArchive(env, thiz));
+-    // TODO Delete this and all other such ifs, also in J2CppInArchive.cpp, since this is already tested in GetArchive()
+-    if (outArchive == NULL) {
+-        TRACE("Archive==NULL. Do nothing...");
+-        return;
+-    }
+-
+-    // TODO Move query interface to the central location in J2C+SevenZip.cpp
+-    CMyComPtr<ISetProperties> setProperties;
+-    HRESULT result = outArchive->QueryInterface(IID_ISetProperties, (void**)&setProperties);
+-    if (result != S_OK) {
+-        TRACE("Error getting IID_ISetProperties interface. Result: 0x" << std::hex << result)
+-        jniNativeCallContext.reportError(result, "Error getting IID_ISetProperties interface.");
+-        return;
+-    }
+-
+-    const int size = 1;
+-    NWindows::NCOM::CPropVariant *propValues = new NWindows::NCOM::CPropVariant[size];
+-    if (solidSpec == NULL) {
+-		// printf("[SolidSpec:false]");fflush(stdout);
+-        propValues[0] = false;
+-    } else {
+-		// printf("[SolidSpec:%S]", UString(UnicodeHelper(jchars)).GetBuffer(100000));fflush(stdout);
+-        propValues[0] = UString(FromJChar(env, solidSpec));
++    for (jsize i = 0; i < size; i++) {
++        jstring jName = (jstring) env->GetObjectArrayElement(jNames, i);
++        jobject jValue = env->GetObjectArrayElement(jValues, i);
++        nameStrings.Add(UString(FromJChar(env, jName)));
++        if (jValue != NULL) {
++            if (env->IsInstanceOf(jValue, booleanClass)) {
++                propValues[i] = (bool) jni::Boolean::booleanValue(jniEnvInstance, jValue);
++            } else if (env->IsInstanceOf(jValue, integerClass)) {
++                propValues[i] = (UInt32) jni::Integer::intValue(jniEnvInstance, jValue);
++            } else if (env->IsInstanceOf(jValue, stringClass)) {
++                propValues[i] = UString(FromJChar(env, (jstring) jValue));
++            }
++            env->DeleteLocalRef(jValue);
++        }
++        env->DeleteLocalRef(jName);
+     }
+     CRecordVector<const wchar_t *> names;
+-    names.Add(L"S");
+-
+-    result = setProperties->SetProperties(&names.Front(), propValues, names.Size());
+-    if (result) {
+-        TRACE("Error setting 'Solid' property. Result: 0x" << std::hex << result)
+-        jniNativeCallContext.reportError(result, "Error setting 'Solid' property.");
+-        return;
+-    }
+-}
+-
+-/*
+- * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    nativeSetMultithreading
+- * Signature: (Ljava/land/String;)V
+- */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetMultithreading(JNIEnv * env, jobject thiz, jint threadCount) {
+-    TRACE("OutArchiveImpl::nativeSetMultithreading(). ThreadID=" << PlatformGetCurrentThreadId());
+-
+-    JBindingSession & jbindingSession = GetJBindingSession(env, thiz);
+-    JNINativeCallContext jniNativeCallContext(jbindingSession, env);
+-    JNIEnvInstance jniEnvInstance(jbindingSession, jniNativeCallContext, env);
+-
+-    CMyComPtr<IOutArchive> outArchive(GetArchive(env, thiz));
+-    // TODO Delete this and all other such ifs, also in J2CppInArchive.cpp, since this is already tested in GetArchive()
+-    if (outArchive == NULL) {
+-        TRACE("Archive==NULL. Do nothing...");
+-        return;
+-    }
+-
+-    // TODO Move query interface to the central location in J2C+SevenZip.cpp
+-    CMyComPtr<ISetProperties> setProperties;
+-    HRESULT result = outArchive->QueryInterface(IID_ISetProperties, (void**)&setProperties);
+-    if (result != S_OK) {
+-        TRACE("Error getting IID_ISetProperties interface. Result: 0x" << std::hex << result)
+-        jniNativeCallContext.reportError(result, "Error getting IID_ISetProperties interface.");
+-        return;
++    for (unsigned i = 0; i < nameStrings.Size(); i++) {
++        names.Add(nameStrings[i].Ptr());
+     }
+ 
+-    const int size = 1;
+-    NWindows::NCOM::CPropVariant *propValues = new NWindows::NCOM::CPropVariant[size];
+-	// printf("[MT:%i]", (int)threadCount);fflush(stdout);
+-    if (threadCount) {
+-        propValues[0] = (UInt32)threadCount;
+-    } else {
+-    	// Use count of available processors
+-        propValues[0] = true;
+-    }
+-    CRecordVector<const wchar_t *> names;
+-    names.Add(L"MT");
+-
+     result = setProperties->SetProperties(&names.Front(), propValues, names.Size());
++    delete[] propValues;
++
+     if (result) {
+-        TRACE("Error setting 'Multithreading' property. Result: 0x" << std::hex << result)
+-        jniNativeCallContext.reportError(result, "Error setting 'Multithreading' property.");
++        TRACE("Error setting properties. Result: 0x" << std::hex << result)
++        jniNativeCallContext.reportError(result, "Error setting properties.");
+         return;
+     }
+ }
+--- a/sevenzipjbinding/src/main/cpp/jbinding-cpp/javah/net_sf_sevenzipjbinding_impl_OutArchiveImpl.h
++++ b/sevenzipjbinding/src/main/cpp/jbinding-cpp/javah/net_sf_sevenzipjbinding_impl_OutArchiveImpl.h
+@@ -9,35 +9,11 @@
+ #endif
+ /*
+  * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    nativeSetHeaderEncryption
+- * Signature: (Z)V
++ * Method:    nativeSetProperties
++ * Signature: ([Ljava/lang/String;[Ljava/lang/Object;)V
+  */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetHeaderEncryption
+-  (JNIEnv *, jobject, jboolean);
+-
+-/*
+- * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    nativeSetLevel
+- * Signature: (I)V
+- */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetLevel
+-  (JNIEnv *, jobject, jint);
+-
+-/*
+- * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    nativeSetSolidSpec
+- * Signature: (Ljava/lang/String;)V
+- */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetSolidSpec
+-  (JNIEnv *, jobject, jstring);
+-
+-/*
+- * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl
+- * Method:    nativeSetMultithreading
+- * Signature: (I)V
+- */
+-JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetMultithreading
+-  (JNIEnv *, jobject, jint);
++JNIEXPORT void JNICALL Java_net_sf_sevenzipjbinding_impl_OutArchiveImpl_nativeSetProperties
++  (JNIEnv *, jobject, jobjectArray, jobjectArray);
+ 
+ /*
+  * Class:     net_sf_sevenzipjbinding_impl_OutArchiveImpl

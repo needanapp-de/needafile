@@ -1,0 +1,4 @@
+• Cryptomator-Tresore auf dem Handy und auf Servern (SFTP, SMB, WebDAV, FTP): öffnen, Dateien ansehen, hinein- und herauskopieren, umbenennen, verschieben, löschen
+• Neuer Tresor im Plus-Menü, mit Wiederherstellungsschlüssel; Passwort ändern oder mit dem Schlüssel zurücksetzen
+• Wahlweise mit Fingerabdruck entsperren
+• Tresore sperren sich nach einer einstellbaren Zeit im Hintergrund und beim Ausschalten des Bildschirms

@@ -1,0 +1,2 @@
+• Store screenshots and feature graphic
+• Server texts: FTP named in the empty list, "Username" spelled the same everywhere

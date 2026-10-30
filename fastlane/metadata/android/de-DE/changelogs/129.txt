@@ -1,0 +1,4 @@
+• Einheitlicher Stil: Texteditor, Server und „Archiv öffnen“ mit schwebender Karte statt ⋮-Menü
+• Archiv öffnen zeigt den Inhalt; Ordner und Dateien lassen sich öffnen, Entpacken mit Fortschritt und Abbrechen
+• Öffnen als, Bild speichern, Serversuche, Zertifikats- und Schlüsselabfrage als Kacheln
+• Ordnerwähler: Speicherorte als Chips statt Aufklappmenü

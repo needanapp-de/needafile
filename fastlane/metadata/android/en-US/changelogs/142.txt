@@ -1,0 +1,2 @@
+• Rename: dragging the cursor handle past the edge of the name field now scrolls on through the name instead of sticking at the visible end
+• A held delete key now deletes steadily and slowly in name fields, one character after the other, instead of everything at once after a few steps. Word suggestions and swipe typing are off in name fields

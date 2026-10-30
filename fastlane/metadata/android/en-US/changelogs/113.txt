@@ -1,0 +1,3 @@
+• Settings redone: switches as large tiles (general, files, protection), below them date format, backup, appearance, app icon and about
+• Folder options redone as tiles: sorting, view, size and grouping with large icons, switches as rows
+• Removed: the switches for pull to refresh and keeping the change date (both always on) and the protection for hidden files and deleting

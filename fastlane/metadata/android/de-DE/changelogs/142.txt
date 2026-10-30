@@ -1,0 +1,2 @@
+• Umbenennen: Den Cursor-Griff über den Rand des Namensfelds gezogen, scrollt das Feld jetzt weiter durch den Namen, statt am sichtbaren Ende hängen zu bleiben
+• Eine gehaltene Löschtaste löscht im Namensfeld gleichmäßig langsam, ein Zeichen nach dem anderen, statt nach ein paar Schritten alles auf einmal. Wortvorschläge und Wischeingabe entfallen in Namensfeldern

@@ -1,0 +1,3 @@
+• Server als Statuskarten: Name, Protokoll und Adresse, darunter Öffnen und Bearbeiten; eigenes Symbol je Protokoll
+• Blatt über die drei Punkte mit allen Angaben auf einer Karte in der Akzentfarbe
+• Formular: Testergebnis oben als grünes oder rotes Band, Protokoll, FTPS-Modus und Anmeldeart als Kacheln

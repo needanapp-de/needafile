@@ -1,0 +1,3 @@
+• Darstellung: Einfarbiger Hintergrund ist jetzt Standard, der Farbverlauf lässt sich unter Flächen zuschalten
+• Neuer Regler „Kartenhelligkeit“ unter Flächen
+• „Nur ein Abschnitt offen“ ist jetzt Standard

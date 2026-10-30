@@ -1,0 +1,4 @@
+• Dateiliste als helle Karten, zweizeilig (abschaltbar in den Ordneroptionen)
+• Lang drücken öffnet die Karte mit Kopieren, Ausschneiden, Umbenennen, Löschen und Mehr; die Leiste unten erscheint erst ab zwei markierten Einträgen, in derselben Reihenfolge
+• Neu: Ausschneiden und Einfügen
+• Umbenennen direkt in der Karte statt im eigenen Fenster

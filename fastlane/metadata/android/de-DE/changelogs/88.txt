@@ -1,0 +1,1 @@
+• Wird ein Tresor gesperrt (über die Pille, die Tresore-Seite, die Benachrichtigung oder automatisch), schließen sich seine Tabs sofort. War es der einzige Tab, zeigt er den Startordner

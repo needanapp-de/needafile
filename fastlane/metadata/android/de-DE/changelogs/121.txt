@@ -1,0 +1,1 @@
+• Bildeditor: Die Filter sind entfernt, es bleiben Zuschneiden, Drehen, Spiegeln, Größe ändern und Zeichnen. Damit entfällt auch die übernommene Filter-Bibliothek

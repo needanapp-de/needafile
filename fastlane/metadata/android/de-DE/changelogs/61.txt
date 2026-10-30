@@ -1,0 +1,3 @@
+• Einstellungsabschnitte starten immer eingeklappt; nur der zuletzt geöffnete bleibt offen
+• Erstes Release mit needafiles eigenem Schlüssel signiert
+• Über: Dank nur noch an die Projekte, auf denen needafile aufbaut

@@ -1,0 +1,1 @@
+• Wie 0.42.1, neuer Build für Google Play mit dem endgültigen Signaturschlüssel

@@ -1,0 +1,2 @@
+• Seitlich wischen wechselt zwischen Dateien, Server und Tresoren, wie ein Tipp auf die Pille. Abschaltbar unter Einstellungen → Allgemein. Beim Auswählen, Suchen und Auswählen für andere Apps bleibt die Seite stehen
+• Behoben: Ein seitliches Wischen im Auswahlmodus wählte den Eintrag unter dem Finger aus oder ab

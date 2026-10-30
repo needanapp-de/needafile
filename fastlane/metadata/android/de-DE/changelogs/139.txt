@@ -1,0 +1,1 @@
+• Neu: Einführung nach der Installation. Unter einer Vorschau der App führt sie durch Dateizugriff, Benachrichtigungen (optional) und Aussehen: Stil, Hell/Dunkel und Farbwelt. Jede Wahl zeigt sich sofort. Sie lässt sich überspringen und unter Einstellungen → „Einführung zeigen“ wieder öffnen. Nach Updates erscheint sie nicht

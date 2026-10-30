@@ -1,0 +1,1 @@
+• Intern: Dialoge und Seiten finden ihr App-Fenster und ihre Texte jetzt so, wie Android es für Compose vorsieht; die Code-Prüfung läuft ohne Ausnahmeliste fehlerfrei – sichtbar ändert sich nichts

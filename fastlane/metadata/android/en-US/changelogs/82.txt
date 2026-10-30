@@ -1,0 +1,3 @@
+• New "Vaults" page in the navigation pill: unlocked and locked vaults, locking with one tap, options per vault, auto-lock and new vault (formerly in the settings)
+• The pill shows an open lock with the count while vaults are unlocked
+• The menu on the right then offers to lock them

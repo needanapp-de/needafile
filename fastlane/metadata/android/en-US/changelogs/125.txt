@@ -1,0 +1,2 @@
+• Archive info and "Open archive" in the tile design of the properties, the encryption state as a colored tile
+• Properties show a readable path for vault files

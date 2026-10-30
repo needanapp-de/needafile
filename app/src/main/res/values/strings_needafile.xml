@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- needafile's own strings -->
+<resources>
+    <!-- Remote servers (SFTP, SMB, WebDAV) -->
+    <string name="servers">Servers</string>
+    <string name="add_server">Add server</string>
+    <string name="edit_server">Edit server</string>
+    <string name="delete_server">Delete server</string>
+    <string name="server_options">Server info</string>
+    <string name="server_card_connection">Connection</string>
+    <string name="servers_empty_placeholder">No servers yet.\nTap + to add an SFTP, SMB, WebDAV or FTP connection.</string>
+    <string name="server_display_name">Display name (optional)</string>
+    <string name="server_host">Host</string>
+    <string name="server_port">Port</string>
+    <string name="server_username">Username</string>
+    <string name="server_password">Password</string>
+    <string name="server_authentication">Authentication</string>
+    <string name="server_auth_password">Password</string>
+    <string name="server_auth_key">SSH key</string>
+    <string name="server_private_key">Private key (PEM)</string>
+    <string name="server_paste_private_key">Paste private key or pick a file</string>
+    <string name="server_pick_key_file">Choose key file</string>
+    <string name="server_passphrase">Key passphrase (optional)</string>
+    <string name="server_initial_path">Start folder (optional)</string>
+    <string name="server_url_hint">WebDAV address (https://…)</string>
+    <string name="server_domain">Domain (optional)</string>
+    <string name="server_share">Share (optional)</string>
+    <string name="server_username_guest">Username (empty = guest)</string>
+    <string name="url_required">Enter an address starting with https:// or http://</string>
+    <string name="test_connection">Test connection</string>
+    <string name="testing_connection">Testing connection…</string>
+    <string name="connection_successful">Connection successful</string>
+    <string name="connection_failed">Connection failed: %s</string>
+    <string name="downloading_file">Downloading…</string>
+    <string name="fetch_progress">%1$d %% · %2$s of %3$s</string>
+
+    <!-- Copying between phone and servers -->
+    <string name="new_tab">New tab</string>
+    <string name="close_tab">Close tab</string>
+    <string name="places">Places</string>
+    <string name="places_hint">Tap to open in a new tab</string>
+    <string name="places_device">Device</string>
+    <string name="places_recent">Recently opened</string>
+    <string name="places_add">Add</string>
+    <string name="places_just_now">Just now</string>
+    <string name="storage_free">%s free</string>
+    <string name="storage_free_of">%1$s free of %2$s</string>
+    <string name="vault_state_and_place">%1$s\u00A0· on\u00A0%2$s</string>
+    <string name="place_on">on\u00A0%s</string>
+    <string name="tab_path_show">Show full path</string>
+    <string name="tab_path_title">Full path</string>
+    <string name="tab_path_hint">Tap a folder to go there</string>
+    <string name="tab_path_current">current</string>
+    <string name="unknown_server">Unknown server</string>
+    <string name="paste">Paste</string>
+    <plurals name="clipboard_items">
+        <item quantity="one">%d item copied</item>
+        <item quantity="other">%d items copied</item>
+    </plurals>
+    <plurals name="copied_to_clipboard">
+        <item quantity="one">%d item copied, open the target folder and tap Paste</item>
+        <item quantity="other">%d items copied, open the target folder and tap Paste</item>
+    </plurals>
+    <string name="cut">Cut</string>
+    <plurals name="cut_items">
+        <item quantity="one">%d item cut</item>
+        <item quantity="other">%d items cut</item>
+    </plurals>
+    <plurals name="cut_to_clipboard">
+        <item quantity="one">%d item cut, open the target folder and tap Paste</item>
+        <item quantity="other">%d items cut, open the target folder and tap Paste</item>
+    </plurals>
+    <string name="transfer_preparing">Preparing…</string>
+    <string name="transfer_progress">Copying %1$d of %2$d</string>
+    <plurals name="transfer_done">
+        <item quantity="one">%d item pasted</item>
+        <item quantity="other">%d items pasted</item>
+    </plurals>
+    <string name="transfer_cancelled">Copying cancelled</string>
+    <string name="transfer_failed">Copying failed: %s</string>
+    <string name="transfer_conflict_title">Already exists</string>
+    <string name="transfer_conflict_message">Already in the target folder:\n%s</string>
+    <string name="transfer_overwrite">Overwrite</string>
+    <string name="transfer_skip">Skip</string>
+    <string name="transfer_channel_name">File transfers</string>
+    <string name="transfer_already_running">Another operation is still running</string>
+    <string name="transfer_pause">Pause</string>
+    <string name="transfer_resume">Resume</string>
+    <string name="transfer_retry_now">Try now</string>
+    <string name="transfer_paused">Paused</string>
+    <string name="transfer_paused_no_connection">Paused: connection not restored</string>
+    <string name="transfer_waiting">Connection lost</string>
+    <string name="transfer_waiting_until">Trying again automatically until %s</string>
+    <string name="transfer_progress_move">Moving %1$d of %2$d</string>
+    <plurals name="transfer_moved">
+        <item quantity="one">%d item moved</item>
+        <item quantity="other">%d items moved</item>
+    </plurals>
+    <string name="transfer_move_cancelled">Moving cancelled</string>
+    <string name="transfer_move_failed">Moving failed: %s</string>
+    <string name="transfer_kind_conflict">\"%s\": a file can\'t replace a folder or the other way round</string>
+    <string name="transfer_move_source_left">\"%s\" was copied, but the original couldn\'t be deleted</string>
+    <string name="transfer_create_folder_failed">Couldn\'t create the folder \"%s\"</string>
+    <string name="compress_progress">Compressing %1$d of %2$d</string>
+    <plurals name="compress_done">
+        <item quantity="one">Archive created</item>
+        <item quantity="other">%d archives created</item>
+    </plurals>
+    <string name="compress_cancelled">Compressing cancelled</string>
+    <string name="compress_failed">Compressing failed: %s</string>
+    <string name="extract_progress">Extracting %1$d of %2$d</string>
+    <plurals name="extract_done">
+        <item quantity="one">%d item extracted</item>
+        <item quantity="other">%d items extracted</item>
+    </plurals>
+    <plurals name="decompress_done">
+        <item quantity="one">Archive extracted</item>
+        <item quantity="other">%d archives extracted</item>
+    </plurals>
+    <string name="extract_cancelled">Extracting cancelled</string>
+    <string name="extract_failed">Extracting failed: %s</string>
+    <string name="discovery_search">Search the network</string>
+    <string name="discovery_search_summary">Finds servers announced by Bonjour/mDNS and Windows computers (WS-Discovery)</string>
+    <string name="discovery_title">Servers on the network</string>
+    <string name="discovery_search_again">Search again</string>
+    <string name="discovery_nothing_found">No servers found. Only servers that announce themselves via Bonjour/mDNS or WS-Discovery in the same Wi-Fi network are found; others can be entered by hand.</string>
+
+    <!-- File actions sheet -->
+    <string name="select_item">Select</string>
+    <string name="more_actions">More</string>
+    <string name="less_actions">Less</string>
+    <string name="card_group_open">Open &amp; share</string>
+    <string name="card_group_place">Copy &amp; move</string>
+    <string name="card_group_manage">Manage</string>
+    <string name="copy_path_short">Copy path</string>
+    <plurals name="selected_items">
+        <item quantity="one">%d item selected</item>
+        <item quantity="other">%d items selected</item>
+    </plurals>
+    <string name="folder_name">Folder name</string>
+    <!-- about screen -->
+    <string name="about_license">License</string>
+    <string name="about_sources">Sources</string>
+    <string name="about_libraries">Libraries</string>
+    <string name="about_badge_version">version</string>
+    <string name="about_badge_build">build</string>
+    <string name="about_badge_license">license</string>
+    <string name="about_license_notice">%1$s is free software: it may be redistributed and modified under the terms of the GNU General Public License, version 3. It comes without any warranty.</string>
+    <string name="about_show_license_text">Show license text</string>
+    <string name="about_website">Website</string>
+    <string name="about_privacy">Privacy policy</string>
+    <string name="about_fdroid">F-Droid repository</string>
+    <string name="about_source_code">Source code</string>
+    <string name="about_contact">Contact</string>
+    <string name="about_library_sshj">SFTP connections</string>
+    <string name="about_library_bouncycastle">Cryptography for SSH</string>
+    <string name="about_library_smbj">SMB connections (Windows shares, NAS)</string>
+    <string name="about_library_dcerpc">Listing the shares of an SMB server</string>
+    <string name="about_library_okhttp">WebDAV connections (with Okio)</string>
+    <string name="about_library_commons_net">FTP and FTPS connections</string>
+    <string name="about_library_sevenzip">7z, RAR, tar, ISO, CAB and more archives (7-Zip, RAR decoding under the unRAR license), built from source with a fix for the 7z settings</string>
+    <string name="about_library_xz">Unpacking .xz files</string>
+    <string name="about_library_zip4j">Creating ZIP archives with AES encryption</string>
+    <string name="about_library_coil">Loading images in the viewer</string>
+    <string name="about_library_telephoto">Zooming large images</string>
+    <string name="about_library_androidsvg">SVG images</string>
+    <string name="about_library_jxl_coder">JPEG XL images</string>
+    <string name="about_library_image_cropper">Cropping and rotating in the image editor</string>
+    <string name="about_library_pdfview">Showing PDF documents</string>
+    <string name="about_library_pdfium">PDF rendering with PDFium</string>
+    <string name="about_library_commonmark">Markdown</string>
+    <string name="about_library_jsoup">Cleaning up HTML before it is shown</string>
+    <string name="about_library_commons_csv">CSV tables</string>
+    <string name="about_library_material">Controls and layouts (with AndroidX)</string>
+    <string name="about_library_kotlin">Programming language and standard library</string>
+    <string name="about_library_slf4j">Logging interface used by sshj</string>
+    <!-- Errors of server connections -->
+    <string name="remote_error_unknown_host">Server not found, check the address</string>
+    <string name="remote_error_unreachable">The server can\'t be reached</string>
+    <string name="remote_error_timeout">The server didn\'t answer in time</string>
+    <string name="remote_error_wrong_credentials">Wrong user name or password</string>
+    <string name="remote_error_tls">Secure connection failed: %s</string>
+    <string name="remote_error_access_denied">Access denied</string>
+    <string name="remote_error_not_found">Not found on the server</string>
+    <string name="remote_error_already_exists">An item with this name already exists</string>
+    <string name="remote_error_name_exists">%s already exists</string>
+    <string name="remote_error_disk_full">The server\'s storage is full</string>
+    <string name="remote_error_locked">The item is locked on the server</string>
+    <string name="remote_error_redirect">The server redirects to %s, check the address</string>
+    <string name="remote_error_http">The server answered with HTTP %1$d %2$s</string>
+    <string name="remote_error_not_a_file_share">%s is not a file share</string>
+    <string name="remote_error_guest_not_allowed">The server doesn\'t allow guest access, enter a user name</string>
+    <string name="remote_error_share_list_failed">Could not list the shares of this server (%s), enter a share name in the server settings</string>
+    <string name="remote_error_malformed_share_list">The server sent an invalid share list</string>
+    <string name="remote_error_folders_too_deep">Folders nested too deeply (link loop?): %s</string>
+    <string name="remote_error_create_local_folder">Could not create %s</string>
+    <string name="remote_error_copy_into_share_only">Files can only be copied into a share</string>
+    <string name="remote_error_share_delete">Shares can\'t be deleted</string>
+    <string name="remote_error_share_rename">Shares can\'t be renamed</string>
+    <string name="remote_error_share_move">Items can\'t be moved from one share to another this way</string>
+    <string name="remote_error_share_create">Shares can\'t be created</string>
+    <string name="remote_error_root_delete">The root folder can\'t be deleted</string>
+    <string name="remote_error_invalid_webdav_url">Invalid WebDAV address: %s</string>
+    <string name="quoted_name">“%s”</string>
+    <!-- SSH host keys (trust on first use) -->
+    <string name="host_key_unknown_title">Unknown server</string>
+    <string name="host_key_unknown_message">This is the first connection to %s. Compare the fingerprint below with the one of the server (e.g. ssh-keygen -lf on the server) before trusting it.</string>
+    <string name="host_key_changed_title">Server key changed!</string>
+    <string name="host_key_changed_message">The key of %s differs from the one confirmed before. This happens after the server was reinstalled, but it can also mean that someone intercepts the connection. Only accept the new key if you know why it changed.</string>
+    <string name="host_key_current">Key of the server</string>
+    <string name="host_key_previous">Key confirmed before</string>
+    <string name="host_key_trust">Trust</string>
+    <string name="host_key_accept_new">Accept new key</string>
+    <string name="host_key_unconfirmed">The key of %s isn\'t confirmed yet</string>
+    <string name="host_key_changed_error">The key of %s has changed, connection refused</string>
+    <string name="server_encryption">Encryption</string>
+    <string name="server_ftps_explicit">FTPS explicit</string>
+    <string name="server_ftps_implicit">FTPS implicit</string>
+    <string name="server_allow_plain">Allow unencrypted FTP</string>
+    <string name="server_allow_plain_summary">Only used when the server has no FTPS. Username, password and files then travel readable over the network.</string>
+    <string name="server_username_anonymous">Username (empty = anonymous)</string>
+    <string name="ftp_error_reply">The server answered: %s</string>
+    <string name="ftp_no_tls_error">%s has no FTPS and unencrypted connections aren\'t allowed for it</string>
+    <string name="ftp_plain_title">No encryption</string>
+    <string name="ftp_plain_message">%s doesn\'t support FTPS. Connect unencrypted? Username, password and files then travel readable over the network. The decision is remembered for this server and can be changed in its settings.</string>
+    <string name="ftp_plain_confirm">Connect unencrypted</string>
+    <string name="certificate_unknown_title">Unknown certificate</string>
+    <string name="certificate_unknown_message">%s presents a certificate Android doesn\'t trust, e.g. a self-signed one. Compare the fingerprint below with the one of the server before trusting it.</string>
+    <string name="certificate_name_mismatch_message">The certificate of %s is issued for another name. Only trust it if you know the server and the fingerprint below matches its certificate.</string>
+    <string name="certificate_changed_title">Certificate changed!</string>
+    <string name="certificate_changed_message">The certificate of %s differs from the one confirmed before. This happens when the certificate was renewed, but it can also mean that someone intercepts the connection. Only accept the new certificate if you know why it changed.</string>
+    <string name="certificate_fingerprint">Fingerprint (SHA-256)</string>
+    <string name="certificate_issued_to">Issued to</string>
+    <string name="certificate_issued_by">Issued by</string>
+    <string name="certificate_validity">Valid</string>
+    <string name="certificate_validity_value">%1$s to %2$s</string>
+    <string name="certificate_accept_new">Accept new certificate</string>
+    <string name="certificate_unconfirmed">The certificate of %s isn\'t confirmed yet</string>
+    <string name="certificate_changed_error">The certificate of %s has changed, connection refused</string>
+    <!-- Archives (zip, 7z, tar, gz, bz2, xz) -->
+    <string name="archive_details">Archive details</string>
+    <string name="archive_encrypt_file_names">Encrypt file names</string>
+    <string name="archive_advanced">Advanced</string>
+    <string name="compression_strength">Compression</string>
+    <string name="compression_store">Store</string>
+    <string name="compression_store_summary">No compression, fastest</string>
+    <string name="compression_fast">Fast</string>
+    <string name="compression_fast_summary">Quick, the archive gets a little bigger</string>
+    <string name="compression_normal">Normal</string>
+    <string name="compression_normal_summary">Good balance of size and speed</string>
+    <string name="compression_maximum">Maximum</string>
+    <string name="compression_maximum_summary">Smaller archive, takes longer</string>
+    <string name="compression_ultra">Ultra</string>
+    <string name="compression_ultra_summary">Smallest archive, takes much longer</string>
+    <string name="archive_key_length">Key length</string>
+    <string name="archive_solid">Solid archive</string>
+    <string name="archive_solid_summary">Compresses the files together: smaller, but extracting single files takes longer</string>
+    <string name="archive_split">Split into parts</string>
+    <string name="archive_split_summary">For mail attachments, upload limits or FAT32 media</string>
+    <string name="archive_part_size">Part size</string>
+    <string name="archive_split_names">The parts are named %1$s.z01, %1$s.z02 … and %1$s.zip. To extract, put all parts in one folder and open %1$s.zip.</string>
+    <string name="archive_split_needs_file_access">Splitting only works in folders with direct file access</string>
+    <string name="archive_advanced_strength">Compression: %s</string>
+    <string name="archive_advanced_parts">Parts of %s</string>
+    <string name="archive_info_not_encrypted">Not encrypted, anyone can open the archive.</string>
+    <string name="archive_info_zip_aes">AES-256 (WinZip AE-2). File names stay visible, zip can\'t encrypt them.</string>
+    <string name="archive_info_zip_aes_128">AES-128 (WinZip AE-2). File names stay visible, zip can\'t encrypt them.</string>
+    <string name="archive_info_7z_names_encrypted">AES-256, the key is derived from the password with 524,288 SHA-256 rounds. File names are encrypted too.</string>
+    <string name="archive_info_7z_names_visible">AES-256, the key is derived from the password with 524,288 SHA-256 rounds. File names stay visible.</string>
+    <string name="archive_password_required">This archive is encrypted, enter its password.</string>
+    <string name="archive_wrong_password">Wrong password</string>
+    <string name="archive_wrong_password_retry">Wrong password, try again.</string>
+    <string name="archive_unsupported">%s is not a supported archive</string>
+    <string name="archive_damaged">The archive is damaged or can\'t be read</string>
+    <string name="archive_create_failed">Could not create the archive: %s</string>
+    <string name="archive_extract_failed">Could not extract: %s</string>
+    <string name="archive_info_format">Format</string>
+    <string name="archive_info_content">Content</string>
+    <plurals name="archive_file_count">
+        <item quantity="one">%d file</item>
+        <item quantity="other">%d files</item>
+    </plurals>
+    <plurals name="archive_folder_count">
+        <item quantity="one">%d folder</item>
+        <item quantity="other">%d folders</item>
+    </plurals>
+    <string name="archive_info_files_and_folders">%1$s, %2$s</string>
+    <string name="archive_info_content_hidden">Hidden, the file list is encrypted</string>
+    <string name="archive_info_unpacked_size">Unpacked size</string>
+    <string name="archive_info_method">Compression</string>
+    <string name="archive_info_encryption">Encryption</string>
+    <string name="archive_info_encryption_zipcrypto">ZipCrypto – outdated and easy to break, better pack it again with AES</string>
+    <string name="archive_info_key_derivation">Key derivation</string>
+    <string name="archive_info_key_derivation_value">SHA-256, 2^%1$d = %2$s rounds</string>
+    <string name="archive_info_file_names">File names</string>
+    <string name="archive_info_file_names_visible_zip">Visible (zip can\'t encrypt file names)</string>
+    <string name="archive_info_file_names_encrypted">Encrypted</string>
+    <string name="archive_info_file_names_visible">Visible</string>
+
+    <!-- main screen (Compose) -->
+    <string name="folder_empty">This folder is empty</string>
+    <string name="clear_clipboard">Clear clipboard</string>
+    <string name="options">Options</string>
+    <string name="folder_options">Folder options</string>
+    <string name="menu">Menu</string>
+    <string name="sort_date">Date</string>
+    <string name="sort_type">Type</string>
+    <string name="sort_numeric">Sort numbers by value</string>
+    <string name="sort_numeric_summary">File 2 comes before file 10</string>
+    <string name="this_folder">This folder</string>
+    <string name="view">View</string>
+    <string name="view_list">List</string>
+    <string name="view_grid">Grid</string>
+    <string name="show_file_names">Show file names</string>
+    <string name="list_as_cards">Show as cards</string>
+    <string name="view_details">Details</string>
+    <string name="view_gallery">Gallery</string>
+    <string name="view_zoom">Entry size</string>
+    <!-- the buttons beside the column count of grid and gallery -->
+    <string name="view_zoom_smaller">Smaller</string>
+    <string name="view_zoom_larger">Larger</string>
+    <string name="zoom_compact">Compact</string>
+    <string name="zoom_normal">Normal</string>
+    <string name="zoom_large">Large</string>
+    <plurals name="grid_columns">
+        <item quantity="one">%d column</item>
+        <item quantity="other">%d columns</item>
+    </plurals>
+    <string name="use_for_this_folder_view_summary">Applies to view, size and grouping</string>
+    <string name="auto_gallery_active">Shown as gallery because the folder mostly holds pictures and videos. Choosing a view keeps it for this folder.</string>
+    <string name="auto_gallery">Show photo folders as gallery</string>
+    <string name="group_by">Group by</string>
+    <string name="group_none">Off</string>
+    <string name="group_date">Date</string>
+    <string name="group_type">Type</string>
+    <string name="group_size">Size</string>
+    <string name="group_name">A–Z</string>
+    <string name="group_expand">Expand</string>
+    <string name="group_collapse">Collapse</string>
+    <string name="group_folders">Folders</string>
+    <string name="group_today">Today</string>
+    <string name="group_yesterday">Yesterday</string>
+    <string name="group_this_week">This week</string>
+    <string name="group_this_month">This month</string>
+    <string name="group_no_date">No date</string>
+    <string name="group_images">Pictures</string>
+    <string name="group_videos">Videos</string>
+    <string name="group_audio">Audio</string>
+    <string name="group_documents">Documents</string>
+    <string name="group_archives">Archives</string>
+    <string name="group_apps">Apps</string>
+    <string name="group_other">Other</string>
+    <string name="group_size_huge">Huge (over 1 GB)</string>
+    <string name="group_size_large">Large (over 100 MB)</string>
+    <string name="group_size_medium">Medium (over 1 MB)</string>
+    <string name="group_size_small">Small (up to 1 MB)</string>
+    <string name="group_size_empty">Empty</string>
+    <string name="show_hidden_files">Show hidden files</string>
+    <string name="create_new_title">New</string>
+    <string name="create_in_folder">In “%1$s”</string>
+    <string name="create_here">Create here</string>
+    <string name="create_file_summary">Empty file, e.g. for text</string>
+    <string name="create_vault_summary">Encrypted with Cryptomator</string>
+    <string name="create_open">Open</string>
+    <string name="connect_server">Connect to server</string>
+    <string name="create_new_file_title">Create new file</string>
+    <string name="create">Create</string>
+    <string name="cancel_selection">Cancel selection</string>
+    <string name="go_up">Up one level</string>
+    <string name="go_back">Back</string>
+    <string name="servers_empty_title">No servers yet</string>
+    <string name="open_server">Browse</string>
+    <string name="delete_server_question">Delete the connection to %1$s? Files on the server stay untouched.</string>
+    <string name="appearance_summary">Mode, colors, blur, size, font and language</string>
+    <!-- the settings page -->
+    <string name="settings_files">Files</string>
+    <string name="settings_more">More settings</string>
+    <!-- short titles of the switch tiles in the settings -->
+    <string name="tile_press_back_twice">Back twice</string>
+    <string name="tile_swipe_pages">Swipe pages</string>
+    <string name="tile_auto_gallery">Photo gallery</string>
+    <string name="tile_protect_app">App lock</string>
+    <string name="delete_without_asking">Delete without asking</string>
+    <string name="protect_app">Protect the app</string>
+
+    <!-- picking files for other apps -->
+    <string name="pick_file">Choose a file</string>
+    <string name="pick_files">Choose files</string>
+    <string name="pick_sound">Choose a sound</string>
+    <string name="save_here">Save here</string>
+    <string name="save_as">Save as</string>
+    <string name="cancel_picking">Cancel</string>
+    <string name="replace_file_title">Replace file?</string>
+    <string name="replace_file_question">“%s” already exists. Replace it?</string>
+    <string name="replace">Replace</string>
+    <plurals name="use_picked_files">
+        <item quantity="one">Use %d file</item>
+        <item quantity="other">Use %d files</item>
+    </plurals>
+
+    <!-- server editor -->
+    <string name="server_connection">Connection</string>
+    <string name="server_field_required">Required</string>
+    <string name="server_port_invalid">Enter a port from 1 to 65535</string>
+    <string name="server_save">Save</string>
+
+    <!-- app icon -->
+    <string name="app_icon">App icon</string>
+    <string name="app_icon_follow_accent">Like the accent color</string>
+    <string name="app_icon_follow_accent_summary">Uses the icon color closest to the accent color of the appearance settings; orange with the standard accent</string>
+    <string name="app_icon_color">Color</string>
+    <string name="app_icon_orange">Orange</string>
+    <string name="app_icon_blue">Blue</string>
+    <string name="app_icon_black">Black</string>
+    <string name="app_icon_white">White</string>
+    <string name="app_icon_hint">The launcher shows the new icon once you leave %1$s. A shortcut on the home screen may have to be placed again afterwards.</string>
+
+    <!-- about: design and new libraries -->
+    <string name="about_library_needanapp_design">Theme, navigation pill and building blocks of the interface</string>
+    <string name="about_library_compose">Interface toolkit with Material 3</string>
+    <string name="about_library_haze">Background blur behind header and pill</string>
+    <string name="about_library_materialkolor">Color schemes from the accent color</string>
+
+    <!-- storage analysis -->
+    <string name="info_short">Info</string>
+    <string name="image_info_capture">Capture</string>
+    <string name="show_on_map">Show on map</string>
+    <string name="show_in_folder">Show in folder</string>
+
+    <!-- dialogs in the new style -->
+    <string name="copy_here">Copy here</string>
+    <string name="move_here">Move here</string>
+    <string name="use_this_folder">Use this folder</string>
+    <string name="no_subfolders">No subfolders</string>
+    <string name="picker_open_share">Open a share first, files go into one of them</string>
+    <string name="picker_retry">Try again</string>
+    <string name="file_type">Type</string>
+    <string name="files_and_folders">%1$s, %2$s</string>
+    <plurals name="count_files">
+        <item quantity="one">%d file</item>
+        <item quantity="other">%d files</item>
+    </plurals>
+    <plurals name="count_folders">
+        <item quantity="one">%d folder</item>
+        <item quantity="other">%d folders</item>
+    </plurals>
+    <string name="settings_date_format">Date format</string>
+    <string name="settings_time_format">Time format</string>
+
+    <!-- share menu and archives from other apps -->
+    <string name="save_to">Save to</string>
+    <string name="extract_to">Extract to</string>
+    <string name="archive_extract_target">Extract to %s</string>
+    <string name="archive_target_folder">Target folder</string>
+    <string name="archive_extracting_percent">Extracting… %d%%</string>
+    <string name="archive_names_hidden">File names encrypted</string>
+    <string name="archive_names_hidden_hint">Enter the password to show the content.</string>
+    <string name="archive_enter_password">Enter password</string>
+    <string name="archive_content_failed">Can\'t show the content</string>
+    <string name="checksums">Checksums</string>
+    <string name="checksums_calculate">Calculate checksums</string>
+    <string name="checksums_calculate_summary">MD5, SHA-1, SHA-256 and SHA-512</string>
+    <string name="checksums_progress">Calculating … %d %%</string>
+    <string name="checksums_compare">Compare with clipboard</string>
+    <string name="checksums_compare_summary">Copy the expected value first, e.g. from the download page</string>
+    <string name="checksums_match">Matches the %s checksum</string>
+    <string name="checksums_no_match">Matches none of the checksums</string>
+    <string name="checksums_clipboard_empty">The clipboard holds no checksum</string>
+    <string name="checksums_failed">Could not read the file: %s</string>
+    <string name="extract_here">Extract here</string>
+    <string name="archive_read_only">Archives can\'t be changed</string>
+    <string name="archive_folder_missing">%s is not in the archive</string>
+    <string name="archive_open_failed">Can\'t open the archive</string>
+    <string name="shared_text_name">Shared text</string>
+    <string name="shared_file_name">Shared file</string>
+    <plurals name="shared_items">
+        <item quantity="one">%d shared file</item>
+        <item quantity="other">%d shared files</item>
+    </plurals>
+
+    <!-- protection with pattern, PIN or fingerprint -->
+    <string name="protection_set_up">Set up protection</string>
+    <string name="pattern_too_short">Connect at least 4 dots</string>
+    <string name="pin_backspace">Delete last digit</string>
+    <string name="pattern_area">Pattern field: connect the dots in the right order</string>
+    <string name="app_locked">%s is locked</string>
+    <string name="fingerprint_not_set_up">No fingerprint set up yet</string>
+    <string name="fingerprint_not_set_up_hint">Add a fingerprint in Android\'s settings, then you can use it here.</string>
+    <string name="fingerprint_set_up_in_android">Set up in Android</string>
+
+    <!-- renaming several items -->
+    <string name="rename_mode_add">Add</string>
+    <string name="rename_mode_replace">Replace</string>
+    <string name="rename_mode_template">Template</string>
+    <string name="rename_text">Text</string>
+    <string name="rename_at_start">At the start</string>
+    <string name="rename_at_end">At the end</string>
+    <string name="rename_find">Find</string>
+    <string name="rename_replace_with">Replace with</string>
+    <string name="rename_template_help" formatted="false">%Y year, %M month, %D day, %h hour, %m minute, %s second (taken or last changed), %i running number. The extension stays.</string>
+    <string name="rename_preview">Preview</string>
+    <plurals name="rename_more">
+        <item quantity="one">and %d more</item>
+        <item quantity="other">and %d more</item>
+    </plurals>
+    <plurals name="rename_failed">
+        <item quantity="one">%d item couldn\'t be renamed</item>
+        <item quantity="other">%d items couldn\'t be renamed</item>
+    </plurals>
+    <!-- text editor -->
+    <string name="editor_match_position">%1$d of %2$d</string>
+    <string name="editor_previous_match">Previous match</string>
+    <string name="editor_next_match">Next match</string>
+    <string name="editor_open_failed">The file can\'t be opened</string>
+    <string name="editor_read_only_long">This file has too many lines to edit here, it is only shown.</string>
+    <string name="editor_too_large_title">File too large</string>
+    <string name="editor_too_large">At %s this file is too large for the editor. Open it with another app instead.</string>
+    <string name="editor_read_only">This file can\'t be changed here. Save it as a new file instead.</string>
+    <string name="editor_unsaved_title">Unsaved changes</string>
+    <string name="editor_unsaved_message">Save the changes before closing?</string>
+    <string name="editor_untitled">Untitled.txt</string>
+    <!-- access to all files -->
+    <string name="storage_access_title">Access to your files</string>
+    <string name="storage_access_message">To show, copy and change your files, %s needs access to all files. Switch it on in the next step; the files stay on your device.</string>
+    <string name="storage_access_allow">Allow access</string>
+    <!-- folders Android keeps apps out of -->
+    <string name="folder_restricted_title">Locked by Android</string>
+    <string name="folder_restricted_message">Android doesn\'t let apps into this folder. You can look at it in the system\'s Files app.</string>
+    <string name="folder_restricted_open">Open in system app</string>
+    <!-- image viewer -->
+    <string name="viewer_images_label">Picture viewer</string>
+    <string name="viewer_position">%1$d of %2$d</string>
+    <string name="viewer_image_failed">This picture can\'t be shown</string>
+    <string name="viewer_iso">ISO</string>
+    <string name="viewer_f_number_value">f/%s</string>
+    <string name="viewer_exposure_value">%s s</string>
+    <string name="viewer_focal_length_value">%s mm</string>
+    <!-- picture editor -->
+    <string name="image_editor_label">Picture editor</string>
+    <string name="image_editor_title">Edit picture</string>
+    <string name="image_editor_load_failed">This picture can\'t be edited</string>
+    <string name="image_editor_crop">Crop</string>
+    <string name="image_editor_draw">Draw</string>
+    <string name="image_editor_reset">Undo all changes</string>
+    <string name="image_editor_reset_message">Go back to the picture as it was opened?</string>
+    <string name="image_editor_save_copy">Save as a copy</string>
+    <string name="image_editor_overwrite">Replace the original</string>
+    <string name="image_editor_overwrite_title">Replace the original?</string>
+    <string name="image_editor_overwrite_message">The original picture will be replaced by the edited one. This can\'t be undone.</string>
+    <string name="image_editor_copy_suffix">edited</string>
+    <string name="image_editor_scaled_down">The picture is saved at %1$d × %2$d pixels; the original has %3$d × %4$d.</string>
+    <string name="image_editor_aspect_free">Free</string>
+    <string name="image_editor_aspect_original">Original</string>
+    <string name="image_editor_aspect_ratio">%1$d:%2$d</string>
+    <string name="image_editor_rotate_left">Rotate left</string>
+    <string name="image_editor_rotate_right">Rotate right</string>
+    <string name="image_editor_flip_horizontal">Flip horizontally</string>
+    <string name="image_editor_flip_vertical">Flip vertically</string>
+    <string name="image_editor_resize">Resize</string>
+    <string name="image_editor_width">Width in pixels</string>
+    <string name="image_editor_height">Height in pixels</string>
+    <string name="image_editor_brush_size">Brush size</string>
+    <string name="image_editor_undo_line">Undo last line</string>
+    <string name="image_editor_custom_color">Pick a color</string>
+    <string name="image_editor_color">Color %d</string>
+    <!-- document viewer -->
+    <string name="document_viewer_label">Document viewer</string>
+    <string name="document_page">Page %1$d of %2$d</string>
+    <string name="document_open_failed">This document can\'t be shown</string>
+    <string name="document_too_large">This document is too large or too complex to show here. Open it with another app instead.</string>
+    <string name="document_unsupported">%s can\'t show this kind of document</string>
+    <string name="document_damaged">The file seems to be damaged, or it is a different kind of file than its name says.</string>
+    <string name="document_empty">The document is empty</string>
+    <string name="document_password_title">Protected document</string>
+    <string name="document_password_open">Open</string>
+    <string name="document_password_wrong">Wrong password</string>
+    <!-- spreadsheet cells with a yes/no value, as spreadsheet programs show them -->
+    <string name="document_true">TRUE</string>
+    <string name="document_false">FALSE</string>
+    <string name="editor_text_card">Text</string>
+    <string name="editor_lines">Lines</string>
+    <string name="editor_characters">Characters</string>
+    <string name="document_card">Document</string>
+    <string name="document_pages">Pages</string>
+    <string name="document_sheets">Sheets</string>
+    <plurals name="document_matching_rows">
+        <item quantity="one">%d row</item>
+        <item quantity="other">%d rows</item>
+    </plurals>
+
+    <!-- Backup -->
+    <string name="backup_export">Export settings</string>
+    <string name="backup_export_summary">Save settings and servers in a password-protected file</string>
+    <string name="backup_import">Import settings</string>
+    <string name="backup_import_summary">Restore from a backup file</string>
+    <string name="backup_section_appearance">Appearance</string>
+    <string name="backup_section_appearance_summary">Colors, font, language</string>
+    <string name="backup_section_settings">Settings</string>
+    <string name="backup_section_settings_summary">Sorting, view, date format, start folder, app icon</string>
+    <string name="backup_section_servers">Servers</string>
+    <string name="backup_section_servers_summary">Connections with passwords and keys, confirmed host keys and certificates</string>
+    <string name="backup_export_password_hint">The backup contains the passwords of your servers and is encrypted with this password. Without it, the backup can\'t be restored.</string>
+    <string name="backup_password">Password</string>
+    <string name="backup_password_repeat">Repeat password</string>
+    <string name="backup_password_too_short">At least %d characters</string>
+    <string name="backup_password_mismatch">The passwords don\'t match</string>
+    <string name="backup_next">Next</string>
+    <string name="backup_exporting">Creating backup…</string>
+    <string name="backup_exported">Backup saved</string>
+    <string name="backup_open_title">Open backup</string>
+    <string name="backup_open_message">Enter the password of the backup.</string>
+    <string name="backup_open">Open</string>
+    <string name="backup_reading">Opening backup…</string>
+    <string name="backup_restore_title">Restore backup</string>
+    <string name="backup_restore_created">Created on %1$s with version %2$s</string>
+    <string name="backup_restore_warning">The chosen areas are replaced completely by those of the backup.</string>
+    <string name="backup_restore">Restore</string>
+    <string name="backup_restoring">Restoring…</string>
+    <string name="backup_restored">Backup restored</string>
+    <string name="backup_transfer_running">Please wait until the transfer has finished.</string>
+    <string name="backup_error_not_a_backup">This file is not a backup of this app.</string>
+    <string name="backup_error_newer_version">This backup was made by a newer version of the app.</string>
+    <string name="backup_error_wrong_password">Wrong password</string>
+    <string name="backup_error_damaged">The backup is damaged.</string>
+    <plurals name="backup_server_count">
+        <item quantity="one">%d server connection</item>
+        <item quantity="other">%d server connections</item>
+    </plurals>
+
+    <!-- Exchanging SFTP connections with needaload (exchange/) -->
+    <string name="needaload_import">Take over connections from needaload</string>
+    <string name="needaload_import_summary">SFTP servers with their passwords or keys</string>
+    <string name="needaload_import_unreadable">needaload\'s answer couldn\'t be read.</string>
+    <string name="needaload_import_unsupported">needaload sent the connections in a format this version doesn\'t know. Please update both apps.</string>
+    <string name="needaload_other_signature">needaload is signed with a different key than this app, so the two can\'t exchange connections. Install both from the same source.</string>
+    <string name="needaload_unavailable">needaload can\'t be opened.</string>
+    <plurals name="needaload_import_added">
+        <item quantity="one">%d connection taken over</item>
+        <item quantity="other">%d connections taken over</item>
+    </plurals>
+    <plurals name="needaload_import_existing">
+        <item quantity="one">%d was already there</item>
+        <item quantity="other">%d were already there</item>
+    </plurals>
+    <plurals name="needaload_import_conflicts">
+        <item quantity="one">%d server key differed, the confirmed one was kept</item>
+        <item quantity="other">%d server keys differed, the confirmed ones were kept</item>
+    </plurals>
+    <plurals name="needaload_import_skipped">
+        <item quantity="one">%d incomplete entry skipped</item>
+        <item quantity="other">%d incomplete entries skipped</item>
+    </plurals>
+    <string name="share_connections_title">Pass connections to needaload</string>
+    <string name="share_connections_confirm">Pass to needaload (%d)</string>
+    <string name="share_connections_hint">The passwords and keys of the chosen connections are passed on to needaload, together with the server keys you confirmed.</string>
+    <string name="share_connections_none">There are no SFTP connections to pass on.</string>
+    <string name="share_connections_incomplete">No password or key saved, can\'t be passed on</string>
+    <string name="share_connections_close">Close</string>
+    <string name="share_connections_permission">Exchange server connections</string>
+    <string name="share_connections_permission_description">Lets apps of needanapp.de signed with the same key exchange SFTP connections including passwords and keys, each time after asking.</string>
+
+    <!-- cards of details, archive info and server prompts -->
+    <string name="card_general">General</string>
+    <string name="card_media">Media</string>
+    <string name="card_archive">Archive</string>
+    <string name="archive_status_none">Not encrypted</string>
+    <string name="archive_status_weak">Weak encryption</string>
+    <string name="archive_status_strong">Encrypted</string>
+    <string name="host_key_status_unknown">Not trusted yet</string>
+    <string name="host_key_status_changed">The key has changed</string>
+    <string name="certificate_card">Certificate</string>
+    <string name="certificate_card_previous">Confirmed before</string>
+    <string name="certificate_status_changed">The certificate has changed</string>
+    <string name="certificate_status_mismatch">Issued for another name</string>
+    <!-- the servers as status cards -->
+    <string name="server_detail_protocol">Protocol</string>
+    <string name="server_detail_address">Address</string>
+    <string name="server_detail_share">Share</string>
+    <string name="server_detail_domain">Domain</string>
+    <string name="server_detail_start">Start folder</string>
+    <string name="server_detail_guest">Guest</string>
+    <string name="server_detail_anonymous">Anonymous</string>
+    <string name="server_protocol">Protocol</string>
+    <string name="server_port_summary">Port %d</string>
+    <string name="archive_zip_summary">File names stay visible</string>
+    <string name="archive_7z_summary">Can encrypt file names too</string>
+    <string name="folder_opening">Opening %s…</string>
+    <string name="folder_open_failed">%s couldn\'t be opened</string>
+    <string name="folder_try_again">Try again</string>
+    <string name="card_group_order">Order</string>
+    <string name="viewer_shuffle">Random order</string>
+    <string name="viewer_position_shuffled">%1$d of %2$d · random</string>
+
+    <!-- Introduction at the first start after installing -->
+    <string name="onboarding_step_welcome">Welcome</string>
+    <string name="onboarding_welcome_title">Welcome to %s</string>
+    <string name="onboarding_welcome_text">All your files in one app:</string>
+    <string name="onboarding_point_phone">Files on your phone</string>
+    <string name="onboarding_point_servers">Servers via SFTP, SMB, WebDAV and FTP</string>
+    <string name="onboarding_point_vaults">Encrypted Cryptomator vaults</string>
+    <string name="onboarding_step_files">File access</string>
+    <string name="onboarding_files_done">Done – above you can already see your files.</string>
+    <string name="onboarding_files_row">Access to all files</string>
+    <string name="onboarding_no_access">No access yet</string>
+    <string name="onboarding_step_notifications">Notifications</string>
+    <string name="onboarding_notifications_text">The progress of copying and the countdown of an open vault with a lock button – just like in the preview above. Otherwise %s stays quiet.</string>
+    <string name="onboarding_notifications_blocked">Android no longer asks. You can allow notifications in the app\'s settings.</string>
+    <string name="onboarding_open_notification_settings">Open settings</string>
+    <string name="onboarding_sample_vault">Private</string>
+    <string name="onboarding_step_appearance">Appearance</string>
+    <string name="onboarding_appearance_text">Every tap changes the colors at once – see above. You can change it later under Settings › Appearance.</string>
+    <string name="onboarding_step_done">Done</string>
+    <string name="onboarding_done_title">All set</string>
+    <string name="onboarding_done_text">This is how %s looks now. You can change everything later in the settings.</string>
+    <string name="onboarding_optional">Optional</string>
+    <string name="onboarding_allowed">Allowed</string>
+    <string name="onboarding_not_allowed">Not allowed</string>
+    <string name="onboarding_off">Off</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_later">Later</string>
+    <string name="onboarding_allow">Allow</string>
+    <string name="onboarding_start">Let’s go</string>
+    <string name="onboarding_show">Show introduction</string>
+    <string name="onboarding_show_summary">Access, notifications and appearance step by step</string>
+</resources>

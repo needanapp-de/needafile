@@ -1,0 +1,1 @@
+• Eigenschaften und Archiv-Infos erscheinen als schwebende Karte unten wie im Bildbetrachter: Name, Eckdaten, Aktionen und alle Angaben darin (bei Archiven mit Verschlüsselung, Prüfsummen auf Wunsch), die Liste bleibt sichtbar; Zurück schließt

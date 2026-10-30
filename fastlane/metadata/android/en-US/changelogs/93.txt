@@ -1,0 +1,1 @@
+• New default colors: light "Cloud" (light grey background, white cards), dark "Nord Night" (muted blue grey). The previous tinted look can be chosen again under Appearance → Mode

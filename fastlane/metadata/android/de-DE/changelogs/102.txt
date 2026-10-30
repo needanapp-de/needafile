@@ -1,0 +1,2 @@
+• Mehrere markierte Einträge: statt der Leiste unten schwebt dort jetzt eine Karte mit Anzahl, Größe und Namen, denselben Aktionen wie die Karte einer Datei und „Mehr“ zum Aufklappen der Gruppen
+• Auch in Raster und Galerie und wenn die geöffnete Karte weggescrollt ist

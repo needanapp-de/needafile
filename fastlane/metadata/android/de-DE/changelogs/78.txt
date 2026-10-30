@@ -1,0 +1,2 @@
+• Die Einstellungen sind aus der Navigationspille in das Menü des rechten Knopfs gewandert, zusammen mit den Ordneroptionen
+• Sie öffnen sich als eigene Seite mit Zurück-Pfeil und führen dorthin zurück, wo du sie geöffnet hast

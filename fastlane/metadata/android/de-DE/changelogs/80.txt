@@ -1,0 +1,2 @@
+• Tresore verschwinden nicht mehr durch einen versehentlichen Doppeltipp aus der Liste: Statt des X-Knopfs die Zeile zur Seite wischen und dann auf den roten Knopf „Entfernen“ tippen
+• Das geht jetzt auch bei entsperrten Tresoren; sie werden dabei gesperrt

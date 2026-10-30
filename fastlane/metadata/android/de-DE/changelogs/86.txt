@@ -1,0 +1,2 @@
+• Nach dem Schließen (Zurück oder aus den letzten Apps weggewischt) startet needafile mit einem Tab im Startordner, standardmäßig dem internen Speicher, statt mit den zuletzt offenen Tabs
+• Beendet das System die App nur im Hintergrund, bleiben die Tabs erhalten

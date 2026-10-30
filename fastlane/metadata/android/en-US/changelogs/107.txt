@@ -1,0 +1,1 @@
+• Security: fingerprint is now always offered when the device has a sensor. If none is set up yet, a hint and a button open the setup in Android – it can be used right after

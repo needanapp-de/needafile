@@ -1,0 +1,2 @@
+• Tabs: a tap on the open tab now shows its whole path, no long press needed
+• Vaults: lock a vault from the tab card, whichever of its folders you are in; with several vaults open, the menu also locks just the one shown

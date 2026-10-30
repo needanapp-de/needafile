@@ -1,0 +1,2 @@
+• Consistent style: chips have the same corners everywhere, including spreadsheet sheets in the document viewer and aspect ratios in the image editor
+• Spreadsheet sheets scroll to the screen edge

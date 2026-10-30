@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- needafile's own dimens -->
+<resources>
+    <!-- home screen shortcuts to folders and files -->
+    <dimen name="shortcut_size">64dp</dimen>
+    <dimen name="shortcut_symbol_inset">8dp</dimen>
+</resources>

@@ -1,0 +1,1 @@
+• Bildbetrachter: Statt der grauen Leiste und dem ⋮-Knopf liegt unten eine Karte wie in der Dateiliste – Name, Größe, Datum und Auflösung, darunter Bearbeiten, Teilen, Löschen (rot), Infos und Mehr; „Mehr“ klappt Öffnen mit, Verwenden als und Im Ordner zeigen darunter auf

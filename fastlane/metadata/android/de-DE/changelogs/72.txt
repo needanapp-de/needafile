@@ -1,0 +1,2 @@
+• Eigenschaften, Bild- und Archivinfo, Prüfsummen, Optionen sowie Server-Schlüssel und Zertifikate als Karten im neuen Look; ein farbiges Band zeigt den Prüfsummenvergleich und wie gut ein Archiv verschlüsselt ist
+• Lange Dateinamen laufen durch statt gekürzt zu werden: in Liste, Raster, Kopfzeile und Blättern; ohne Animationen brechen sie um

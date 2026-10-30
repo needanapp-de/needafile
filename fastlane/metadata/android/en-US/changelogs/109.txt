@@ -1,0 +1,4 @@
+• Own code: settings, sorting, dates, root access and general texts are rewritten, the root libraries are gone
+• App protection stores PIN and pattern salted (PBKDF2); an existing protection has to be set up again
+• Settings start fresh, servers and their passwords are kept
+• Storage analysis and folder favorites removed

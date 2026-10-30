@@ -1,0 +1,1 @@
+• Locking a vault (from the pill, the vaults page, the notification or automatically) closes its tabs right away. If it was the only tab, it shows the home folder

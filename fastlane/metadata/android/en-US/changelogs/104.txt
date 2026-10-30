@@ -1,0 +1,1 @@
+• Settings: appearance and app icon now sit below the other settings, above storage analysis and about

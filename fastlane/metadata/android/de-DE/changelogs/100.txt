@@ -1,0 +1,4 @@
+• Neue Standardansicht: Details als Karten – wer die Ansicht schon selbst eingestellt hat, behält sie
+• Karten jetzt in jeder Ansicht: Details, Raster und Galerie bekommen den hellen Kartenstil wie die Liste
+• In der Detailansicht öffnet lang drücken die Karte mit den Aktionen, Umbenennen geht direkt darin
+• Der Schalter „Als Karten anzeigen“ in den Ordneroptionen gilt für alle Ansichten

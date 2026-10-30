@@ -1,0 +1,3 @@
+• Einstellungen neu: Schalter als große Kacheln (Allgemein, Dateien, Schutz), darunter Datumsformat, Sicherung, Darstellung, App-Symbol und Über
+• Ordneroptionen neu als Kacheln: Sortierung, Ansicht, Größe und Gruppieren mit großen Symbolen, Schalter als Zeilen
+• Entfallen: Schalter für Ziehen zum Aktualisieren und Änderungsdatum (beides immer an) sowie der Schutz für versteckte Dateien und fürs Löschen

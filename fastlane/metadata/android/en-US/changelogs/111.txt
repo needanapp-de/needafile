@@ -1,0 +1,2 @@
+• Fixed: on Android 12 and 12L the app crashed at start (the app icon check used a function that only exists from Android 13 on)
+• Remaining old files removed (GitHub workflows, fastlane scripts, old lint baselines); JitPack only for the PDF viewer

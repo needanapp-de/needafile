@@ -1,0 +1,3 @@
+• Dokumente mit eigenem Code: Word-Dateien liest ein eigener Leser (Formatierung, Listen, Tabellen, Bilder, Fußnoten), Markdown hat jetzt auch Suche und Drucken
+• Bildbearbeitung: EXIF-Übernahme und Filtervorschau neu geschrieben
+• Alte Quellenangaben und Spendenlink aus „Über“ entfernt

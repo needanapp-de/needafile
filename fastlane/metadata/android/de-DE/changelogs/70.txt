@@ -1,0 +1,1 @@
+• FTP: Änderungszeiten stimmen jetzt auch bei Servern, die die genaue Auflistung nur als MLST melden (vorher um die Zeitzone verschoben)

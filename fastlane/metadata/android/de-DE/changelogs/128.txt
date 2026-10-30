@@ -1,0 +1,1 @@
+• Dokumentbetrachter mit schwebender Karte wie beim Bild statt ⋮-Menü: Bearbeiten, Teilen, Drucken, Infos (Seiten, Typ, Pfad) und Mehr; die Karte weicht beim Weiterlesen aus und kommt beim Zurückscrollen wieder

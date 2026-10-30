@@ -1,0 +1,2 @@
+• Intern: Aktionskarte, Auswahlkarte, Häkchen und die Knöpfe der Einfügeleiste kommen jetzt aus dem Designpaket (needanapp design 0.34.0) – das Aussehen bleibt gleich
+• Über: needanapp design steht jetzt unter der GPL-3.0

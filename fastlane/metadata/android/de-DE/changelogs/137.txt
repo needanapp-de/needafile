@@ -1,0 +1,1 @@
+• Absturz behoben: Mit dem Stil Myzel und der Akzentfarbe Orange, Gelb oder Grün stürzte die App beim Öffnen der Einstellungen ab. Das App-Symbol nimmt für diese Farben jetzt die nächstliegende Symbolfarbe

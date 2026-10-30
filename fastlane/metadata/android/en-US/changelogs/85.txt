@@ -1,0 +1,1 @@
+• Appearance → Surfaces: the background gradient can be switched off; the background is then plain, cards stay tinted

@@ -1,0 +1,3 @@
+• Documents with own code: Word files are read by an own reader (formatting, lists, tables, pictures, footnotes), Markdown now has search and printing too
+• Picture editor: EXIF copying and filter previews rewritten
+• Old source links and donation link removed from About

@@ -1,0 +1,3 @@
+• Tresore neu als Kacheln: Sperrzeit direkt wählbar (Sofort bis Von Hand), Bildschirm-aus-Schalter als Zeile
+• Tresor-Blatt mit Status oben (offen, Ort, wann er sperrt, Fingerabdruck), Öffnen und Sperren als große Kacheln, Passwort & Schlüssel als Gruppe
+• Ordneroptionen im Tresor im selben Stil

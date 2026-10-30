@@ -1,0 +1,2 @@
+• Other apps no longer get vault files as a decrypted copy: they read straight from the vault, only while it is open. Locking it ends their access, and needafile's own viewers close
+• Larger files from vaults, servers or archives show a progress bar with "Cancel" while opening; in the vault gallery the loading circle fills up

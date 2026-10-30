@@ -1,0 +1,2 @@
+• Lang drücken wählt eine Datei aus, statt das Menü zu öffnen. Wer den Finger danach weiterzieht, wählt alle Einträge bis dorthin aus, auch in der Galerie; am oberen und unteren Rand scrollt die Liste mit
+• Beim Auswählen wird die Pille zur Aktionsleiste: Teilen, Kopieren, Verschieben, Löschen und „Mehr“ mit allen weiteren Aktionen (das bisherige Menü)

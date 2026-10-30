@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.Needanapp" />
+
+    <!-- a screen that only shows a dialog over the app that opened it (ShareConnectionsActivity); the dialog dims itself -->
+    <style name="AppTheme.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+</resources>

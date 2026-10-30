@@ -1,0 +1,4 @@
+• Kopieren nach und Verschieben nach bieten auch Ordner auf Servern an: Ort über die Pille oben im Ordnerwähler wählen
+• Dateien auf Servern lassen sich ebenfalls aufs Handy oder auf einen anderen Server kopieren und verschieben
+• Verschieben innerhalb eines Servers passiert direkt auf dem Server, ohne Wartezeit; sonst werden die Originale erst gelöscht, wenn alles angekommen ist
+• Entpacken nach kann direkt auf einen Server entpacken

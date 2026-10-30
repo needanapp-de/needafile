@@ -1,0 +1,1 @@
+• Behoben: Im Release-Build stürzte das Entsperren eines Cryptomator-Tresors ab, wenn vorher eine SFTP-Verbindung bestand

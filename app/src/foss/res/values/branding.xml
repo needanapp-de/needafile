@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- F-Droid flavor additions to values/branding.xml -->
+<resources>
+    <!-- the fingerprint lets the F-Droid client check the repository key when it opens the link -->
+    <string name="brand_fdroid_url" translatable="false">https://fdroid.needanapp.de/repo?fingerprint=231DF03DE2428B3A82E67B6CBF0D0CB0BB6E9261EA45392128707D2F39661844</string>
+</resources>

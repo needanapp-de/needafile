@@ -1,0 +1,1 @@
+• Document viewer with a floating card like the image viewer instead of the ⋮ menu: edit, share, print, info (pages, type, path) and more; the card steps aside while reading on and returns when scrolling back

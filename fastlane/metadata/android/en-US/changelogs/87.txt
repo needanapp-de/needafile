@@ -1,0 +1,1 @@
+• Fixed: without permission for notifications, needafile stayed in the parent folder after unlocking a vault instead of showing the vault

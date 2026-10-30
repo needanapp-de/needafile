@@ -1,0 +1,2 @@
+• New app icon: a document with radio waves and a padlock – for network transfers and encrypted Cryptomator vaults
+• Still available in all 12 colors, with a transparent background; the notification icon is new as well

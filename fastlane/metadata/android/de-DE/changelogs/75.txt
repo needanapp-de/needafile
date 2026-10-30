@@ -1,0 +1,2 @@
+• Solange ein Cryptomator-Tresor entsperrt ist, zeigt eine Benachrichtigung ihn an, mit einer Taste zum sofortigen Sperren
+• Im Hintergrund zeigen ein Balken und ein Countdown, wie lange der Tresor noch entsperrt bleibt; die automatische Sperre greift jetzt pünktlich

@@ -1,0 +1,1 @@
+• Vaults with fingerprint: unlocking shows only the fingerprint prompt, with no password dialog behind it. The password field comes up via "Enter password" or when the fingerprint can't be used; Back cancels

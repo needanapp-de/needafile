@@ -1,0 +1,4 @@
+• Speicherort und Neuer Tab als Kacheln: Telefon, Server und Tresore, der aktuelle Ort ist markiert
+• Neu: Ordner, Datei und Tresor als große Kacheln
+• Eigenschaften: Angaben als Kacheln, Name und Pfad ganz lesbar; Prüfsummen im selben Stil
+• Komprimieren als: Format ZIP/7z als Kacheln mit Erklärung, Passwort in der Verschlüsselungs-Karte

@@ -1,0 +1,2 @@
+• Swiping sideways switches between Files, Servers and Vaults, just like tapping the pill. Can be turned off under Settings → General. The page stays put while selecting, searching or picking files for another app
+• Fixed: a sideways swipe in selection mode selected or deselected the entry under the finger

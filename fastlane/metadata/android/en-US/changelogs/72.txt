@@ -1,0 +1,2 @@
+• Properties, picture and archive info, checksums, options and server keys and certificates as cards in the new look; a colored band shows the checksum comparison and how well an archive is encrypted
+• Long file names scroll through instead of being cut: in the list, grid, title bar and sheets; without animations they wrap

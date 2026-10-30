@@ -1,0 +1,4 @@
+• Komprimieren und Entpacken zeigen ihren Fortschritt wie das Kopieren: Leiste mit „Abbrechen“ über der Pille und Benachrichtigung
+• Abbrechen entfernt das unfertige Archiv bzw. den Ordner
+• Das Komprimieren-Blatt merkt sich die letzten Optionen (Format, Verschlüsselung, Stärke, Teile …), nie das Passwort
+• Fragt vor dem Komprimieren und Entpacken nach der Berechtigung für Benachrichtigungen

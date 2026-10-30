@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What FileProvider may hand to other apps (open with, share, shortcuts). Each app only gets the files it was given.
+     The shared storage has its own name so its uris stay short; everything else (SD cards, USB, cache, root) is
+     reached from the device root. -->
+<paths>
+    <external-path name="storage" path="." />
+    <root-path name="device" path="/" />
+</paths>

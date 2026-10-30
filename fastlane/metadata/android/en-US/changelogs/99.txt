@@ -1,0 +1,4 @@
+• File list as light cards, two lines each (can be turned off in the folder options)
+• A long press opens the card with copy, cut, rename, delete and more; the bar at the bottom shows from two selected entries on, in the same order
+• New: cut and paste
+• Rename right in the card instead of a separate window

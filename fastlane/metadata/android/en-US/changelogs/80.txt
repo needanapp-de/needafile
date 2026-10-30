@@ -1,0 +1,2 @@
+• Vaults no longer drop out of the list by an accidental double tap: instead of the X button, swipe the row aside and tap the red "Remove" button
+• This also works for unlocked vaults; they get locked

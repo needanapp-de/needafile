@@ -1,0 +1,3 @@
+• Settings sections always start collapsed; only the one opened last stays open
+• First release signed with needafile's own key
+• About: credits limited to the projects needafile is built on

@@ -1,0 +1,1 @@
+• Myzel style: the "Standard" accent is Myzel orange there instead of blue; the app icon follows when it takes the accent color

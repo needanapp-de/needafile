@@ -1,0 +1,1 @@
+• Bildbetrachter: Die GPS-Position in den Infos lässt sich antippen und zeigt den Aufnahmeort in Google Maps mit Markierung (ohne Google Maps in einer anderen Karten-App)

@@ -1,0 +1,2 @@
+• Behoben: Unter Android 12 und 12L stürzte die App beim Start ab (die Prüfung der App-Symbole nutzte eine Funktion, die es erst ab Android 13 gibt)
+• Übrige Altdateien entfernt (GitHub-Abläufe, Fastlane-Skripte, alte Prüflisten); JitPack nur noch für den PDF-Betrachter

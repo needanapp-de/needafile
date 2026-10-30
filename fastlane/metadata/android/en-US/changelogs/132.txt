@@ -1,0 +1,3 @@
+• Copying, moving, packing and unpacking: the whole bar above the pill is now the progress bar and fills in the accent color
+• While such work runs and needafile is open, the display stays on
+• Vaults lock only once packing or unpacking with their files is done

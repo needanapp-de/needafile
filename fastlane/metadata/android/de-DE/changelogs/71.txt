@@ -1,0 +1,3 @@
+• Neuer Kartenlook aus needanapp-design 0.21: Flächen in der Akzentfarbe getönt, Hintergrund mit leichtem Farbschein oben, Standard-Palette „Farbtreu“ und 14-dp-Ecken (alte Standardwerte werden einmal umgestellt)
+• Startet ohne Warten auf die Darstellungseinstellungen
+• Modus „System“ folgt dem System jetzt auch nach einem Wechsel von „Hell“ oder „Dunkel“

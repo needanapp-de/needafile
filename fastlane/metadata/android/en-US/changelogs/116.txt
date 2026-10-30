@@ -1,0 +1,3 @@
+• Servers as status cards: name, protocol and address, open and edit below; each protocol has its own icon
+• The sheet behind the three dots shows all details on a card in the accent color
+• Form: test result on top as a green or red band, protocol, FTPS mode and login type as tiles

@@ -1,0 +1,1 @@
+• Image editor: the filters are gone; cropping, rotating, flipping, resizing and drawing remain. The filter library taken over for them is gone with them

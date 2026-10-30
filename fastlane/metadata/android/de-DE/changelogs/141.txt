@@ -1,0 +1,1 @@
+• Keine Android-Sicherung mehr: needafile landet weder in der Cloud-Sicherung noch bei der Übertragung auf ein neues Handy. Eine Neuinstallation startet dadurch immer frisch mit der Einführung, und verschlüsselte Server-Passwörter, die auf einem anderen Gerät nicht lesbar wären, werden nicht mehr mitkopiert. Einstellungen und Server ziehen über „Einstellungen exportieren“ um

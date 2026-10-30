@@ -1,0 +1,2 @@
+• “More” in the opened card now unfolds it instead of opening a sheet from below: the other actions in three groups – Open & share, Copy & move, Manage
+• “Less” or Back folds it again; with several entries selected the sheet stays

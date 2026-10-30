@@ -1,0 +1,1 @@
+• Image viewer: tap the GPS position in the info to see where the picture was taken in Google Maps with a pin (without Google Maps in another map app)

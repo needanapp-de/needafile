@@ -1,0 +1,2 @@
+• Das Blatt „Neu“ ist übersichtlicher: oben eine Karte „Hier anlegen“ mit Ordner, Datei und Tresor, darunter „Öffnen“ mit neuem Tab und Server verbinden
+• Unter dem Titel steht, in welchem Ordner angelegt wird

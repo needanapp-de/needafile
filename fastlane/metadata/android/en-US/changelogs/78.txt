@@ -1,0 +1,2 @@
+• Settings moved from the navigation pill into the menu of the right button, next to the folder options
+• They open as a page of their own with a back arrow and lead back to where you opened them

@@ -1,0 +1,1 @@
+• Folders and file types show their symbol as an outline without a colored area behind it. Previews of photos, videos and apps stay

@@ -1,0 +1,2 @@
+• Bilder in Cryptomator-Tresoren lassen sich durchwischen, in der Reihenfolge der Dateiliste; jedes Bild wird erst beim Anzeigen entschlüsselt
+• Wird der Tresor gesperrt, schließt sich der Bildbetrachter

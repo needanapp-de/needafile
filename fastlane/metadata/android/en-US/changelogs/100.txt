@@ -1,0 +1,4 @@
+• New default view: details as cards – if you already picked a view yourself, you keep it
+• Cards in every view now: details, grid and gallery get the light card look of the list
+• In the details view a long press opens the card with its actions, renaming right in it
+• The “Show as cards” switch in the folder options applies to all views

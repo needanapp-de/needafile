@@ -1,0 +1,4 @@
+• Location and new tab as tiles: phone, servers and vaults, the current place is marked
+• New: folder, file and vault as large tiles
+• Properties: details as tiles, name and path fully readable; checksums in the same style
+• Compress as: ZIP/7z format as tiles with an explanation, the password in the encryption card

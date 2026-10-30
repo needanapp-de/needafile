@@ -1,0 +1,1 @@
+• Image viewer: instead of the grey bar and the ⋮ button, a card like in the file list lies at the bottom – name, size, date and resolution, then edit, share, delete (red), info and more; "more" unfolds open with, set as and show in folder below

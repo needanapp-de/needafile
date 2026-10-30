@@ -1,0 +1,2 @@
+• Pictures in Cryptomator vaults can be swiped through, in the order of the file list; each one is decrypted only when shown
+• The image viewer closes when the vault locks

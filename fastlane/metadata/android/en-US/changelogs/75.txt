@@ -1,0 +1,2 @@
+• While a Cryptomator vault is unlocked, a notification shows it, with a button to lock it at once
+• In the background a bar and a countdown show how long the vault stays unlocked; the automatic lock now happens on time

@@ -1,0 +1,4 @@
+• Compressing and extracting show their progress like copying: bar with "Cancel" above the pill and a notification
+• Cancelling removes the unfinished archive or folder
+• The compress sheet remembers the last options (format, encryption, strength, parts …), never the password
+• Asks for the notification permission before compressing and extracting

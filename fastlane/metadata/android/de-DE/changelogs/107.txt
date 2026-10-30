@@ -1,0 +1,1 @@
+• Sicherheit: Fingerabdruck steht jetzt immer zur Wahl, wenn das Gerät einen Sensor hat. Ist noch keiner eingerichtet, gibt es einen Hinweis und einen Knopf, der die Einrichtung in Android öffnet – danach lässt er sich sofort verwenden

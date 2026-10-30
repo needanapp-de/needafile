@@ -1,0 +1,2 @@
+• Tresordateien bekommen andere Apps nicht mehr als entschlüsselte Kopie: Sie lesen direkt aus dem Tresor, nur solange er offen ist. Beim Sperren endet ihr Zugriff, und needafiles eigene Betrachter schließen sich
+• Größere Dateien aus Tresoren, von Servern oder aus Archiven zeigen beim Öffnen einen Fortschrittsbalken mit „Abbrechen“; in der Tresorgalerie füllt sich der Ladekreis

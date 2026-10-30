@@ -1,0 +1,2 @@
+• Archiv-Infos und „Archiv öffnen“ im Kachel-Design wie die Eigenschaften, der Verschlüsselungsstand als farbige Kachel
+• Eigenschaften zeigen bei Tresordateien einen lesbaren Pfad

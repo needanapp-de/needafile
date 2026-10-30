@@ -1,0 +1,16 @@
+# build output and local settings
+.gradle/
+.kotlin/
+/build/
+/captures/
+/local.properties
+/.idea/
+*.iml
+*.aab
+.DS_Store
+
+# signing keys stay outside the repo (see app/build.gradle.kts)
+keystore.jks
+keystore.properties
+keystore-upload.properties
+*.p12

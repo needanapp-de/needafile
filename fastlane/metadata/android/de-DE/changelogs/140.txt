@@ -1,0 +1,1 @@
+• Neues App-Symbol: Ordner vor einem Server mit Schloss – für Dateien, Netzwerk und Tresore. Standardfarbe ist jetzt Orange mit transparentem Hintergrund; alle anderen Symbolfarben bleiben wählbar. Folgt das Symbol der Akzentfarbe, ist es beim Standard-Akzent immer Orange

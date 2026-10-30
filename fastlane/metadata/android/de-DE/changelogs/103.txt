@@ -1,0 +1,2 @@
+• Packen: neue Archive sind jetzt standardmäßig 7z mit maximaler Kompression und nicht solid, damit einzelne Dateien schnell wieder herauskommen
+• Bisher gemerktes Format, Stärke und Solid-Einstellung beginnen einmalig mit diesen Werten, danach merkt sich das Blatt wieder die letzte Wahl

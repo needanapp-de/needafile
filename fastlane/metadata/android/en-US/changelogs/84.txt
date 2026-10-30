@@ -1,0 +1,2 @@
+• SFTP connections can be shared with needaload and taken over from it, in both directions: the app that gives them shows a list to choose from first
+• Passwords or keys and confirmed host keys come along; connections already saved stay unchanged

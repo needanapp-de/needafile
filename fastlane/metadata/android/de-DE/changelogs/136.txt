@@ -1,0 +1,2 @@
+• Scrollbalken: Beim Scrollen zeigt ein Balken am Rand, wo du bist; in Ordnern, Archiven und langen Texten lässt sich ein Griff ziehen, um schnell durchzublättern, mit Anfangsbuchstabe, Monat oder Größe daneben
+• Darstellung: Neben NeedAnApp gibt es den Stil Myzel zur Auswahl

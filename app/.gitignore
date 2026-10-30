@@ -1,0 +1,4 @@
+/build/
+# release builds Android Studio puts next to the module
+/foss/
+/gplay/

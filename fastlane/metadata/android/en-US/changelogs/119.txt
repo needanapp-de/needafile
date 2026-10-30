@@ -1,0 +1,1 @@
+• Vaults: when a vault locks while one of its pictures or documents is open, no preview of it stays in the recent apps; the same goes for the file list inside a vault

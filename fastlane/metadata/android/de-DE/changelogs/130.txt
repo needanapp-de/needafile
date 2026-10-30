@@ -1,0 +1,2 @@
+• Einheitlicher Stil: Chips überall mit gleichen Ecken, auch Tabellenblätter im Dokumentbetrachter und Seitenverhältnisse im Bildeditor
+• Tabellenblätter lassen sich bis an den Bildschirmrand wischen

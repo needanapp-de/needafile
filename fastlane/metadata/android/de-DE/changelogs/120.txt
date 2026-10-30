@@ -1,0 +1,1 @@
+• Tresore mit Fingerabdruck: Beim Entsperren erscheint nur noch die Fingerabdruck-Abfrage, ohne Passwortdialog dahinter. Das Passwortfeld kommt erst über „Passwort eingeben“ oder wenn der Fingerabdruck nicht geht; Zurück bricht ab

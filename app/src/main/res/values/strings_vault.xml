@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cryptomator vaults -->
+    <string name="vault">Vault</string>
+    <string name="vaults">Vaults</string>
+    <string name="vault_locked_state">Locked</string>
+    <string name="vault_unlocked_state">Unlocked</string>
+
+    <!-- errors -->
+    <string name="vault_locked">The vault is locked</string>
+    <string name="vault_wrong_password">Wrong password</string>
+    <string name="vault_damaged">The vault\'s files are damaged or incomplete</string>
+    <string name="vault_hub_unsupported">Vaults of Cryptomator Hub aren\'t supported</string>
+    <string name="vault_unsupported_format">Vault format %d isn\'t supported, only 7 and 8 (Cryptomator 1.5 and newer)</string>
+    <string name="vault_unsupported_cipher">The vault\'s encryption (%s) isn\'t supported</string>
+    <string name="vault_not_found">There\'s no vault in this folder</string>
+    <string name="vault_recovery_key_invalid">That isn\'t a complete recovery key, please check the words</string>
+    <string name="vault_recovery_key_wrong">This recovery key belongs to another vault</string>
+    <string name="vault_file_damaged">\"%s\" is damaged and can\'t be decrypted</string>
+    <string name="vault_folder_missing">The folder \"%s\" is missing in the vault</string>
+    <string name="vault_item_missing">\"%s\" is missing in the vault</string>
+
+    <!-- unlocking -->
+    <string name="vault_unlock">Unlock</string>
+    <string name="vault_unlock_title">Unlock vault</string>
+    <string name="vault_unlock_message">\"%s\" is a Cryptomator vault. Enter its password to open it.</string>
+    <string name="vault_unlocking">Unlocking…</string>
+    <string name="vault_changing_password">Changing the password…</string>
+    <string name="vault_resetting_password">Resetting the password…</string>
+    <string name="vault_checking_password">Checking the password…</string>
+    <string name="vault_remember_fingerprint">Unlock with fingerprint next time</string>
+    <string name="vault_use_fingerprint">Use fingerprint</string>
+    <string name="vault_fingerprint_title">Unlock \"%s\"</string>
+    <string name="vault_fingerprint_save_title">Confirm fingerprint for \"%s\"</string>
+    <string name="vault_fingerprint_invalidated">The phone\'s fingerprints changed, please enter the password once more</string>
+    <string name="vault_fingerprint_outdated">The saved password doesn\'t fit any more, please enter the current one</string>
+    <string name="vault_enter_password">Enter password</string>
+    <string name="vault_fingerprint_forget">Turn off fingerprint unlock</string>
+    <string name="vault_fingerprint_forgotten">Fingerprint unlock turned off</string>
+    <string name="vault_forgot_password">Forgot password?</string>
+    <string name="vault_locked_banner">Cryptomator vault, locked</string>
+    <string name="vault_locked_banner_message">The files here are encrypted. Unlock the vault to see its content.</string>
+    <string name="vault_decrypting">Decrypting…</string>
+
+    <!-- locking -->
+    <string name="vault_lock">Lock vault</string>
+    <string name="vault_lock_all">Lock all vaults</string>
+    <string name="vault_locked_toast">Vault locked</string>
+    <string name="vault_forget">Remove from the list</string>
+    <string name="vault_remove">Remove</string>
+    <string name="vault_open">Open</string>
+    <string name="vault_lock_short">Lock</string>
+    <string name="vault_lock_named">Lock “%1$s”</string>
+    <string name="vaults_locked_toast">All vaults locked</string>
+    <string name="vaults_empty_title">No vaults yet</string>
+    <string name="vaults_empty_message">A Cryptomator vault encrypts file names and contents. Create one here; existing vaults show up once you open them in Files.</string>
+    <string name="vault_create_where">Place for the vault</string>
+    <string name="vault_not_here">A vault can\'t go into an archive or into another vault</string>
+    <string name="vault_auto_lock">Lock automatically</string>
+    <string name="vault_lock_screen_off">Lock when the screen turns off</string>
+    <string name="vault_lock_summary">Copies that are running finish first</string>
+
+    <!-- notification while vaults are unlocked -->
+    <string name="vault_channel_name">Unlocked vaults</string>
+    <string name="vault_notification_one">\"%s\" is unlocked</string>
+    <plurals name="vault_notification_several">
+        <item quantity="one">%d vault unlocked</item>
+        <item quantity="other">%d vaults unlocked</item>
+    </plurals>
+    <string name="vault_notification_countdown_one">\"%1$s\" stays unlocked for %2$s</string>
+    <plurals name="vault_notification_countdown_several">
+        <item quantity="one">%1$d vault stays unlocked for %2$s</item>
+        <item quantity="other">%1$d vaults stay unlocked for %2$s</item>
+    </plurals>
+    <string name="vault_notification_lock_time">Automatic lock at %s</string>
+    <plurals name="vault_notification_after_leaving">
+        <item quantity="one">Automatic lock %d minute after leaving the app</item>
+        <item quantity="other">Automatic lock %d minutes after leaving the app</item>
+    </plurals>
+    <string name="vault_notification_on_leaving">Automatic lock when leaving the app</string>
+    <string name="vault_notification_on_screen_off">Automatic lock when the screen turns off</string>
+    <string name="vault_notification_by_hand">No automatic lock</string>
+    <string name="vault_notification_after_transfer">Locks once the running copy is done</string>
+
+    <!-- passwords and recovery key -->
+    <string name="vault_change_password">Change password</string>
+    <string name="vault_old_password">Current password</string>
+    <string name="vault_new_password">New password</string>
+    <string name="vault_repeat_password">Repeat password</string>
+    <plurals name="vault_password_too_short">
+        <item quantity="one">At least %d character</item>
+        <item quantity="other">At least %d characters</item>
+    </plurals>
+    <string name="vault_passwords_differ">The passwords differ</string>
+    <string name="vault_password_changed">Password changed</string>
+    <string name="vault_reset_password">Reset password with recovery key</string>
+    <string name="vault_reset_title">Reset password</string>
+    <string name="vault_reset_message">Enter the 44 words of the recovery key and a new password.</string>
+    <string name="vault_recovery_key">Recovery key</string>
+    <string name="vault_recovery_key_title">Recovery key</string>
+    <string name="vault_show_key">Show</string>
+    <string name="vault_recovery_key_unknown_words">Unknown words: %s</string>
+    <string name="vault_password_reset_done">Password reset</string>
+    <string name="vault_show_recovery_key">Show recovery key</string>
+    <string name="vault_show_recovery_key_message">Enter the vault\'s password to show its recovery key.</string>
+    <string name="vault_recovery_key_message">With these words a forgotten password can be replaced, here and in Cryptomator. Keep them somewhere safe and apart from the vault: whoever has them can open it.</string>
+    <string name="vault_recovery_key_copy">Copy</string>
+    <string name="vault_recovery_key_copied">Recovery key copied</string>
+    <string name="vault_recovery_key_confirm">I\'ve stored the recovery key safely</string>
+
+    <!-- creating -->
+    <string name="vault_create_title">New vault</string>
+    <string name="vault_create_message">A Cryptomator vault encrypts file names and content. It opens here and in the Cryptomator apps.</string>
+    <string name="vault_name">Name of the vault</string>
+    <string name="vault_creating">Creating the vault…</string>
+    <string name="vault_password_warning">Without the password or the recovery key nobody can open the vault again.</string>
+    <string name="vault_done">Done</string>
+
+    <!-- about -->
+    <string name="about_library_cryptolib">Encryption of the Cryptomator vaults</string>
+    <string name="about_library_siv_mode">AES-SIV for the encrypted names in vaults</string>
+    <string name="about_library_gson">Reads the settings files of Cryptomator vaults</string>
+    <string name="about_library_guava">Helper functions, used for SMB and the vaults</string>
+    <string name="about_source_cryptomator">Vault format and the word list of the recovery keys</string>
+    <!-- the vaults as tiles -->
+    <string name="vault_lock_tile_now">Immediately</string>
+    <plurals name="vault_lock_tile_minutes">
+        <item quantity="one">%d min</item>
+        <item quantity="other">%d min</item>
+    </plurals>
+    <string name="vault_lock_tile_manual">Manually</string>
+    <string name="vault_keys">Password &amp; key</string>
+    <string name="vault_forget_summary">The files stay where they are</string>
+    <string name="vault_status_fingerprint">Fingerprint unlock on</string>
+    <string name="vault_status_locks_now">Locks as soon as you leave the app</string>
+    <plurals name="vault_status_locks_after">
+        <item quantity="one">Locks after %d minute in the background</item>
+        <item quantity="other">Locks after %d minutes in the background</item>
+    </plurals>
+    <string name="vault_status_locks_manual">Locks only by hand</string>
+</resources>

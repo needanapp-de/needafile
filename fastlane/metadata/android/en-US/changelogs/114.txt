@@ -1,0 +1,1 @@
+• Settings: switch tiles more compact, like Android's quick settings – icon on the left, short name with On/Off below; TalkBack still reads the full sentence

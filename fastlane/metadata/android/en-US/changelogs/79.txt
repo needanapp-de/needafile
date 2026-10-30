@@ -1,0 +1,2 @@
+• The "New" sheet is clearer: a "Create here" card with folder, file and vault, below it "Open" with new tab and connect to server
+• Below the title it says which folder things are created in
