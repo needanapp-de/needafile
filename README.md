@@ -44,12 +44,12 @@ Fingerabdruck (SHA-256) des Signaturzertifikats, zum Prüfen der APK:
   <tr>
     <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/1-photos.png" alt="Fotos als Galerie, Tabs für mehrere Orte" width="200"><br><sub>Fotos als Galerie, Tabs für mehrere Orte</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/2-servers.png" alt="Gespeicherte Server: SMB, SFTP, WebDAV, FTPS" width="200"><br><sub>Gespeicherte Server: SMB, SFTP, WebDAV, FTPS</sub></td>
-    <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/3-nas.png" alt="Ordner auf dem NAS im eigenen Tab" width="200"><br><sub>Ordner auf dem NAS im eigenen Tab</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/3-nas.png" alt="NAS im eigenen Tab, Menü am rechten Knopf" width="200"><br><sub>NAS im eigenen Tab, Menü am rechten Knopf</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/4-archive.png" alt="ZIP-Archiv wie einen Ordner öffnen" width="200"><br><sub>ZIP-Archiv wie einen Ordner öffnen</sub></td>
   </tr>
   <tr>
-    <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/5-viewer.png" alt="Bildanzeige mit Editor" width="200"><br><sub>Bildanzeige mit Editor</sub></td>
-    <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/6-actions.png" alt="Karte mit allen Aktionen, nach Zweck gruppiert" width="200"><br><sub>Karte mit allen Aktionen, nach Zweck gruppiert</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/5-viewer.png" alt="Bildanzeige mit schwebender Karte" width="200"><br><sub>Bildanzeige mit schwebender Karte</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/6-actions.png" alt="Das Plus macht die Pille zur Neu-Leiste" width="200"><br><sub>Das Plus macht die Pille zur Neu-Leiste</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/7-selection.png" alt="Mehrere Dateien: eine Karte mit Anzahl und Größe" width="200"><br><sub>Mehrere Dateien: eine Karte mit Anzahl und Größe</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/8-appearance.png" alt="Farbwelten für hell und dunkel" width="200"><br><sub>Farbwelten für hell und dunkel</sub></td>
   </tr>
@@ -205,12 +205,12 @@ Fingerprint (SHA-256) of the signing certificate, to check the APK:
   <tr>
     <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1-photos.png" alt="Photos as a gallery, tabs for several places" width="200"><br><sub>Photos as a gallery, tabs for several places</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2-servers.png" alt="Saved servers: SMB, SFTP, WebDAV, FTPS" width="200"><br><sub>Saved servers: SMB, SFTP, WebDAV, FTPS</sub></td>
-    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3-nas.png" alt="Folders on the NAS in a tab of their own" width="200"><br><sub>Folders on the NAS in a tab of their own</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3-nas.png" alt="The NAS in a tab of its own, menu on the right button" width="200"><br><sub>The NAS in a tab of its own, menu on the right button</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4-archive.png" alt="Open a ZIP archive like a folder" width="200"><br><sub>Open a ZIP archive like a folder</sub></td>
   </tr>
   <tr>
-    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5-viewer.png" alt="Picture viewer with editor" width="200"><br><sub>Picture viewer with editor</sub></td>
-    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6-actions.png" alt="A card with all actions, grouped by purpose" width="200"><br><sub>A card with all actions, grouped by purpose</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5-viewer.png" alt="Picture viewer with a floating card" width="200"><br><sub>Picture viewer with a floating card</sub></td>
+    <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6-actions.png" alt="The plus turns the pill into a bar for new items" width="200"><br><sub>The plus turns the pill into a bar for new items</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/7-selection.png" alt="Several files: one card with count and size" width="200"><br><sub>Several files: one card with count and size</sub></td>
     <td align="center" width="25%"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/8-appearance.png" alt="Color worlds for light and dark" width="200"><br><sub>Color worlds for light and dark</sub></td>
   </tr>
