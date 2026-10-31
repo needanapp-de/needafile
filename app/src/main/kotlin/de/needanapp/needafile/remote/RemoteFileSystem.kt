@@ -35,8 +35,14 @@ interface RemoteFileSystem {
         onProgress: (TransferProgress) -> Unit,
     )
 
-    /** Deletes the given files and folders, folders with all their content. */
-    fun delete(paths: List<String>)
+    /**
+     * Deletes the given files and folders, folders with all their content. Where [deletesFileByFile], [onDeleted] hears
+     * of each file and folder gone; throwing there stops the deleting.
+     */
+    fun delete(paths: List<String>, onDeleted: (String) -> Unit = {})
+
+    /** Whether [delete] goes file by file and tells of each; false where a folder goes in one request. */
+    val deletesFileByFile: Boolean get() = false
 
     /** Renames [path] within its folder and returns the new path. */
     fun rename(path: String, newName: String): String {

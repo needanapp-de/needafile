@@ -255,7 +255,7 @@ class VaultFileSystem(private val storage: VaultStorage, opened: OpenedVault) : 
     /** The top folder of a new vault. */
     internal fun createRoot() = createContentFolder(root)
 
-    override fun delete(paths: List<String>) {
+    override fun delete(paths: List<String>, onDeleted: (String) -> Unit) {
         paths.map(::normalize).groupBy(::parentOf).forEach { (folderPath, group) ->
             val dir = resolveDir(folderPath)
             val present = storage.list(dir.path).orEmpty().associateBy { it.name }

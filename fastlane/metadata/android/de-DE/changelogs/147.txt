@@ -1,0 +1,3 @@
+• Neue Dialoge: oben ein farbiges Band mit Symbol – rot beim Löschen, in der Akzentfarbe sonst –, unten bilden die Tasten eine Leiste, die Haupttaste gefüllt
+• Löschen mit Fortschritt: Bei großen Löschaktionen füllt sich die Leiste über der Pille rot, mit Zähler und „Abbrechen“; die übrigen Einträge warten blass. Läuft im Hintergrund weiter
+• Am Ende steht, wie viel Platz frei geworden ist

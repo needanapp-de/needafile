@@ -1,5 +1,9 @@
 package de.needanapp.needafile.transfer
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Autorenew
+import androidx.compose.material.icons.outlined.FileCopy
+import androidx.compose.material.icons.outlined.SkipNext
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -24,6 +28,9 @@ fun TransferConflictPrompt(names: List<String>, onDecision: (overwrite: Boolean)
             onDismiss()
             onDecision(false)
         },
+        icon = Icons.Outlined.FileCopy,
+        confirmIcon = Icons.Outlined.Autorenew,
+        extraIcon = Icons.Outlined.SkipNext,
     ) {
         Text(stringResource(R.string.transfer_conflict_message, shownNames))
     }

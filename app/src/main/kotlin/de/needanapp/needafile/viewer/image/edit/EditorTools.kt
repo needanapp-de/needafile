@@ -27,6 +27,7 @@ import androidx.compose.material.icons.automirrored.outlined.Undo
 import androidx.compose.material.icons.outlined.Brush
 import androidx.compose.material.icons.outlined.Colorize
 import androidx.compose.material.icons.outlined.Flip
+import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.PhotoSizeSelectLarge
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -65,6 +66,7 @@ import com.canhub.cropper.CropImageView
 import de.needanapp.design.components.ColorPicker
 import de.needanapp.design.components.ColorSwatch
 import de.needanapp.design.components.ContentDialog
+import de.needanapp.design.components.signalSliderColors
 import de.needanapp.needafile.R
 import kotlinx.coroutines.launch
 import kotlin.math.min
@@ -303,6 +305,7 @@ private fun DrawOptions(session: EditorSession) {
                 onValueChange = { session.brushSize = it },
                 valueRange = MIN_BRUSH..MAX_BRUSH,
                 modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
+                colors = signalSliderColors(),
             )
             IconButton(onClick = { session.strokes.removeAt(session.strokes.lastIndex) }, enabled = session.strokes.isNotEmpty()) {
                 Icon(Icons.AutoMirrored.Outlined.Undo, stringResource(R.string.image_editor_undo_line))
@@ -314,6 +317,7 @@ private fun DrawOptions(session: EditorSession) {
         ContentDialog(
             title = stringResource(R.string.image_editor_custom_color),
             confirmLabel = stringResource(R.string.ok),
+            icon = Icons.Outlined.Palette,
             onConfirm = {
                 session.drawColor = picked
                 picking = false

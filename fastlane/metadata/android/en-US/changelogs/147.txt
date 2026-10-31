@@ -1,0 +1,3 @@
+• New dialogs: a colored band with a symbol at the top – red for deleting, otherwise the accent color –, the keys form a bar at the bottom, the main one filled
+• Deleting with progress: for large deletions the bar above the pill fills in red, with a counter and "Cancel"; the remaining entries wait faded. Keeps going in the background
+• At the end it tells how much space was freed

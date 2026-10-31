@@ -1,0 +1,3 @@
+• Compact "New": the plus turns the pill into a bar with folder, file, vault, tab and server – no more sheet over the list
+• New dialogs: a colored band with a symbol at the top, the keys form a bar at the bottom
+• Deleting with progress: for large deletions the bar above the pill fills in red, with a counter and "Cancel"; at the end it tells how much space was freed

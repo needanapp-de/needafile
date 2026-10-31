@@ -117,6 +117,20 @@
     </plurals>
     <string name="extract_cancelled">Entpacken abgebrochen</string>
     <string name="extract_failed">Entpacken fehlgeschlagen: %s</string>
+    <string name="delete_progress">Lösche %1$,d von %2$,d</string>
+    <plurals name="delete_done">
+        <item quantity="one">%d Element gelöscht</item>
+        <item quantity="other">%d Elemente gelöscht</item>
+    </plurals>
+    <plurals name="delete_done_freed">
+        <item quantity="one">%1$d Element gelöscht · %2$s frei</item>
+        <item quantity="other">%1$d Elemente gelöscht · %2$s frei</item>
+    </plurals>
+    <string name="delete_cancelled">Löschen abgebrochen</string>
+    <string name="delete_failed">Löschen fehlgeschlagen: %s</string>
+    <string name="delete_left">„%s“ ließ sich nicht löschen</string>
+    <string name="delete_now">Wird gelöscht…</string>
+    <string name="delete_waiting">Wartet</string>
     <string name="transfer_create_folder_failed">Der Ordner „%s“ ließ sich nicht anlegen</string>
     <string name="discovery_search">Im Netzwerk suchen</string>
     <string name="discovery_search_summary">Findet Server, die sich per Bonjour/mDNS ankündigen, und Windows-Rechner (WS-Discovery)</string>
@@ -356,6 +370,9 @@
     <string name="show_hidden_files">Versteckte Dateien anzeigen</string>
     <string name="create_new_title">Neu</string>
     <string name="create_in_folder">In „%1$s“</string>
+    <string name="create_bar_caption">Neu in „%1$s“</string>
+    <string name="new_tab_short">Tab</string>
+    <string name="server_short">Server</string>
     <string name="create_here">Hier anlegen</string>
     <string name="create_file_summary">Leere Datei, z. B. für Text</string>
     <string name="create_vault_summary">Verschlüsselt mit Cryptomator</string>

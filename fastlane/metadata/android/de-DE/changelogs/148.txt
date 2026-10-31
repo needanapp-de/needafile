@@ -1,0 +1,3 @@
+• „Neu“ kompakt: Das Plus verwandelt die Pille in eine Leiste mit Ordner, Datei, Tresor, Tab und Server – kein Blatt mehr über der Liste
+• Neue Dialoge: oben ein farbiges Band mit Symbol, unten bilden die Tasten eine Leiste
+• Löschen mit Fortschritt: Bei großen Löschaktionen füllt sich die Leiste über der Pille rot, mit Zähler und „Abbrechen“; am Ende steht, wie viel Platz frei wurde

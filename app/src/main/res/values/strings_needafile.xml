@@ -100,6 +100,20 @@
     <string name="transfer_move_failed">Moving failed: %s</string>
     <string name="transfer_kind_conflict">\"%s\": a file can\'t replace a folder or the other way round</string>
     <string name="transfer_move_source_left">\"%s\" was copied, but the original couldn\'t be deleted</string>
+    <string name="delete_progress">Deleting %1$,d of %2$,d</string>
+    <plurals name="delete_done">
+        <item quantity="one">%d item deleted</item>
+        <item quantity="other">%d items deleted</item>
+    </plurals>
+    <plurals name="delete_done_freed">
+        <item quantity="one">%1$d item deleted · %2$s freed</item>
+        <item quantity="other">%1$d items deleted · %2$s freed</item>
+    </plurals>
+    <string name="delete_cancelled">Deleting cancelled</string>
+    <string name="delete_failed">Deleting failed: %s</string>
+    <string name="delete_left">\"%s\" couldn\'t be deleted</string>
+    <string name="delete_now">Deleting…</string>
+    <string name="delete_waiting">Waiting</string>
     <string name="transfer_create_folder_failed">Couldn\'t create the folder \"%s\"</string>
     <string name="compress_progress">Compressing %1$d of %2$d</string>
     <plurals name="compress_done">
@@ -358,6 +372,9 @@
     <string name="show_hidden_files">Show hidden files</string>
     <string name="create_new_title">New</string>
     <string name="create_in_folder">In “%1$s”</string>
+    <string name="create_bar_caption">New in “%1$s”</string>
+    <string name="new_tab_short">Tab</string>
+    <string name="server_short">Server</string>
     <string name="create_here">Create here</string>
     <string name="create_file_summary">Empty file, e.g. for text</string>
     <string name="create_vault_summary">Encrypted with Cryptomator</string>

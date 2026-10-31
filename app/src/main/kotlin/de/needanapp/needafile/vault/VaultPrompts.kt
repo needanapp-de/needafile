@@ -24,7 +24,6 @@ import androidx.compose.material.icons.outlined.EnhancedEncryption
 import androidx.compose.material.icons.outlined.Fingerprint
 import androidx.compose.material.icons.outlined.Key
 import androidx.compose.material.icons.outlined.Password
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -51,9 +50,11 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import de.needanapp.design.components.BusyDialog
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.SecretTextField
 import de.needanapp.design.components.SignalCircularProgressIndicator
+import de.needanapp.design.components.signalCheckboxColors
 import de.needanapp.needafile.R
 import de.needanapp.needafile.base.BaseActivity
 import de.needanapp.needafile.core.toast
@@ -152,14 +153,9 @@ fun VaultUnlockPrompt(location: String, onUnlocked: () -> Unit, onCancel: () -> 
     if (!showForm) {
         // after the fingerprint, while the vault opens
         if (isBusy) {
-            AlertDialog(
-                onDismissRequest = {},
-                confirmButton = {},
-                icon = { Icon(Icons.Outlined.EnhancedEncryption, contentDescription = null) },
-                title = { Text(stringResource(R.string.vault_unlock_title)) },
-                text = { BusyRow(stringResource(R.string.vault_unlocking)) },
-                shape = MaterialTheme.shapes.extraLarge,
-            )
+            BusyDialog(title = stringResource(R.string.vault_unlock_title), icon = Icons.Outlined.EnhancedEncryption) {
+                BusyRow(stringResource(R.string.vault_unlocking))
+            }
         }
         return
     }
@@ -590,7 +586,7 @@ private fun CheckRow(checked: Boolean, label: String, onChange: (Boolean) -> Uni
             .padding(vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Checkbox(checked = checked, onCheckedChange = null, modifier = Modifier.padding(12.dp))
+        Checkbox(checked = checked, onCheckedChange = null, modifier = Modifier.padding(12.dp), colors = signalCheckboxColors())
         Text(label, style = MaterialTheme.typography.bodyMedium)
     }
 }

@@ -84,6 +84,7 @@ fun ServerInfoCard(
             },
             onDismiss = { confirmDelete = false },
             isDestructive = true,
+            icon = Icons.Outlined.Delete,
         )
     }
 }

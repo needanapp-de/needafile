@@ -38,6 +38,7 @@ class TransferService : Service() {
     @Volatile
     private var isWorking = false
     private var lastNotificationUpdate = 0L
+    private var startedAt = 0L
 
     @Volatile
     private var lastProgress: TransferProgress? = null
@@ -84,6 +85,7 @@ class TransferService : Service() {
         }
 
         isWorking = true
+        startedAt = SystemClock.elapsedRealtime()
         acquireLocks()
         TransferManager.addListener(stateListener)
         connectivity.registerDefaultNetworkCallback(networkCallback)
@@ -96,7 +98,7 @@ class TransferService : Service() {
 
             val error = result.exceptionOrNull()
             if (!TransferManager.isUiVisible) {
-                showResultNotification(TransferManager.finishedCount, TransferManager.kind, error)
+                showResultNotification(TransferManager.finishedCount, TransferManager.kind, error, TransferManager.finishedBytes)
             }
 
             releaseLocks()
@@ -127,7 +129,9 @@ class TransferService : Service() {
         TransferManager.reportProgress(progress)
         lastProgress = progress
         val now = SystemClock.elapsedRealtime()
-        if (now - lastNotificationUpdate >= NOTIFICATION_INTERVAL_MS) {
+        // most deletions are over in a moment, their notification would only flash up
+        val isQuiet = TransferManager.kind == TransferKind.DELETE && now - startedAt < QUIET_DELETE_MS
+        if (!isQuiet && now - lastNotificationUpdate >= NOTIFICATION_INTERVAL_MS) {
             lastNotificationUpdate = now
             notificationManager.notify(NOTIFICATION_ID_PROGRESS, buildProgressNotification(progress))
         }
@@ -146,7 +150,10 @@ class TransferService : Service() {
         setOnlyAlertOnce(true)
         setSilent(true)
         setCategory(NotificationCompat.CATEGORY_PROGRESS)
-        setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
+        val kind = TransferManager.kind
+        setForegroundServiceBehavior(
+            if (kind == TransferKind.DELETE) NotificationCompat.FOREGROUND_SERVICE_DEFERRED else NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE,
+        )
         setContentIntent(getOpenAppIntent())
         val state = TransferManager.state
         when {
@@ -156,7 +163,9 @@ class TransferService : Service() {
         }
         addAction(0, getString(R.string.cancel), getServiceIntent(ACTION_CANCEL, REQUEST_CANCEL))
 
-        val detail = progress?.let { getString(R.string.transfer_progress_detail, it.fileName, it.bytesDone.formatSize(), it.bytesTotal.formatSize()) }
+        val detail = progress?.let {
+            if (kind == TransferKind.DELETE) it.fileName else getString(R.string.transfer_progress_detail, it.fileName, it.bytesDone.formatSize(), it.bytesTotal.formatSize())
+        }
         when (state) {
             TransferState.WAITING -> {
                 setContentTitle(getString(R.string.transfer_waiting))
@@ -172,20 +181,21 @@ class TransferService : Service() {
             TransferState.RUNNING -> if (progress == null) {
                 setContentTitle(getString(R.string.transfer_preparing))
             } else {
-                setContentTitle(getString(TransferManager.kind.progress, progress.fileIndex, progress.fileCount))
+                setContentTitle(getString(kind.progress, progress.fileIndex, progress.fileCount))
                 setContentText(detail)
             }
         }
+        val fraction = kind.fraction(progress)
         when {
-            progress != null && progress.bytesTotal > 0 -> setProgress(PROGRESS_MAX, (progress.bytesDone * PROGRESS_MAX / progress.bytesTotal).toInt(), false)
+            fraction != null -> setProgress(PROGRESS_MAX, (fraction * PROGRESS_MAX).toInt(), false)
             state == TransferState.RUNNING -> setProgress(0, 0, true)
         }
     }.build()
 
     private fun formatTime(time: Long): String = DateFormat.getTimeFormat(this).format(Date(time))
 
-    private fun showResultNotification(itemCount: Int, kind: TransferKind, error: Throwable?) {
-        val title = describeTransferResult(itemCount, kind, error) ?: return
+    private fun showResultNotification(itemCount: Int, kind: TransferKind, error: Throwable?, bytes: Long) {
+        val title = describeTransferResult(itemCount, kind, error, bytes) ?: return
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification_needafile)
@@ -240,6 +250,9 @@ class TransferService : Service() {
         private const val NOTIFICATION_ID_PROGRESS = 7301
         private const val NOTIFICATION_ID_RESULT = 7302
         private const val NOTIFICATION_INTERVAL_MS = 500L
+
+        /** How long a deletion runs before its progress shows as notification. */
+        private const val QUIET_DELETE_MS = 3000L
         private const val PROGRESS_MAX = 1000
         private const val ACTION_CANCEL = "de.needanapp.needafile.action.CANCEL_TRANSFER"
         private const val ACTION_PAUSE = "de.needanapp.needafile.action.PAUSE_TRANSFER"
@@ -252,11 +265,12 @@ class TransferService : Service() {
 
 /**
  * How a finished job went, for the result notification and the message in the app; null when there is nothing to
- * tell, e.g. when every archive to extract still waits for its password.
+ * tell, e.g. when every archive to extract still waits for its password. A deletion names the [bytes] it freed.
  */
-fun Context.describeTransferResult(itemCount: Int, kind: TransferKind, error: Throwable?): String? = when {
+fun Context.describeTransferResult(itemCount: Int, kind: TransferKind, error: Throwable?, bytes: Long = 0): String? = when {
     error is TransferCancelledException -> getString(kind.cancelled)
     error != null -> getString(kind.failed, describeError(error))
     itemCount == 0 -> null
+    kind == TransferKind.DELETE && bytes > 0 -> resources.getQuantityString(R.plurals.delete_done_freed, itemCount, itemCount, bytes.formatSize())
     else -> resources.getQuantityString(kind.done, itemCount, itemCount)
 }

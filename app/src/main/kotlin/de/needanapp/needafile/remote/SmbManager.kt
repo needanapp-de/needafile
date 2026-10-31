@@ -302,16 +302,18 @@ class SmbManager(private val server: RemoteServer) : ServerFileSystem {
     }
 
     /** Deletes the given files and folders on the server, folders with all their content. */
-    override fun delete(paths: List<String>) = withSession { smb ->
+    override fun delete(paths: List<String>, onDeleted: (String) -> Unit) = withSession { smb ->
         paths.forEach { path ->
             val (share, sharePath) = splitPath(path)
             if (sharePath.isEmpty()) throw LocalizedException(R.string.remote_error_share_delete)
-            deleteRecursively(smb.share(share), sharePath)
+            deleteRecursively(smb.share(share), sharePath) { onDeleted("/$share/${it.replace('\\', '/')}") }
         }
     }
 
-    /** Links (reparse points) are removed without touching what they point to. */
-    private fun deleteRecursively(share: DiskShare, path: String) {
+    override val deletesFileByFile get() = true
+
+    /** Links (reparse points) are removed without touching what they point to; [onDeleted] hears of each path gone. */
+    private fun deleteRecursively(share: DiskShare, path: String, onDeleted: (String) -> Unit) {
         share.open(
             path,
             EnumSet.of(AccessMask.DELETE, AccessMask.FILE_READ_ATTRIBUTES),
@@ -324,10 +326,11 @@ class SmbManager(private val server: RemoteServer) : ServerFileSystem {
             if (attributes.has(FileAttributes.FILE_ATTRIBUTE_DIRECTORY) && !attributes.has(FileAttributes.FILE_ATTRIBUTE_REPARSE_POINT)) {
                 share.list(path)
                     .filter { it.fileName != "." && it.fileName != ".." }
-                    .forEach { deleteRecursively(share, "$path\\${it.fileName}") }
+                    .forEach { deleteRecursively(share, "$path\\${it.fileName}", onDeleted) }
             }
             entry.deleteOnClose()
         }
+        onDeleted(path)
     }
 
     override fun move(path: String, newPath: String) = withSession { smb ->

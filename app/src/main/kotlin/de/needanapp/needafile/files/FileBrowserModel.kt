@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import de.needanapp.needafile.R
 import de.needanapp.needafile.archive.ArchivePasswordException
 import de.needanapp.needafile.archive.ArchiveSessions
@@ -48,6 +49,9 @@ import de.needanapp.needafile.vault.getVaultLocation
 import de.needanapp.needafile.vault.isVaultPath
 import de.needanapp.needafile.vault.vaultRootPath
 import java.io.File
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /** Where a tab points to, for its chip: a phone storage, the SD card, root, a server, an archive or a vault. */
 enum class LocationKind { PHONE, SD_CARD, ROOT, SERVER, ARCHIVE, VAULT }
@@ -145,6 +149,8 @@ class FileBrowserModel : ViewModel() {
         private set
     var transferRunning by mutableStateOf(TransferManager.isRunning)
         private set
+    var transferKind by mutableStateOf(TransferManager.kind)
+        private set
     var transferProgress by mutableStateOf(TransferManager.currentProgress)
         private set
     var transferState by mutableStateOf(TransferManager.state)
@@ -155,6 +161,23 @@ class FileBrowserModel : ViewModel() {
         private set
     var transferWaitingUntil by mutableStateOf(TransferManager.waitingUntil)
         private set
+
+    /** The running deletion takes long enough to show its progress and mark its entries; quick ones go by unseen. */
+    var deletionShown by mutableStateOf(false)
+        private set
+    private var deletionTimer: Job? = null
+
+    /** The running transfer shows above the pill: any but a deletion that is still quick. */
+    val showsTransfer get() = transferRunning && (transferKind != TransferKind.DELETE || deletionShown)
+
+    /** Where the deletion shown has come to among the selected entries, null while none is shown. */
+    val deletionMarks: DeletionMarks?
+        get() {
+            if (!deletionShown) return null
+            val paths = TransferManager.sourcePaths
+            val done = (transferProgress?.itemsDone ?: 0).coerceIn(0, paths.size)
+            return DeletionMarks(paths.take(done).toHashSet(), paths.getOrNull(done), paths.drop(done + 1).toHashSet())
+        }
 
     /** A server presented a key or certificate that isn't confirmed yet; the screen asks and reloads once it is trusted. */
     var trustPrompt by mutableStateOf<NeedsTrustDecision?>(null)
@@ -748,26 +771,46 @@ class FileBrowserModel : ViewModel() {
     // region clipboard and transfers
 
     private fun onTransferEvent(event: TransferManager.Event) {
+        // read before the progress is cleared with the end of the work
+        val marks = deletionMarks
         transferRunning = TransferManager.isRunning
+        transferKind = TransferManager.kind
         transferProgress = TransferManager.currentProgress
         transferState = TransferManager.state
         transferProblem = TransferManager.problem
         transferWaitingUntil = TransferManager.waitingUntil
+        if (transferRunning && transferKind == TransferKind.DELETE && !deletionShown && deletionTimer == null) {
+            deletionTimer = viewModelScope.launch {
+                delay(QUIET_DELETION_MS)
+                deletionShown = TransferManager.isRunning && TransferManager.kind == TransferKind.DELETE
+            }
+        }
         if (event !is TransferManager.Event.Finished) {
             return
         }
 
-        // in the background the service's notification tells the result instead
+        // the entries gone stay away until the folder is read anew
+        marks?.gone?.takeIf { it.isNotEmpty() }?.let { gone ->
+            items = items.filterNot { it.path in gone }
+            searchResults = searchResults?.filterNot { it.path in gone }
+        }
+        val wasShown = deletionShown
+        deletionTimer?.cancel()
+        deletionTimer = null
+        deletionShown = false
+
+        // in the background the service's notification tells the result instead; a quick deletion goes by without a word
         val activity = activity
-        val message = activity?.describeTransferResult(event.itemCount, event.kind, event.error)
-        if (activity != null && message != null && TransferManager.isUiVisible) {
+        val message = activity?.describeTransferResult(event.itemCount, event.kind, event.error, event.bytes)
+        val isQuiet = event.kind == TransferKind.DELETE && !wasShown && event.error == null
+        if (activity != null && message != null && TransferManager.isUiVisible && !isQuiet) {
             when (event.error) {
                 null, is TransferCancelledException -> activity.toast(message)
                 else -> activity.showError(message)
             }
         }
-        // a move also changes the folder it came from
-        if (event.targetPath == currentPath || event.kind == TransferKind.MOVE) {
+        // a move also changes the folder it came from; a deletion reloads what it was started from itself
+        if (event.kind != TransferKind.DELETE && (event.targetPath == currentPath || event.kind == TransferKind.MOVE)) {
             refresh()
         }
     }
@@ -836,8 +879,25 @@ class FileBrowserModel : ViewModel() {
 
     companion object {
         private const val MIN_SEARCH_LENGTH = 2
+
+        /** How long a deletion runs unseen; most are over by then, so nothing flashes up. */
+        private const val QUIET_DELETION_MS = 500L
     }
 }
+
+/**
+ * Where a deletion has come to among the selected entries: those [gone] already, the one deleted right now and those
+ * still [waiting] for it.
+ */
+class DeletionMarks(val gone: Set<String>, val current: String?, val waiting: Set<String>) {
+    fun markOf(path: String) = when {
+        path == current -> DeletionMark.NOW
+        path in waiting -> DeletionMark.WAITING
+        else -> null
+    }
+}
+
+enum class DeletionMark { NOW, WAITING }
 
 /** The archive at [location] needs a password to show its content; [isWrong] when the last one didn't fit. */
 data class ArchiveUnlockRequest(val location: String, val isWrong: Boolean)

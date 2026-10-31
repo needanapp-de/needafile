@@ -441,6 +441,7 @@ private fun ImagePager(
             },
             onDismiss = { confirmDelete = null },
             isDestructive = true,
+            icon = Icons.Outlined.Delete,
         )
     }
 }

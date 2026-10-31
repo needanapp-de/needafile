@@ -15,10 +15,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Autorenew
 import androidx.compose.material.icons.outlined.Brush
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Crop
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.EditNote
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material.icons.outlined.Save
@@ -273,6 +276,7 @@ private fun EditorContent(activity: BaseActivity, image: ViewerImage, session: E
             },
             onDismiss = { confirmOverwrite = false },
             isDestructive = true,
+            icon = Icons.Outlined.Autorenew,
         )
     }
     if (confirmReset) {
@@ -286,6 +290,7 @@ private fun EditorContent(activity: BaseActivity, image: ViewerImage, session: E
             },
             onDismiss = { confirmReset = false },
             isDestructive = true,
+            icon = Icons.Outlined.RestartAlt,
         )
     }
     if (askBeforeClosing) {
@@ -302,6 +307,9 @@ private fun EditorContent(activity: BaseActivity, image: ViewerImage, session: E
                 askBeforeClosing = false
                 activity.finish()
             },
+            icon = Icons.Outlined.EditNote,
+            confirmIcon = Icons.Outlined.Save,
+            extraIcon = Icons.Outlined.Delete,
         ) {
             Text(stringResource(R.string.editor_unsaved_message))
         }

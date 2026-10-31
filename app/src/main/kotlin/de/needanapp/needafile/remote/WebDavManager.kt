@@ -178,7 +178,7 @@ class WebDavManager(private val server: RemoteServer, private val knownCertifica
     }
 
     /** Deletes the given files and folders on the server, folders with all their content. */
-    override fun delete(paths: List<String>) {
+    override fun delete(paths: List<String>, onDeleted: (String) -> Unit) {
         paths.forEach { path ->
             if (path.trim('/').isEmpty()) throw LocalizedException(R.string.remote_error_root_delete)
             deleteResource(path)

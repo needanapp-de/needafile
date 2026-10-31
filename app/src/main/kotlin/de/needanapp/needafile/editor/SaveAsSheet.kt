@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Autorenew
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -83,6 +84,7 @@ fun SaveAsSheet(name: String, folder: String, onDismiss: () -> Unit, onSave: (pa
             onConfirm = { onSave(path) },
             onDismiss = { replacing = null },
             isDestructive = true,
+            icon = Icons.Outlined.Autorenew,
         )
     }
 }

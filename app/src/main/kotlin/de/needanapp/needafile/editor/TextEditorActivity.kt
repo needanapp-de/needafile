@@ -28,6 +28,8 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.OpenInNew
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.EditNote
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.ExpandLess
 import androidx.compose.material.icons.outlined.FolderOpen
@@ -391,6 +393,9 @@ private fun TextEditorScreen(activity: BaseActivity, uri: Uri, mimeType: String?
                 askBeforeClosing = false
                 activity.finish()
             },
+            icon = Icons.Outlined.EditNote,
+            confirmIcon = Icons.Outlined.Save,
+            extraIcon = Icons.Outlined.Delete,
         ) {
             Text(stringResource(R.string.editor_unsaved_message))
         }

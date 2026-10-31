@@ -265,6 +265,7 @@ fun FolderPickerSheet(pick: FolderPick, onDismiss: () -> Unit) {
             label = stringResource(R.string.folder_name),
             initialValue = "",
             confirmLabel = stringResource(R.string.create),
+            icon = Icons.Outlined.CreateNewFolder,
             onConfirm = { input ->
                 val name = input.trim()
                 val parent = path

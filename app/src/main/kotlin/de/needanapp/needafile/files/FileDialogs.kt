@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Article
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CreateNewFolder
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Dns
+import androidx.compose.material.icons.outlined.DriveFileRenameOutline
 import androidx.compose.material.icons.outlined.EnhancedEncryption
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.InsertDriveFile
@@ -29,6 +32,8 @@ import de.needanapp.design.components.CardSpacing
 import de.needanapp.design.components.ConfirmDialog
 import de.needanapp.design.components.MarqueeText
 import de.needanapp.design.components.OptionsSheet
+import de.needanapp.design.components.PillAction
+import de.needanapp.design.components.PillBar
 import de.needanapp.design.components.TextInputDialog
 import de.needanapp.design.components.TileCard
 import de.needanapp.design.components.verticalScrollWithBar
@@ -146,6 +151,50 @@ fun FileDialogHost(
 
 // region creating, renaming, deleting
 
+/**
+ * What can be created in the open folder, and opened besides, as the bar the pill turns into: a folder, a file (not on
+ * servers) and a vault (on the phone or a server), then a new tab and a server connection.
+ */
+@Composable
+fun createBar(model: FileBrowserModel, show: (FileDialog) -> Unit, onAddServer: () -> Unit): PillBar {
+    val path = model.currentPath
+    val isRemote = path.isVirtualPath()
+    // vaults go on the phone or a server, not into archives or other vaults
+    val canHoldVault = !model.isPicking && (!isRemote || path.isRemotePath()) && model.lockedVault == null
+    val folder = model.breadcrumbs(path).lastOrNull()?.first.orEmpty()
+    return PillBar(
+        icon = Icons.Outlined.Add,
+        label = stringResource(R.string.create_new_title),
+        groups = listOf(
+            listOfNotNull(
+                PillAction(Icons.Outlined.CreateNewFolder, stringResource(R.string.create_new_folder), shortLabel = stringResource(R.string.folder)) {
+                    show(FileDialog.NewItem(isFolder = true))
+                },
+                if (!isRemote) {
+                    PillAction(Icons.Outlined.NoteAdd, stringResource(R.string.create_new_file_title), shortLabel = stringResource(R.string.file)) {
+                        show(FileDialog.NewItem(isFolder = false))
+                    }
+                } else {
+                    null
+                },
+                if (canHoldVault) {
+                    PillAction(Icons.Outlined.EnhancedEncryption, stringResource(R.string.vault_create_title), shortLabel = stringResource(R.string.vault)) {
+                        show(FileDialog.CreateVault(path))
+                    }
+                } else {
+                    null
+                },
+            ),
+            // a tab or a server doesn't depend on the open folder; new tabs open from the places
+            listOf(
+                PillAction(Icons.Outlined.Tab, stringResource(R.string.new_tab), shortLabel = stringResource(R.string.new_tab_short)) { model.showPlaces() },
+                PillAction(Icons.Outlined.Dns, stringResource(R.string.connect_server), shortLabel = stringResource(R.string.server_short), onClick = onAddServer),
+            ),
+        ),
+        caption = folder.takeIf { it.isNotEmpty() }?.let { stringResource(R.string.create_bar_caption, it) },
+    )
+}
+
 @Composable
 private fun CreateSheet(model: FileBrowserModel, onDismiss: () -> Unit, show: (FileDialog) -> Unit, onAddServer: () -> Unit) {
     val path = model.currentPath
@@ -237,6 +286,7 @@ private fun NewItemDialog(isFolder: Boolean, model: FileBrowserModel, operations
         onConfirm = { name -> operations.create(parent, name, isFolder) },
         onDismiss = onDismiss,
         validate = { operations.validateNewName(parent, it) },
+        icon = if (isFolder) Icons.Outlined.CreateNewFolder else Icons.Outlined.NoteAdd,
     )
 }
 
@@ -253,6 +303,7 @@ private fun RenameDialog(item: FileEntry, operations: FileOperations, onDismiss:
         onDismiss = onDismiss,
         validate = { operations.validateNewName(parent, it, currentName = item.name) },
         selectUntil = extensionStart,
+        icon = Icons.Outlined.DriveFileRenameOutline,
     )
 }
 
@@ -270,6 +321,7 @@ private fun DeleteDialog(items: List<FileEntry>, operations: FileOperations, onD
         onConfirm = { operations.delete(items) },
         onDismiss = onDismiss,
         isDestructive = true,
+        icon = Icons.Outlined.Delete,
     )
 }
 

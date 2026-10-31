@@ -1,0 +1,2 @@
+• Löschen mit Fortschritt: Bei großen Löschaktionen füllt sich die Leiste über der Pille rot, mit Zähler, aktueller Datei und „Abbrechen“; die übrigen Einträge warten blass in der Liste. Läuft auch im Hintergrund mit Benachrichtigung weiter und hält das Display an
+• Am Ende steht, wie viel Platz frei geworden ist

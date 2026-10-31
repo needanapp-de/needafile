@@ -1,0 +1,2 @@
+• Deleting with progress: for large deletions the bar above the pill fills in red, with a counter, the current file and "Cancel"; the remaining entries wait faded in the list. Keeps going in the background with a notification and keeps the display on
+• At the end it tells how much space was freed

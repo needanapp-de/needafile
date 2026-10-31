@@ -48,7 +48,7 @@ object TransferManager {
     sealed class Event {
         data class Progress(val progress: TransferProgress?) : Event()
         data object StateChanged : Event()
-        data class Finished(val targetPath: String, val itemCount: Int, val kind: TransferKind, val error: Throwable?) : Event()
+        data class Finished(val targetPath: String, val itemCount: Int, val kind: TransferKind, val error: Throwable?, val bytes: Long = 0) : Event()
     }
 
     enum class TransferState {
@@ -78,7 +78,11 @@ object TransferManager {
     var targetPath = ""
         private set
 
-    /** What the running job does: copying, moving, packing or unpacking. */
+    /** What the running work reads or, deleting, removes, in the order it goes through them. */
+    var sourcePaths: List<String> = emptyList()
+        private set
+
+    /** What the running job does: copying, moving, packing, unpacking or deleting. */
     var kind = TransferKind.COPY
         private set
 
@@ -112,8 +116,9 @@ object TransferManager {
     private var pendingJob: TransferJob? = null
     private var onJobFinished: ((Throwable?) -> Unit)? = null
 
-    /** How many items the result message counts. */
+    /** How many items the result message counts, and how many bytes it names. */
     private var resultCount = 0
+    private var resultBytes = 0L
 
     internal val hasWork get() = pendingJob != null || pendingItems.isNotEmpty()
 
@@ -156,6 +161,7 @@ object TransferManager {
         pendingJob = null
         onJobFinished = null
         resultCount = items.size
+        resultBytes = 0
         clipboardAtStart = if (fromClipboard) TransferClipboard.items else null
         isMoveOnServer = isMove && movesOnServer(context, items, targetPath)
         // renaming on the server takes a moment only, there is nothing to pause
@@ -198,6 +204,7 @@ object TransferManager {
         pendingJob = job
         onJobFinished = onFinished
         resultCount = 0
+        resultBytes = 0
         clipboardAtStart = null
         isMoveOnServer = false
         canPause = false
@@ -218,6 +225,7 @@ object TransferManager {
         problem = null
         currentProgress = null
         this.targetPath = targetPath
+        this.sourcePaths = sourcePaths
         this.kind = kind
         dispatch(Event.Progress(null))
         ContextCompat.startForegroundService(context, Intent(context, TransferService::class.java))
@@ -290,13 +298,14 @@ object TransferManager {
             if (wasCopy && error == null && pasted != null && TransferClipboard.items === pasted) {
                 TransferClipboard.clear()
             }
-            dispatch(Event.Finished(targetPath, resultCount, kind, error))
+            dispatch(Event.Finished(targetPath, resultCount, kind, error, resultBytes))
             onFinished?.invoke(error)
         }
     }
 
-    /** The count for the result message once the work is done. */
+    /** The count and the bytes for the result message once the work is done. */
     internal val finishedCount get() = resultCount
+    internal val finishedBytes get() = resultBytes
 
     private fun setState(newState: TransferState, newProblem: Throwable?, until: Long = 0L) {
         if (state == newState && problem === newProblem && waitingUntil == until) return
@@ -375,16 +384,22 @@ object TransferManager {
         val job = pendingJob ?: return copyItems(context, pendingItems, targetPath, onProgress)
         val result = job.run({ isCancelled }, throttled(onProgress))
         resultCount = result.itemCount
+        resultBytes = result.bytes
         return result.changed
     }
 
-    /** Archive libraries report progress very often; a few updates a second are plenty. */
+    /**
+     * Archive libraries and deleting report progress very often; a few updates a second are plenty. An entry of a
+     * deletion that is gone completely is told at once, the list drops it then.
+     */
     private fun throttled(onProgress: (TransferProgress) -> Unit): (TransferProgress) -> Unit {
         var lastReport = 0L
+        var lastItemsDone = 0
         return { progress ->
             val now = SystemClock.elapsedRealtime()
-            if (now - lastReport >= JOB_PROGRESS_INTERVAL_MS) {
+            if (now - lastReport >= JOB_PROGRESS_INTERVAL_MS || progress.itemsDone != lastItemsDone) {
                 lastReport = now
+                lastItemsDone = progress.itemsDone
                 onProgress(progress)
             }
         }

@@ -79,6 +79,8 @@ class SftpManager(private val server: RemoteServer, private val knownHosts: Know
                 return block(existing)
             } catch (e: SFTPException) {
                 throw e
+            } catch (e: TransferCancelledException) {
+                throw e
             } catch (e: IOException) {
                 // the connection may have dropped (network change, server idle timeout), retry on a fresh one
             }
@@ -204,7 +206,7 @@ class SftpManager(private val server: RemoteServer, private val knownHosts: Know
     }
 
     /** Deletes the given files and folders on the server, folders with all their content. */
-    override fun delete(paths: List<String>) = withSession { sftp ->
+    override fun delete(paths: List<String>, onDeleted: (String) -> Unit) = withSession { sftp ->
         fun deleteRecursively(path: String) {
             // lstat, so a symlinked folder only loses the link and not the linked content
             if (sftp.lstat(path).type == FileMode.Type.DIRECTORY) {
@@ -215,9 +217,12 @@ class SftpManager(private val server: RemoteServer, private val knownHosts: Know
             } else {
                 sftp.rm(path)
             }
+            onDeleted(path)
         }
         paths.forEach { deleteRecursively(it) }
     }
+
+    override val deletesFileByFile get() = true
 
     override fun move(path: String, newPath: String) = withSession { sftp ->
         sftp.rename(path, newPath)

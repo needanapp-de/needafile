@@ -79,6 +79,7 @@ import de.needanapp.needafile.files.PlacesPage
 import de.needanapp.needafile.files.SearchFilterRows
 import de.needanapp.needafile.files.TabPathOverlay
 import de.needanapp.needafile.files.TabPathRequest
+import de.needanapp.needafile.files.createBar
 import de.needanapp.needafile.files.isVirtualPath
 import de.needanapp.needafile.files.placeSubtitle
 import de.needanapp.needafile.files.selectionNames
@@ -202,8 +203,8 @@ fun HomeScreen(activity: HomeActivity, model: FileBrowserModel, themeSettings: T
         }
     }
     // a new page or folder starts with the pill in view, wherever the last one was scrolled to; so does the end of a
-    // copy or archive job, whose progress bar kept the pill in view meanwhile
-    LaunchedEffect(page, settingsSubPage, serverEditor, model.currentPath, model.showsPlaces, model.transferRunning) { pillScroll.show() }
+    // copy, archive job or deletion, whose progress bar kept the pill in view meanwhile
+    LaunchedEffect(page, settingsSubPage, serverEditor, model.currentPath, model.showsPlaces, model.showsTransfer) { pillScroll.show() }
 
 
     fun openSettings() {
@@ -314,9 +315,9 @@ fun HomeScreen(activity: HomeActivity, model: FileBrowserModel, themeSettings: T
         page == HomePage.SETTINGS -> stringResource(R.string.settings)
         else -> pages[page.ordinal].label
     }
-    val showsClipboard = isFiles && (model.clipboard.isNotEmpty() || model.transferRunning)
+    val showsClipboard = isFiles && (model.clipboard.isNotEmpty() || model.showsTransfer)
     // the places offer nothing to paste into, a running copy shows there all the same
-    val pasteBarHidden = model.showsPlaces && !model.transferRunning
+    val pasteBarHidden = model.showsPlaces && !model.showsTransfer
     val isSelectingFiles = isFiles && model.isSelecting
 
     // the selection card floats over the files, which leave room for it as for the pill
@@ -515,7 +516,6 @@ fun HomeScreen(activity: HomeActivity, model: FileBrowserModel, themeSettings: T
                     modifier = Modifier.align(Alignment.BottomCenter),
                     hazeState = hazeState,
                     leadingAction = when {
-                        isFiles && !model.isSelecting && !model.showsPlaces && !model.currentPath.isArchivePath() -> PillAction(Icons.Outlined.Add, stringResource(R.string.create_new_title)) { dialog = FileDialog.Create }
                         page == HomePage.SERVERS -> PillAction(Icons.Outlined.Add, stringResource(R.string.add_server)) { showServerDialog(null, openAfterwards = false) }
                         page == HomePage.VAULTS -> PillAction(Icons.Outlined.Add, stringResource(R.string.vault_create_title)) { createVault() }
                         else -> null
@@ -545,6 +545,12 @@ fun HomeScreen(activity: HomeActivity, model: FileBrowserModel, themeSettings: T
                         ),
                     ),
                     visible = editor == null && page != HomePage.SETTINGS && !isSelectingFiles && infoItems == null && serverInfo == null && (pillScroll.isVisible || showsClipboard),
+                    // the plus turns the pill into the bar of what can be created here
+                    leadingBar = if (isFiles && !model.isSelecting && !model.showsPlaces && !model.currentPath.isArchivePath()) {
+                        createBar(model, show = { dialog = it }, onAddServer = { showServerDialog(null, openAfterwards = true) })
+                    } else {
+                        null
+                    },
                 )
                 // while selecting, the actions for the selection take the place of the pages
                 // unless a single entry is selected, whose opened card has them

@@ -137,6 +137,8 @@ class FtpManager(private val server: RemoteServer, private val knownCertificates
                 return block(existing)
             } catch (e: FtpReplyException) {
                 throw e
+            } catch (e: TransferCancelledException) {
+                throw e
             } catch (e: IOException) {
                 // the connection may have dropped (network change, server idle timeout), retry on a fresh one
             }
@@ -230,16 +232,21 @@ class FtpManager(private val server: RemoteServer, private val knownCertificates
         }
     }
 
-    override fun delete(paths: List<String>) = withSession { ftp ->
+    override fun delete(paths: List<String>, onDeleted: (String) -> Unit) = withSession { ftp ->
         paths.forEach { path ->
             if (path.trim('/').isEmpty()) throw LocalizedException(R.string.remote_error_root_delete)
-            deleteRecursively(ftp, path, 0)
+            deleteRecursively(ftp, path, 0, onDeleted)
         }
     }
 
+    override val deletesFileByFile get() = true
+
     /** Files go at once; for folders (where deleting as a file fails) the content goes first. */
-    private fun deleteRecursively(ftp: FTPClient, path: String, depth: Int) {
-        if (ftp.deleteFile(path)) return
+    private fun deleteRecursively(ftp: FTPClient, path: String, depth: Int, onDeleted: (String) -> Unit) {
+        if (ftp.deleteFile(path)) {
+            onDeleted(path)
+            return
+        }
         val fileReply = ftp.replyString.trim()
         val children = try {
             list(ftp, path)
@@ -248,9 +255,15 @@ class FtpManager(private val server: RemoteServer, private val knownCertificates
         }
         if (depth > MAX_FOLDER_DEPTH) throw LocalizedException(R.string.remote_error_folders_too_deep, path)
         children.forEach { child ->
-            if (child.isDirectory) deleteRecursively(ftp, child.path, depth + 1) else check(ftp, ftp.deleteFile(child.path))
+            if (child.isDirectory) {
+                deleteRecursively(ftp, child.path, depth + 1, onDeleted)
+            } else {
+                check(ftp, ftp.deleteFile(child.path))
+                onDeleted(child.path)
+            }
         }
         check(ftp, ftp.removeDirectory(path))
+        onDeleted(path)
     }
 
     override fun move(path: String, newPath: String) = withSession { ftp ->

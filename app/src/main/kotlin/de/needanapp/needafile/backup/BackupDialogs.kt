@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.SecretTextField
 import de.needanapp.design.components.SignalLinearProgressIndicator
+import de.needanapp.design.components.signalCheckboxColors
 import de.needanapp.needafile.R
 import de.needanapp.needafile.core.toast
 import de.needanapp.needafile.errors.describeError
@@ -299,7 +300,7 @@ private fun SectionChoice(
                 }
                 .padding(vertical = 4.dp),
         ) {
-            Checkbox(isChosen, onCheckedChange = null, enabled = enabled, modifier = Modifier.padding(12.dp))
+            Checkbox(isChosen, onCheckedChange = null, enabled = enabled, modifier = Modifier.padding(12.dp), colors = signalCheckboxColors())
             Column {
                 Text(stringResource(section.label), style = MaterialTheme.typography.bodyLarge)
                 Text(

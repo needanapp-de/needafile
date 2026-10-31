@@ -31,6 +31,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.ContentDialog
 import de.needanapp.design.components.InfoDialog
+import de.needanapp.design.components.signalCheckboxColors
 import de.needanapp.needafile.R
 import de.needanapp.needafile.base.BaseActivity
 import de.needanapp.needafile.remote.RemoteServer
@@ -88,6 +89,7 @@ private fun ShareConnectionsDialog(onShare: (List<SharedConnection>) -> Unit, on
             message = stringResource(R.string.share_connections_none),
             onDismiss = onCancel,
             confirmLabel = stringResource(R.string.share_connections_close),
+            icon = Icons.Outlined.Dns,
         )
         return
     }
@@ -122,7 +124,7 @@ private fun ChoiceRow(choice: ConnectionChoice, isChosen: Boolean, onChange: (Bo
             .toggleable(isChosen, enabled = isComplete, role = Role.Checkbox, onValueChange = onChange)
             .padding(vertical = 4.dp),
     ) {
-        Checkbox(isChosen, onCheckedChange = null, enabled = isComplete, modifier = Modifier.padding(12.dp))
+        Checkbox(isChosen, onCheckedChange = null, enabled = isComplete, modifier = Modifier.padding(12.dp), colors = signalCheckboxColors())
         Column {
             Text(choice.title, style = MaterialTheme.typography.bodyLarge)
             Text(choice.address, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

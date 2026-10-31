@@ -93,6 +93,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.focus.FocusRequester
@@ -160,6 +161,7 @@ import de.needanapp.needafile.core.restrictedFolderUri
 import de.needanapp.needafile.errors.describeError
 import de.needanapp.needafile.remote.isRemotePath
 import de.needanapp.needafile.settings.config
+import de.needanapp.needafile.transfer.TransferKind
 import de.needanapp.needafile.transfer.TransferManager
 import de.needanapp.needafile.transfer.TransferManager.TransferState
 import dev.chrisbanes.haze.HazeState
@@ -205,7 +207,11 @@ fun FileBrowserPage(
         waitedLong = true
     }
     val hidesStale = isStale && (waitedLong || !model.isLoading || model.locationRoot(model.itemsPath) != model.locationRoot(path))
-    val shown = if (hidesStale) emptyList() else model.searchResults ?: model.items
+    // entries a running deletion is done with leave the list at once, those still to go show as waiting
+    val deletion = model.deletionMarks
+    val goneCount = deletion?.gone?.size ?: 0
+    val listed = if (hidesStale) emptyList() else model.searchResults ?: model.items
+    val shown = remember(listed, goneCount) { if (deletion == null || goneCount == 0) listed else listed.filterNot { it.path in deletion.gone } }
     val top = contentPadding.calculateTopPadding()
     val bottom = contentPadding.calculateBottomPadding() + PillSpace + extraBottomSpace
 
@@ -277,14 +283,16 @@ fun FileBrowserPage(
                         }) { entries ->
                             items(entries, key = { it.path }) { item ->
                                 val selected = item.path in model.selection
+                                val isDeleting = deletion?.markOf(item.path) != null
                                 if (isGallery) {
-                                    GalleryCell(item, selected, model.listAsCards, onClick = { onItemClick(item) }, onLongClick = { onLongClick(item) })
+                                    GalleryCell(item, selected, model.listAsCards, isDeleting, onClick = { onItemClick(item) }, onLongClick = { onLongClick(item) })
                                 } else {
                                     FileGridCell(
                                         item = item,
                                         selected = selected,
                                         showName = model.showFileNamesInGrid || item.isDirectory,
                                         asCard = model.listAsCards,
+                                        isDeleting = isDeleting,
                                         onClick = { onItemClick(item) },
                                         onLongClick = { onLongClick(item) },
                                     )
@@ -388,6 +396,7 @@ fun FileBrowserPage(
                                         },
                                         isDetails = isDetails,
                                         isWide = isWide,
+                                        deletion = deletion?.markOf(item.path),
                                     )
                                 }
                             }
@@ -580,7 +589,7 @@ fun locationIcon(kind: LocationKind): ImageVector = when (kind) {
 /**
  * A file or folder in a list: icon (tap selects), name and details; also used outside the browser. [zoom]: compact rows
  * have one line with the size on the right, large ones big previews. [asCard] draws it as a card of its own, as low as
- * its two lines allow.
+ * its two lines allow. An entry a running [deletion] is about to take shows faded and says so instead of its details.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -597,12 +606,15 @@ internal fun FileRow(
     rename: InlineRename? = null,
     isDetails: Boolean = false,
     isWide: Boolean = false,
+    deletion: DeletionMark? = null,
 ) {
     val context = LocalContext.current
     val haptics = LocalHapticFeedback.current
     val colors = MaterialTheme.colorScheme
     val isCompact = zoom == ZOOM_COMPACT
-    val details = remember(item, isCompact) { if (isCompact) describeItemShort(context, item) else describeItem(context, item) }
+    val deletionLabel = deletion?.let { stringResource(if (it == DeletionMark.NOW) R.string.delete_now else R.string.delete_waiting) }
+    val described = remember(item, isCompact) { if (isCompact) describeItemShort(context, item) else describeItem(context, item) }
+    val details = deletionLabel ?: described
     val iconSize = when {
         isDetails -> detailsIconSize(zoom)
         zoom == ZOOM_COMPACT -> 28.dp
@@ -633,6 +645,7 @@ internal fun FileRow(
     Column(
         Modifier
             .fillMaxWidth()
+            .alpha(if (deletion != null) DELETING_ALPHA else 1f)
             .then(surface)
             .background(if (selected) colors.secondaryContainer else Color.Transparent),
     ) {
@@ -640,7 +653,7 @@ internal fun FileRow(
             modifier = Modifier
                 .fillMaxWidth()
                 .combinedClickable(
-                    enabled = !isRenaming,
+                    enabled = !isRenaming && deletion == null,
                     onClick = onClick,
                     onLongClick = {
                         haptics.performHapticFeedback(HapticFeedbackType.LongPress)
@@ -659,7 +672,7 @@ internal fun FileRow(
                 shape = iconShape,
                 modifier = Modifier
                     .clip(iconShape)
-                    .clickable(enabled = !isRenaming, onClickLabel = selectLabel, onClick = onIconClick),
+                    .clickable(enabled = !isRenaming && deletion == null, onClickLabel = selectLabel, onClick = onIconClick),
             )
             Spacer(Modifier.width(if (isCompact || asCard || isDetails) 12.dp else 16.dp))
             val nameColor = if (selected) colors.onSecondaryContainer else colors.onSurface
@@ -684,7 +697,9 @@ internal fun FileRow(
                 val nameStyle = if (isCompact) MaterialTheme.typography.bodyMedium else MaterialTheme.typography.bodyLarge
                 MarqueeText(item.name, Modifier.weight(1f), style = nameStyle, color = nameColor)
                 val style = MaterialTheme.typography.bodySmall
-                if (isWide) {
+                if (deletionLabel != null) {
+                    Text(deletionLabel, style = style, color = detailColor, maxLines = 1, modifier = Modifier.padding(start = 12.dp))
+                } else if (isWide) {
                     Text(columns.size, style = style, color = detailColor, maxLines = 1, textAlign = TextAlign.End, modifier = Modifier.width(SIZE_COLUMN).padding(start = 4.dp))
                     Text(columns.date, style = style, color = detailColor, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.width(DATE_COLUMN_WIDE).padding(start = 12.dp))
                     Text(columns.type, style = style, color = detailColor, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.width(TYPE_COLUMN).padding(start = 12.dp))
@@ -874,15 +889,17 @@ private fun DetailsHeader(sorting: Int, zoom: Int, isWide: Boolean, asCards: Boo
 /** A picture or video as a square preview without text; folders and other files carry their name. */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun GalleryCell(item: FileEntry, selected: Boolean, asCard: Boolean, onClick: () -> Unit, onLongClick: () -> Unit) {
+private fun GalleryCell(item: FileEntry, selected: Boolean, asCard: Boolean, isDeleting: Boolean, onClick: () -> Unit, onLongClick: () -> Unit) {
     val haptics = LocalHapticFeedback.current
     val colors = MaterialTheme.colorScheme
     BoxWithConstraints(
         Modifier
             .padding(if (asCard) 3.dp else 2.dp)
             .aspectRatio(1f)
+            .alpha(if (isDeleting) DELETING_ALPHA else 1f)
             .then(if (asCard) Modifier.designCard(RoundedCornerShape(GALLERY_CARD_RADIUS)) else Modifier.clip(RoundedCornerShape(6.dp)))
             .combinedClickable(
+                enabled = !isDeleting,
                 onClick = onClick,
                 onLongClick = {
                     haptics.performHapticFeedback(HapticFeedbackType.LongPress)
@@ -925,6 +942,9 @@ private fun GalleryCell(item: FileEntry, selected: Boolean, asCard: Boolean, onC
 }
 
 private val GALLERY_CARD_RADIUS = 12.dp
+
+/** How faded entries are that a running deletion is about to take. */
+private const val DELETING_ALPHA = 0.5f
 private const val NAME_STRIP_ALPHA = 0.88f
 private const val BADGE_ALPHA = 0.5f
 private const val SELECTED_TINT_ALPHA = 0.35f
@@ -1015,7 +1035,15 @@ private const val PINCH_STEP = 1.25f
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun FileGridCell(item: FileEntry, selected: Boolean, showName: Boolean, asCard: Boolean, onClick: () -> Unit, onLongClick: () -> Unit) {
+private fun FileGridCell(
+    item: FileEntry,
+    selected: Boolean,
+    showName: Boolean,
+    asCard: Boolean,
+    isDeleting: Boolean,
+    onClick: () -> Unit,
+    onLongClick: () -> Unit,
+) {
     val haptics = LocalHapticFeedback.current
     val colors = MaterialTheme.colorScheme
     // as a card light against the background, otherwise a tile in the surface's tone
@@ -1032,8 +1060,10 @@ private fun FileGridCell(item: FileEntry, selected: Boolean, showName: Boolean, 
     }
     Column(
         modifier = Modifier
+            .alpha(if (isDeleting) DELETING_ALPHA else 1f)
             .then(tile)
             .combinedClickable(
+                enabled = !isDeleting,
                 onClick = onClick,
                 onLongClick = {
                     haptics.performHapticFeedback(HapticFeedbackType.LongPress)
@@ -1090,27 +1120,36 @@ fun PasteBar(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val visible = (model.transferRunning || model.clipboard.isNotEmpty()) && !isCovered
+    val running = model.showsTransfer
+    val visible = (running || model.clipboard.isNotEmpty()) && !isCovered
     // nothing can be pasted into an archive
     val isReadOnly = model.currentPath.isArchivePath()
     val state = model.transferState
     val problem = model.transferProblem
-    val transferProgress = model.transferProgress
+    val kind = model.transferKind
     val barProgress = when {
-        !model.transferRunning -> null
-        transferProgress != null && transferProgress.bytesTotal > 0 ->
-            SurfaceProgress.Fraction(transferProgress.bytesDone.toFloat() / transferProgress.bytesTotal)
-        state == TransferState.RUNNING -> SurfaceProgress.Unknown
-        else -> null
+        !running -> null
+        else -> kind.fraction(model.transferProgress)?.let { SurfaceProgress.Fraction(it) }
+            ?: SurfaceProgress.Unknown.takeIf { state == TransferState.RUNNING }
     }
+    // deleting fills in red, as the delete button is
+    val isDeleting = running && kind == TransferKind.DELETE
+    val colors = MaterialTheme.colorScheme
     AnimatedVisibility(visible = visible, enter = fadeIn() + expandVertically(), exit = fadeOut() + shrinkVertically(), modifier = modifier) {
-        FloatingSurface(PillDefaults.shape, hazeState, Modifier.padding(horizontal = 16.dp).fillMaxWidth(), progress = barProgress) {
+        FloatingSurface(
+            PillDefaults.shape,
+            hazeState,
+            Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+            progress = barProgress,
+            progressColor = if (isDeleting) colors.errorContainer else Color.Unspecified,
+            onProgressColor = if (isDeleting) colors.onErrorContainer else Color.Unspecified,
+        ) {
             Column(Modifier.fillMaxWidth().padding(start = 20.dp, end = 8.dp, top = 10.dp, bottom = 10.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
                         val progress = model.transferProgress
                         val title = when {
-                            !model.transferRunning -> {
+                            !running -> {
                                 val label = if (model.clipboardIsCut) R.plurals.cut_items else R.plurals.clipboard_items
                                 pluralStringResource(label, model.clipboard.size, model.clipboard.size)
                             }
@@ -1118,14 +1157,14 @@ fun PasteBar(
                             state == TransferState.PAUSED && problem != null -> stringResource(R.string.transfer_paused_no_connection)
                             state == TransferState.PAUSED -> stringResource(R.string.transfer_paused)
                             progress == null -> stringResource(R.string.transfer_preparing)
-                            else -> stringResource(TransferManager.kind.progress, progress.fileIndex, progress.fileCount)
+                            else -> stringResource(kind.progress, progress.fileIndex, progress.fileCount)
                         }
                         // waiting and paused copies explain themselves, that may take a second line
-                        val maxLines = if (model.transferRunning && state != TransferState.RUNNING) 2 else 1
+                        val maxLines = if (running && state != TransferState.RUNNING) 2 else 1
                         Text(title, style = MaterialTheme.typography.titleSmall, maxLines = maxLines, overflow = TextOverflow.Ellipsis)
                         val subtitle = when {
-                            !model.transferRunning && isReadOnly -> stringResource(R.string.archive_read_only)
-                            !model.transferRunning -> stringResource(R.string.paste_target, model.displayPath(model.currentPath))
+                            !running && isReadOnly -> stringResource(R.string.archive_read_only)
+                            !running -> stringResource(R.string.paste_target, model.displayPath(model.currentPath))
                             state == TransferState.WAITING ->
                                 stringResource(R.string.transfer_waiting_until, DateFormat.getTimeFormat(context).format(Date(model.transferWaitingUntil)))
                             state == TransferState.PAUSED && problem != null -> context.describeError(problem)
@@ -1146,7 +1185,7 @@ fun PasteBar(
                         }
                     }
                     when {
-                        !model.transferRunning -> {
+                        !running -> {
                             IconButton(onClick = onClear) {
                                 Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.clear_clipboard))
                             }

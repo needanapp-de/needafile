@@ -21,6 +21,7 @@ import de.needanapp.needafile.archive.getArchiveLocation
 import de.needanapp.needafile.archive.isArchiveFile
 import de.needanapp.needafile.archive.isArchivePath
 import de.needanapp.needafile.base.BaseActivity
+import de.needanapp.needafile.core.BusyWork
 import de.needanapp.needafile.core.FileEntry
 import de.needanapp.needafile.core.copyTargetStart
 import de.needanapp.needafile.core.copyToClipboard
@@ -47,6 +48,7 @@ import de.needanapp.needafile.remote.isRemotePath
 import de.needanapp.needafile.root.RootShell
 import de.needanapp.needafile.settings.config
 import de.needanapp.needafile.system.LauncherIcon
+import de.needanapp.needafile.transfer.DeleteJob
 import de.needanapp.needafile.transfer.TransferClipboard
 import de.needanapp.needafile.transfer.TransferJob
 import de.needanapp.needafile.transfer.TransferKind
@@ -353,15 +355,18 @@ class FileOperations(
         }
     }
 
-    /** Runs a server request in the background and reloads the folder afterwards. */
-    private fun runRemoteChange(change: () -> Unit) {
+    /** Runs a server request in the background and reloads the folder afterwards, after [onDone]. */
+    private fun runRemoteChange(onDone: () -> Unit = {}, change: () -> Unit) {
         inBackground {
             try {
                 change()
             } catch (e: Exception) {
                 activity.runOnUiThread { activity.showError(activity.describeError(e)) }
             }
-            activity.runOnUiThread { onChanged() }
+            activity.runOnUiThread {
+                onDone()
+                onChanged()
+            }
         }
     }
 
@@ -678,14 +683,13 @@ class FileOperations(
 
     // region deleting
 
+    /**
+     * Deletes [items] in the background; one that takes a moment shows its progress above the pill and in the
+     * notification and can be cancelled, see [DeleteJob]. Root folders go in one command, without progress.
+     */
     fun delete(items: List<FileEntry>) {
         val firstPath = items.first().path
-        if (firstPath.isWritableVirtualPath()) {
-            runRemoteChange { TransferManager.getRemoteFileSystem(activity, firstPath).delete(items.map { it.path.getVirtualInnerPath() }) }
-            return
-        }
-
-        if (activity.needsRoot(firstPath)) {
+        if (!firstPath.isWritableVirtualPath() && activity.needsRoot(firstPath)) {
             if (!config.isRootAvailable) {
                 activity.toast(R.string.rooted_device_only)
                 return
@@ -697,8 +701,28 @@ class FileOperations(
                     onChanged()
                 }
             }
+            return
+        }
+
+        val job = DeleteJob(activity.applicationContext, items)
+        if (TransferManager.startJob(activity.applicationContext, TransferKind.DELETE, items.map { it.path }, model.currentPath, job) { onChanged() }) {
+            model.clearSelection()
+        } else {
+            deleteBesideTransfer(items)
+        }
+    }
+
+    /** While a copy runs, deleting goes on beside it without showing its progress, keeping the display on meanwhile. */
+    private fun deleteBesideTransfer(items: List<FileEntry>) {
+        val work = BusyWork.begin(items.map { it.path })
+        val firstPath = items.first().path
+        if (firstPath.isWritableVirtualPath()) {
+            runRemoteChange(onDone = { BusyWork.end(work) }) {
+                TransferManager.getRemoteFileSystem(activity, firstPath).delete(items.map { it.path.getVirtualInnerPath() })
+            }
         } else {
             activity.deleteFiles(items) { success ->
+                BusyWork.end(work)
                 if (!success) activity.toast(R.string.unknown_error_occurred)
                 onChanged()
             }

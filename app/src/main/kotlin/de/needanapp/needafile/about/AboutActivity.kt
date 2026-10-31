@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Article
 import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.Gavel
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.Mail
 import androidx.compose.material.icons.outlined.PrivacyTip
@@ -140,7 +141,7 @@ private fun AboutScreen(activity: BaseActivity, onBack: () -> Unit) {
 
     shownLicense?.let { (license, source) ->
         val text = remember(license, source) { licenseText(activity, license, source?.copyright) }
-        InfoDialog(title = license.spdxId, message = text, onDismiss = { shownLicense = null })
+        InfoDialog(title = license.spdxId, message = text, onDismiss = { shownLicense = null }, icon = Icons.Outlined.Gavel)
     }
 }
 

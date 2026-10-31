@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.HourglassTop
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -74,6 +77,8 @@ fun FetchDialog(fetch: FetchProgress, onDismiss: () -> Unit) {
         onConfirm = cancel,
         onDismiss = cancel,
         dismissLabel = null,
+        icon = Icons.Outlined.HourglassTop,
+        confirmIcon = Icons.Rounded.Close,
     ) {
         MarqueeText(fetch.name, style = MaterialTheme.typography.bodyLarge)
         Spacer(Modifier.height(16.dp))

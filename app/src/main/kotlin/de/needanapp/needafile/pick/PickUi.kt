@@ -3,6 +3,7 @@ package de.needanapp.needafile.pick
 import android.app.Activity
 import androidx.activity.compose.LocalActivity
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Autorenew
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Save
 import androidx.compose.runtime.Composable
@@ -68,6 +69,7 @@ fun PickDialogHost(dialog: PickDialog?, folder: String, onDismiss: () -> Unit, s
             label = stringResource(R.string.filename),
             initialValue = "",
             confirmLabel = stringResource(R.string.save_here),
+            icon = Icons.Outlined.Save,
             onConfirm = { name ->
                 val file = File(folder, name)
                 if (file.exists()) show(PickDialog.Replace(file.path)) else activity.returnNewDocument(folder, name)
@@ -91,6 +93,7 @@ fun PickDialogHost(dialog: PickDialog?, folder: String, onDismiss: () -> Unit, s
                 onConfirm = { activity.returnNewDocument(file.parent ?: folder, file.name) },
                 onDismiss = onDismiss,
                 isDestructive = true,
+                icon = Icons.Outlined.Autorenew,
             )
         }
     }

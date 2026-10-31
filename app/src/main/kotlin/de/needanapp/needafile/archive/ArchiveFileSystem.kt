@@ -130,7 +130,7 @@ class ArchiveFileSystem private constructor(
 
     override fun upload(items: List<File>, targetDir: String, isCancelled: () -> Boolean, onProgress: (TransferProgress) -> Unit) = throw ReadOnlyArchiveException()
 
-    override fun delete(paths: List<String>) = throw ReadOnlyArchiveException()
+    override fun delete(paths: List<String>, onDeleted: (String) -> Unit) = throw ReadOnlyArchiveException()
 
     override fun rename(path: String, newName: String) = throw ReadOnlyArchiveException()
 
