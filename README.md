@@ -146,6 +146,23 @@ needafile ist freie Software (GPL-3.0). Netzwerkzugriff braucht die App nur für
 
 </details>
 
+## Selbst bauen
+
+needafile braucht das [Design-Paket needanapp-design](https://github.com/needanapp-de/needanapp-design), das auch
+andere Apps von needanapp.de nutzen. Es liegt als eigenes Repo im Ordner neben needafile:
+
+```bash
+git clone https://github.com/needanapp-de/needafile.git
+git clone https://github.com/needanapp-de/needanapp-design.git
+cd needafile
+./gradlew :app:assembleFossDebug
+```
+
+Die APK liegt danach in `app/build/outputs/apk/foss/debug/`. Voraussetzungen: JDK 17 oder neuer und das Android-SDK
+(`ANDROID_HOME` oder `sdk.dir` in `local.properties`); NDK und CMake lädt Gradle bei akzeptierten SDK-Lizenzen selbst.
+Für eine bestimmte needafile-Version passt das Design-Paket mit dem Tag aus `DESIGN_VERSION` in `gradle.properties`
+(`git clone --branch v<Version> …`); ist das Paket zu alt oder fehlt es, nennt der Build den passenden Befehl.
+
 ## Dank
 
 - [7-Zip-JBinding](https://github.com/omicronapps/7-Zip-JBinding-4Android) und p7zip (LGPL-2.1) – 7z, RAR und weitere Archive
@@ -304,6 +321,24 @@ needafile is free software (GPL-3.0). The app only needs network access for the 
 - German and English
 
 </details>
+
+## Build it yourself
+
+needafile needs the [design package needanapp-design](https://github.com/needanapp-de/needanapp-design), which other
+needanapp.de apps use as well. It is a repository of its own, placed in the folder next to needafile:
+
+```bash
+git clone https://github.com/needanapp-de/needafile.git
+git clone https://github.com/needanapp-de/needanapp-design.git
+cd needafile
+./gradlew :app:assembleFossDebug
+```
+
+The APK is then in `app/build/outputs/apk/foss/debug/`. Requirements: JDK 17 or newer and the Android SDK
+(`ANDROID_HOME` or `sdk.dir` in `local.properties`); Gradle fetches the NDK and CMake itself once the SDK licenses are
+accepted. For a particular needafile version, use the design package with the tag from `DESIGN_VERSION` in
+`gradle.properties` (`git clone --branch v<version> …`); if the package is missing or too old, the build names the
+command that fixes it.
 
 ## Thanks
 
