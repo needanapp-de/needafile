@@ -1,0 +1,3 @@
+• New app icon: the standard is now "Layers" – storage, folder and padlock as an exploded drawing on a dark plate
+• Pick it in Settings › App icon: Layers, Blueprint, Network, Transfer or the classic icon in twelve colors
+• Themed icons (Android 13+) get a matching single-color version

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- needafile app icon layers, background; written by tools/icons/motif_icons.py -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="768"
+    android:viewportHeight="768">
+    <path
+        android:pathData="M0.00,0.00 L768.00,0.00 L768.00,768.00 L0.00,768.00Z"
+        android:fillColor="#FF0C1015" />
+</vector>

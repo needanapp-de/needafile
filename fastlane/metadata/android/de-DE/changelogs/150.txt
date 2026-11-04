@@ -1,0 +1,3 @@
+• Neues App-Symbol: Standard ist jetzt „Schichten“ – Speicher, Ordner und Schloss als Explosionszeichnung auf dunkler Fläche
+• Wählbar unter Einstellungen › App-Symbol: Schichten, Blaupause, Netz, Übertragung oder das klassische Symbol in zwölf Farben
+• Designte Symbole (Android 13+) bekommen eine passende einfarbige Fassung

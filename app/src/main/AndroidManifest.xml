@@ -44,9 +44,9 @@
         android:allowBackup="false"
         android:appCategory="productivity"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:icon="@mipmap/needafile_icon_orange"
+        android:icon="@mipmap/needafile_icon_layers"
         android:label="@string/brand_name"
-        android:roundIcon="@mipmap/needafile_icon_orange"
+        android:roundIcon="@mipmap/needafile_icon_layers"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
@@ -286,10 +286,66 @@
             android:exported="false"
             android:grantUriPermissions="true" />
 
-        <!-- needafile's launcher entries, one per icon color; LauncherIcon enables exactly one -->
+        <!-- needafile's launcher entries, one per motif and per color of the classic icon; LauncherIcon enables exactly one -->
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Layers"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_layers"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_layers"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Blueprint"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_blueprint"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_blueprint"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Network"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_network"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_network"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="de.needanapp.needafile.launcher.Transfer"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/needafile_icon_transfer"
+            android:label="@string/brand_name"
+            android:roundIcon="@mipmap/needafile_icon_transfer"
+            android:targetActivity="de.needanapp.needafile.home.HomeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
         <activity-alias
             android:name="de.needanapp.needafile.launcher.Orange"
-            android:enabled="true"
+            android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/needafile_icon_orange"
             android:label="@string/brand_name"

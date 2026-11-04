@@ -421,6 +421,12 @@
 
     <!-- App-Symbol -->
     <string name="app_icon">App-Symbol</string>
+    <string name="app_icon_motif">Motiv</string>
+    <string name="app_icon_layers">Schichten</string>
+    <string name="app_icon_blueprint">Blaupause</string>
+    <string name="app_icon_network">Netz</string>
+    <string name="app_icon_transfer">Übertragung</string>
+    <string name="app_icon_classic">Klassisch</string>
     <string name="app_icon_follow_accent">Wie Akzentfarbe</string>
     <string name="app_icon_follow_accent_summary">Nimmt die Symbolfarbe, die der Akzentfarbe der Darstellung am nächsten kommt; beim Standard-Akzent Orange</string>
     <string name="app_icon_color">Farbe</string>

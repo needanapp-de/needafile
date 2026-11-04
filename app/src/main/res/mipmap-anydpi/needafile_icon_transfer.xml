@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- needafile app icon transfer; written by tools/icons/motif_icons.py -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/needafile_icon_transfer_background" />
+    <foreground android:drawable="@drawable/needafile_icon_transfer_foreground" />
+    <monochrome android:drawable="@drawable/needafile_icon_transfer_monochrome" />
+</adaptive-icon>

@@ -151,7 +151,7 @@ object AppBackup {
                 SettingKeys.AUTO_GALLERY, SettingKeys.VAULT_LOCK_SCREEN_OFF, SettingKeys.SWIPE_PAGES,
             ),
         ),
-        STRING("string", setOf(SettingKeys.DATE_PATTERN, SettingKeys.HOME_FOLDER, SettingKeys.APP_ICON)),
+        STRING("string", setOf(SettingKeys.DATE_PATTERN, SettingKeys.HOME_FOLDER, SettingKeys.APP_ICON, SettingKeys.APP_ICON_MOTIF)),
         INT(
             "int",
             setOf(SettingKeys.VIEW, SettingKeys.SORTING, SettingKeys.GROUPING, SettingKeys.VAULT_LOCK_MINUTES),

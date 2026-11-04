@@ -146,7 +146,8 @@ needafile ist freie Software (GPL-3.0). Netzwerkzugriff braucht die App nur für
 - Darstellung: hell/dunkel/reines Schwarz, Farbwelten (Wolke, Papier, Nordschnee, Latte, Graphit, Nordnacht,
   Mitternacht, Gedimmt sowie Signal, Ultraviolett, Warnweste, Kupfer, Neon-Pink und Oliv mit eigener Akzentfarbe),
   Material You oder eigene Akzentfarbe, Paletten-Stile,
-  progressiver Blur hinter Kopfzeile und Navigation, UI-Skalierung, eigene Schrift; App-Symbol in zwölf Farben
+  progressiver Blur hinter Kopfzeile und Navigation, UI-Skalierung, eigene Schrift; App-Symbol mit vier Motiven
+  (Schichten, Blaupause, Netz, Übertragung) oder klassisch in zwölf Farben
 - Deutsch und Englisch
 
 </details>
@@ -327,7 +328,7 @@ needafile is free software (GPL-3.0). The app only needs network access for the 
 - Appearance: light/dark/pure black, color worlds (Cloud, Paper, Nord Snow, Latte, Graphite, Nord Night, Midnight,
   Dimmed as well as Signal, Ultraviolet, High-Vis, Copper, Neon Pink and Olive with their own accent color),
   Material You or an own accent color, palette styles, progressive blur behind header and navigation, UI scaling,
-  own font; app icon in twelve colors
+  own font; app icon with four motifs (layers, blueprint, network, transfer) or classic in twelve colors
 - German and English
 
 </details>

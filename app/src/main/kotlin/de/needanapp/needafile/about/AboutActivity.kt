@@ -2,10 +2,8 @@ package de.needanapp.needafile.about
 
 import android.content.Context
 import android.os.Bundle
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
@@ -14,8 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
@@ -36,7 +32,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -55,6 +50,7 @@ import de.needanapp.needafile.R
 import de.needanapp.needafile.base.BaseActivity
 import de.needanapp.needafile.core.openWebPage
 import de.needanapp.needafile.core.writeEmail
+import de.needanapp.needafile.settings.AppIconImage
 import de.needanapp.needafile.system.LauncherIcon
 import de.needanapp.needafile.theme.setThemedContent
 
@@ -81,61 +77,63 @@ private fun AboutScreen(activity: BaseActivity, onBack: () -> Unit) {
         if (license.assetName == null) activity.openWebPage(source?.licenseUrl ?: license.url) else shownLicense = ShownLicense(license, source)
     }
 
-    SubScreen(stringResource(R.string.about), onBack) { padding ->
-        val listState = rememberLazyListState()
-        LazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize().scrollbar(listState, padding)) {
-            item { Header(onLicenseClick = { showLicense(APP_LICENSE) }) }
+    AboutLogoFrame(onClose = onBack, modifier = Modifier.fillMaxSize()) { logo ->
+        SubScreen(stringResource(R.string.about), onBack) { padding ->
+            val listState = rememberLazyListState()
+            LazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize().scrollbar(listState, padding)) {
+                item { Header(logo, onLicenseClick = { showLicense(APP_LICENSE) }) }
 
-            item {
-                val links = listOf(
-                    Triple(Icons.Outlined.Link, R.string.about_website, R.string.brand_website_url),
-                    Triple(Icons.Outlined.Download, R.string.about_download, R.string.brand_download_url),
-                    Triple(Icons.Outlined.PrivacyTip, R.string.about_privacy, R.string.brand_privacy_url),
-                    Triple(Icons.Outlined.Code, R.string.about_source_code, R.string.brand_source_code_url),
-                    Triple(Icons.Outlined.Mail, R.string.about_contact, R.string.brand_contact_email),
-                ).map { (icon, label, target) -> Triple(icon, label, stringResource(target)) }.filter { it.third.isNotBlank() }
-                if (links.isNotEmpty()) {
-                    SettingsGroup(null) {
-                        links.forEach { (icon, label, target) ->
-                            row {
-                                // query parameters (e.g. the repository fingerprint) are only for the opening app
-                                ListRow(it, stringResource(label), summary = target.substringBefore('?'), icon = icon, onClick = {
-                                    if (label == R.string.about_contact) activity.writeEmail(target) else activity.openWebPage(target)
-                                })
+                item {
+                    val links = listOf(
+                        Triple(Icons.Outlined.Link, R.string.about_website, R.string.brand_website_url),
+                        Triple(Icons.Outlined.Download, R.string.about_download, R.string.brand_download_url),
+                        Triple(Icons.Outlined.PrivacyTip, R.string.about_privacy, R.string.brand_privacy_url),
+                        Triple(Icons.Outlined.Code, R.string.about_source_code, R.string.brand_source_code_url),
+                        Triple(Icons.Outlined.Mail, R.string.about_contact, R.string.brand_contact_email),
+                    ).map { (icon, label, target) -> Triple(icon, label, stringResource(target)) }.filter { it.third.isNotBlank() }
+                    if (links.isNotEmpty()) {
+                        SettingsGroup(null) {
+                            links.forEach { (icon, label, target) ->
+                                row {
+                                    // query parameters (e.g. the repository fingerprint) are only for the opening app
+                                    ListRow(it, stringResource(label), summary = target.substringBefore('?'), icon = icon, onClick = {
+                                        if (label == R.string.about_contact) activity.writeEmail(target) else activity.openWebPage(target)
+                                    })
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            item {
-                SettingsGroup(stringResource(R.string.about_license)) {
-                    row {
-                        ContentRow(it, null) {
-                            Text(
-                                stringResource(R.string.about_license_notice, stringResource(R.string.brand_name)),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
+                item {
+                    SettingsGroup(stringResource(R.string.about_license)) {
+                        row {
+                            ContentRow(it, null) {
+                                Text(
+                                    stringResource(R.string.about_license_notice, stringResource(R.string.brand_name)),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
                         }
+                        row { ListRow(it, stringResource(R.string.about_show_license_text), icon = Icons.AutoMirrored.Outlined.Article, onClick = { showLicense(APP_LICENSE) }) }
                     }
-                    row { ListRow(it, stringResource(R.string.about_show_license_text), icon = Icons.AutoMirrored.Outlined.Article, onClick = { showLicense(APP_LICENSE) }) }
                 }
-            }
 
-            item {
-                SettingsGroup(stringResource(R.string.about_sources)) {
-                    SOURCES.forEach { source -> row { SourceRow(it, source, versions, activity, ::showLicense) } }
+                item {
+                    SettingsGroup(stringResource(R.string.about_sources)) {
+                        SOURCES.forEach { source -> row { SourceRow(it, source, versions, activity, ::showLicense) } }
+                    }
                 }
-            }
 
-            item {
-                SettingsGroup(stringResource(R.string.about_libraries)) {
-                    LIBRARIES.forEach { source -> row { SourceRow(it, source, versions, activity, ::showLicense) } }
+                item {
+                    SettingsGroup(stringResource(R.string.about_libraries)) {
+                        LIBRARIES.forEach { source -> row { SourceRow(it, source, versions, activity, ::showLicense) } }
+                    }
                 }
-            }
 
-            item { Spacer(Modifier.navigationBarsPadding().height(16.dp)) }
+                item { Spacer(Modifier.navigationBarsPadding().height(16.dp)) }
+            }
         }
     }
 
@@ -146,17 +144,14 @@ private fun AboutScreen(activity: BaseActivity, onBack: () -> Unit) {
 }
 
 @Composable
-private fun Header(onLicenseClick: () -> Unit) {
+private fun Header(logo: AboutLogoState, onLicenseClick: () -> Unit) {
     val context = LocalContext.current
     val icon = remember { LauncherIcon.resolve(context) }
     SettingsGroup(null) {
         row {
             ContentRow(it, null) {
                 Column(Modifier.fillMaxWidth().padding(vertical = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Box(Modifier.size(HEADER_ICON_SIZE.dp), contentAlignment = Alignment.Center) {
-                        // the glyph fills about half of the 108dp icon canvas
-                        Image(painterResource(icon.foreground), contentDescription = null, modifier = Modifier.requiredSize((HEADER_ICON_SIZE * 2).dp))
-                    }
+                    AboutLogo(logo, HEADER_ICON_SIZE.dp) { AppIconImage(icon, HEADER_ICON_SIZE.dp, glyphZoom = 2f) }
                     Text(
                         stringResource(R.string.brand_name),
                         style = MaterialTheme.typography.headlineMedium,

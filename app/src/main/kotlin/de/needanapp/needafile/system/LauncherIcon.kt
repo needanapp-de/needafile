@@ -25,8 +25,42 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-/** The colors the needafile icon comes in; each has its own launcher entry (activity-alias) in the manifest. */
-enum class AppIconColor(val argb: Int, @StringRes val label: Int, @DrawableRes val foreground: Int) {
+/** An icon the launcher can show for needafile; each has its own launcher entry (activity-alias) in the manifest. */
+sealed interface AppIcon {
+    /** A color that stands for the icon, e.g. behind the symbol of a shortcut. */
+    val argb: Int
+
+    @get:StringRes
+    val label: Int
+
+    /** The activity-alias in the manifest that shows this icon in the launcher. */
+    val aliasName: String
+}
+
+/**
+ * The drawn motifs of the needafile icon: a dark plate with light technical lines and an orange accent, written by
+ * tools/icons/motif_icons.py. [LAYERS] is the standard.
+ */
+enum class AppIconMotif(
+    override val argb: Int,
+    @StringRes override val label: Int,
+    @DrawableRes val background: Int,
+    @DrawableRes val foreground: Int,
+) : AppIcon {
+    LAYERS(0xFFFF5A1F.toInt(), R.string.app_icon_layers, R.drawable.needafile_icon_layers_background, R.drawable.needafile_icon_layers_foreground),
+    BLUEPRINT(0xFF12365C.toInt(), R.string.app_icon_blueprint, R.drawable.needafile_icon_blueprint_background, R.drawable.needafile_icon_blueprint_foreground),
+    NETWORK(0xFFFF5A1F.toInt(), R.string.app_icon_network, R.drawable.needafile_icon_network_background, R.drawable.needafile_icon_network_foreground),
+    TRANSFER(0xFFFF5A1F.toInt(), R.string.app_icon_transfer, R.drawable.needafile_icon_transfer_background, R.drawable.needafile_icon_transfer_foreground);
+
+    override val aliasName get() = "${AppIconColor.ALIAS_PREFIX}${name.lowercase().replaceFirstChar { it.uppercase() }}"
+
+    companion object {
+        fun fromKey(key: String?) = entries.firstOrNull { it.name == key }
+    }
+}
+
+/** The colors the classic needafile icon (a glyph on a transparent background) comes in. */
+enum class AppIconColor(override val argb: Int, @StringRes override val label: Int, @DrawableRes val foreground: Int) : AppIcon {
     ORANGE(0xFFFF5A1F.toInt(), R.string.app_icon_orange, R.drawable.needafile_icon_foreground_orange),
     BLUE(0xFF3D63D8.toInt(), R.string.app_icon_blue, R.drawable.needafile_icon_foreground_blue),
     SAPPHIRE(0xFF1E5AA8.toInt(), de.needanapp.design.R.string.nd_preset_sapphire, R.drawable.needafile_icon_foreground_sapphire),
@@ -41,8 +75,7 @@ enum class AppIconColor(val argb: Int, @StringRes val label: Int, @DrawableRes v
     BLACK(0xFF1B1B1F.toInt(), R.string.app_icon_black, R.drawable.needafile_icon_foreground_black),
     WHITE(0xFFFFFFFF.toInt(), R.string.app_icon_white, R.drawable.needafile_icon_foreground_white);
 
-    /** The activity-alias in the manifest that shows this icon in the launcher. */
-    val aliasName get() = "$ALIAS_PREFIX${name.lowercase().replaceFirstChar { it.uppercase() }}"
+    override val aliasName get() = "$ALIAS_PREFIX${name.lowercase().replaceFirstChar { it.uppercase() }}"
 
     companion object {
         const val ALIAS_PREFIX = "de.needanapp.needafile.launcher."
@@ -52,8 +85,8 @@ enum class AppIconColor(val argb: Int, @StringRes val label: Int, @DrawableRes v
 }
 
 /**
- * The app's entry in the launcher: the needafile icon in the chosen color, or in the one closest to the accent color;
- * orange, needafile's own color, as long as the accent is the standard one.
+ * The app's entry in the launcher: one of the motifs, or the classic icon in the chosen color or in the one closest to
+ * the accent color; orange, needafile's own color, as long as the accent is the standard one.
  *
  * Launcher icons can only be switched by enabling one activity-alias and disabling the others. Disabling the entry
  * the app was opened with closes it at once, so changes wait until the app is left.
@@ -62,11 +95,18 @@ object LauncherIcon {
     /** Value of [appIconChoice]: the icon follows the accent color of the appearance settings. */
     const val FOLLOW_ACCENT = "accent"
 
+    /** Value of [appIconMotif]: the classic icon in a color. */
+    const val CLASSIC = "classic"
+
+    /** The icon the launcher shows, or shows once the app is left. */
+    fun resolve(context: Context, settings: ThemeSettings? = AppearanceState.current): AppIcon =
+        AppIconMotif.fromKey(context.config.appIconMotif) ?: resolveColor(context, settings)
+
     /**
-     * The color the icon has, or gets once the app is left. Following the accent color before the appearance settings
-     * are read (right after the app started), it is the color the launcher shows now.
+     * The color the classic icon has. Following the accent color before the appearance settings are read (right after
+     * the app started), it is the color the launcher shows now.
      */
-    fun resolve(context: Context, settings: ThemeSettings? = AppearanceState.current): AppIconColor {
+    fun resolveColor(context: Context, settings: ThemeSettings? = AppearanceState.current): AppIconColor {
         val choice = context.config.appIconChoice
         if (choice != FOLLOW_ACCENT) {
             return AppIconColor.fromKey(choice) ?: AppIconColor.ORANGE
@@ -95,7 +135,7 @@ object LauncherIcon {
         }
     }
 
-    /** Shows exactly the launcher entry of [resolve]'s color and hides the others; only touches entries whose state is wrong. */
+    /** Shows exactly the launcher entry of [resolve]'s icon and hides the others; only touches entries whose state is wrong. */
     fun sync(context: Context, settings: ThemeSettings? = AppearanceState.current) {
         val wanted = resolve(context, settings).aliasName
         // the wanted entry first, so the app is never without one
@@ -106,7 +146,7 @@ object LauncherIcon {
     }
 
     /**
-     * Shows the launcher entry of [resolve]'s color when none is shown, e.g. after an update renamed them. Never hides
+     * Shows the launcher entry of [resolve]'s icon when none is shown, e.g. after an update renamed them. Never hides
      * one: the app may just be opening through it.
      */
     private fun restoreMissing(context: Context) {

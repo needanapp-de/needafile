@@ -3,13 +3,9 @@ package de.needanapp.needafile.settings
 import android.content.Intent
 import androidx.activity.compose.LocalActivity
 import androidx.annotation.StringRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
@@ -35,7 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import de.needanapp.design.components.BottomPillSpacer
@@ -61,6 +56,7 @@ import de.needanapp.needafile.security.ProtectionKind
 import de.needanapp.needafile.security.Protections
 import de.needanapp.needafile.security.setUpProtection
 import de.needanapp.needafile.security.withProtection
+import de.needanapp.needafile.system.AppIconColor
 import de.needanapp.needafile.system.LauncherIcon
 
 /** Pages below the settings, shown in place of them. */
@@ -263,20 +259,18 @@ private fun SettingsList(
                 }
                 row {
                     val icon = remember(themeSettings) { LauncherIcon.resolve(activity, themeSettings) }
-                    val followsAccent = config.appIconChoice == LauncherIcon.FOLLOW_ACCENT
+                    val followsAccent = icon is AppIconColor && config.appIconChoice == LauncherIcon.FOLLOW_ACCENT
                     ListRow(
                         it,
                         stringResource(R.string.app_icon),
-                        summary = if (followsAccent) {
-                            stringResource(R.string.label_value, stringResource(R.string.app_icon_follow_accent), stringResource(icon.label))
-                        } else {
-                            stringResource(icon.label)
+                        summary = when {
+                            followsAccent -> stringResource(R.string.label_value, stringResource(R.string.app_icon_follow_accent), stringResource(icon.label))
+                            icon is AppIconColor -> stringResource(R.string.label_value, stringResource(R.string.app_icon_classic), stringResource(icon.label))
+                            else -> stringResource(icon.label)
                         },
                         icon = Icons.Outlined.Apps,
                         onClick = { onSubPage(SettingsSubPage.APP_ICON) },
-                        trailing = {
-                            Image(painterResource(icon.foreground), contentDescription = null, modifier = Modifier.size(40.dp).wrapContentSize(unbounded = true).requiredSize(64.dp))
-                        },
+                        trailing = { AppIconImage(icon, 40.dp) },
                     )
                 }
             }

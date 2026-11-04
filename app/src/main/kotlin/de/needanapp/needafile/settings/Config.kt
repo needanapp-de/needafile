@@ -13,6 +13,7 @@ import de.needanapp.needafile.core.defaultDatePattern
 import de.needanapp.needafile.core.internalStorage
 import de.needanapp.needafile.files.RecentFolder
 import de.needanapp.needafile.remote.migrateLegacyRemotePath
+import de.needanapp.needafile.system.AppIconMotif
 import de.needanapp.needafile.system.LauncherIcon
 import de.needanapp.needafile.vault.getVaultLocation
 import de.needanapp.needafile.vault.isVaultPath
@@ -204,7 +205,16 @@ class Config(private val context: Context) {
         get() = prefs.getString(SettingKeys.SERVERS, "[]").orEmpty()
         set(value) = prefs.edit().putString(SettingKeys.SERVERS, value).apply()
 
-    /** The launcher icon's color: an [de.needanapp.needafile.system.AppIconColor] name or "accent" to follow the accent color. */
+    /**
+     * The launcher icon: an [de.needanapp.needafile.system.AppIconMotif] name or [LauncherIcon.CLASSIC] for the classic
+     * icon in [appIconChoice]'s color. Unset, it is the standard motif, unless a color was picked before the motifs came.
+     */
+    var appIconMotif: String
+        get() = prefs.getString(SettingKeys.APP_ICON_MOTIF, null)
+            ?: if (prefs.contains(SettingKeys.APP_ICON) && appIconChoice != LauncherIcon.FOLLOW_ACCENT) LauncherIcon.CLASSIC else AppIconMotif.LAYERS.name
+        set(value) = prefs.edit().putString(SettingKeys.APP_ICON_MOTIF, value).apply()
+
+    /** The classic launcher icon's color: an [de.needanapp.needafile.system.AppIconColor] name or "accent" to follow the accent color. */
     var appIconChoice: String
         get() = prefs.getString(SettingKeys.APP_ICON, LauncherIcon.FOLLOW_ACCENT).orEmpty()
         set(value) = prefs.edit().putString(SettingKeys.APP_ICON, value).apply()
@@ -295,6 +305,7 @@ object SettingKeys {
     const val COMPRESS_SOLID = "compress.solid"
     const val SERVERS = "servers"
     const val APP_ICON = "app_icon"
+    const val APP_ICON_MOTIF = "app_icon_motif"
     const val VAULT_LOCK_MINUTES = "vault.lock_minutes"
     const val VAULT_LOCK_SCREEN_OFF = "vault.lock_screen_off"
 }

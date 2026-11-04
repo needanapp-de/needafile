@@ -423,6 +423,12 @@
 
     <!-- app icon -->
     <string name="app_icon">App icon</string>
+    <string name="app_icon_motif">Motif</string>
+    <string name="app_icon_layers">Layers</string>
+    <string name="app_icon_blueprint">Blueprint</string>
+    <string name="app_icon_network">Network</string>
+    <string name="app_icon_transfer">Transfer</string>
+    <string name="app_icon_classic">Classic</string>
     <string name="app_icon_follow_accent">Like the accent color</string>
     <string name="app_icon_follow_accent_summary">Uses the icon color closest to the accent color of the appearance settings; orange with the standard accent</string>
     <string name="app_icon_color">Color</string>
