@@ -8,6 +8,11 @@
 
 needafile ist ein Dateimanager für Android 12 und neuer – für die Dateien auf dem Handy und auf den Servern im eigenen Netzwerk, im modernen Material-3-Expressive-Stil.
 
+<p>
+  <a href="https://apps.needanapp.de"><img src="docs/badges/needanapp-repo-de.png" alt="F-Droid-Paketquelle needanapp.de" height="80"></a>
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/needanapp-de/needafile"><img src="docs/badges/obtainium.png" alt="Get it on Obtainium" height="80"></a>
+</p>
+
 [F-Droid-Repo](https://apps.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
 Android 12 und neuer · Lizenz [GPL-3.0](LICENSE) ·
 Herausgeber needanapp.de
@@ -186,6 +191,11 @@ GPL-3.0, siehe [LICENSE](LICENSE).
 
 needafile is a file manager for Android 12 and newer – for the files on your phone and on the servers in your own
 network, in the modern Material 3 Expressive look.
+
+<p>
+  <a href="https://apps.needanapp.de"><img src="docs/badges/needanapp-repo-en.png" alt="F-Droid repository needanapp.de" height="80"></a>
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/needanapp-de/needafile"><img src="docs/badges/obtainium.png" alt="Get it on Obtainium" height="80"></a>
+</p>
 
 [F-Droid repo](https://apps.needanapp.de) · [Download (APK)](https://github.com/needanapp-de/needafile/releases/latest) ·
 Android 12 and newer · License [GPL-3.0](LICENSE) ·
