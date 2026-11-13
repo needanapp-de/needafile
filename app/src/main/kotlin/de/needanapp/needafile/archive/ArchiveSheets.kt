@@ -80,7 +80,8 @@ import net.lingala.zip4j.model.enums.AesKeyStrength
  * Name, folder and format (zip or 7z) of a new archive of [items], with an optional password. A line below explains how
  * the archive will be encrypted, so the difference between zip and 7z is visible before creating it. "Advanced"
  * (collapsed at first) offers the compression strength, for zip also the AES key length and splitting into parts, for
- * 7z solid compression. All options but the password start as they were for the last archive.
+ * 7z solid compression. All options but the password start as they were for the last archive. While the password is
+ * hidden it has to be typed a second time; shown, it can be checked by eye, so the second field goes.
  */
 @Composable
 fun CompressSheet(items: List<FileEntry>, onDismiss: () -> Unit, onCompress: (CompressRequest) -> Unit) {
@@ -94,6 +95,8 @@ fun CompressSheet(items: List<FileEntry>, onDismiss: () -> Unit, onCompress: (Co
     var isProtected by rememberSaveable { mutableStateOf(last.isProtected) }
     // passwords stay out of the saved instance state and the settings
     var password by remember { mutableStateOf("") }
+    var repeated by remember { mutableStateOf("") }
+    var passwordShown by rememberSaveable { mutableStateOf(false) }
     var encryptNames by rememberSaveable { mutableStateOf(last.encryptFileNames) }
     var strength by rememberSaveable { mutableStateOf(last.strength) }
     var aesKeyStrength by rememberSaveable { mutableStateOf(last.aesKeyStrength) }
@@ -114,7 +117,8 @@ fun CompressSheet(items: List<FileEntry>, onDismiss: () -> Unit, onCompress: (Co
         isSplit && File("$folder/${name.trim()}.z01").exists() -> stringResource(R.string.name_taken)
         else -> null
     }
-    val canCompress = name.isNotBlank() && nameError == null && (!isProtected || password.isNotEmpty())
+    val passwordConfirmed = passwordShown || repeated == password
+    val canCompress = name.isNotBlank() && nameError == null && (!isProtected || (password.isNotEmpty() && passwordConfirmed))
     val encryptionInfo = when {
         !isProtected -> R.string.archive_info_not_encrypted
         format == ArchiveKind.ZIP && aesKeyStrength == AesKeyStrength.KEY_STRENGTH_128 -> R.string.archive_info_zip_aes_128
@@ -164,7 +168,35 @@ fun CompressSheet(items: List<FileEntry>, onDismiss: () -> Unit, onCompress: (Co
             TileCard(stringResource(R.string.archive_info_encryption), CardSpacing) {
                 line({ m, shape -> SwitchTile(stringResource(R.string.add_password), isProtected, { value -> isProtected = value }, shape, m, Icons.Outlined.Lock) })
                 if (isProtected) {
-                    line({ m, shape -> TextFieldTile(password, { value -> password = value }, stringResource(R.string.password), shape, m, isSecret = true) })
+                    line({ m, shape ->
+                        TextFieldTile(
+                            password,
+                            { value -> password = value },
+                            stringResource(R.string.password),
+                            shape,
+                            m,
+                            isSecret = true,
+                            revealed = passwordShown,
+                            onRevealedChange = { shown -> passwordShown = shown },
+                        )
+                    })
+                    if (!passwordShown) {
+                        line({ m, shape ->
+                            TextFieldTile(
+                                repeated,
+                                { value -> repeated = value },
+                                stringResource(R.string.password_repeat),
+                                shape,
+                                m,
+                                // a mismatch only shows once something is typed
+                                error = stringResource(R.string.password_mismatch).takeIf { repeated.isNotEmpty() && repeated != password },
+                                isSecret = true,
+                                revealed = false,
+                                // showing the second field shows the password instead, which makes it unneeded
+                                onRevealedChange = { shown -> passwordShown = shown },
+                            )
+                        })
+                    }
                     if (format == ArchiveKind.SEVEN_ZIP) {
                         line({ m, shape ->
                             SwitchTile(stringResource(R.string.archive_encrypt_file_names), encryptNames, { value -> encryptNames = value }, shape, m, Icons.Outlined.TextFields)
@@ -305,6 +337,8 @@ private fun SheetHint(text: String) {
 @Composable
 fun ArchivePasswordPrompt(path: String, isWrong: Boolean, onPassword: (String) -> Unit, onCancel: () -> Unit) {
     var password by remember { mutableStateOf("") }
+    var repeated by remember { mutableStateOf("") }
+    var passwordShown by rememberSaveable { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     LaunchedEffect(Unit) { focusRequester.requestFocus() }
     fun confirm() {

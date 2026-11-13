@@ -1,0 +1,1 @@
+• Compressing with a password: while the password is hidden, needafile asks for it a second time to check it; shown, the repetition goes away

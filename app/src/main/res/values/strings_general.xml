@@ -121,6 +121,8 @@
     <string name="pattern">Pattern</string>
     <string name="biometrics">Fingerprint</string>
     <string name="password">Password</string>
+    <string name="password_repeat">Repeat password</string>
+    <string name="password_mismatch">The passwords don\'t match</string>
     <string name="enter_pin">Your PIN</string>
     <string name="repeat_pin">The same PIN again</string>
     <string name="insert_pattern">Draw your pattern</string>
